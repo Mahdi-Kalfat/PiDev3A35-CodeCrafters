@@ -1383,3 +1383,13 @@ d15c95,127.0.0.1,GET,http://127.0.0.1:8000/assets/img/gallery/gallery3.png,17084
 81a47c,127.0.0.1,GET,http://127.0.0.1:8000/assets/img/gallery/gallery4.png,1708425091,,404,request
 ae5a96,127.0.0.1,GET,http://127.0.0.1:8000/site.webmanifest,1708425091,cf208d,404,request
 cf208d,127.0.0.1,GET,http://127.0.0.1:8000/site.webmanifest,1708425091,,404,request
+f4b1f5,127.0.0.1,GET,http://127.0.0.1:8000/ajouterproduit,1708429528,,200,request
+88185f,127.0.0.1,GET,http://127.0.0.1:8000/css/select.css,1708429528,209fa3,404,request
+209fa3,127.0.0.1,GET,http://127.0.0.1:8000/css/select.css,1708429528,,404,request
+92cd9e,127.0.0.1,GET,http://127.0.0.1:8000/site.webmanifest,1708429529,68630a,404,request
+68630a,127.0.0.1,GET,http://127.0.0.1:8000/site.webmanifest,1708429529,,404,request
+c5dcca,127.0.0.1,GET,http://127.0.0.1:8000/produit,1708429530,,200,request
+4c4c3c,127.0.0.1,GET,http://127.0.0.1:8000/css/select.css,1708429531,1e3890,404,request
+1e3890,127.0.0.1,GET,http://127.0.0.1:8000/css/select.css,1708429531,,404,request
+307144,127.0.0.1,GET,http://127.0.0.1:8000/site.webmanifest,1708429532,cccf82,404,request
+cccf82,127.0.0.1,GET,http://127.0.0.1:8000/site.webmanifest,1708429532,,404,request
