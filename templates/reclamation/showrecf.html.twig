@@ -1,0 +1,221 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <!--? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ asset('img/logo/logo.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="{{ path('app_home') }}"><img src="{{ asset('/img/logo/logo.png') }}" alt=""></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>                                                
+                                <ul id="navigation">  
+                                    <li><a href="{{ path('app_home') }}">Acceuil</a></li>
+                                    <li><a href="shop.html">Magasin</a>
+                                        <ul class="submenu">
+                                            <li><a href="shophomme.html">Homme</a></li>
+                                            <li><a href="shopfemme.html">Femme</a></li>
+                                            <li><a href="shopenfant.html">Enfant</a></li>
+                                        </ul> 
+                                    </li>
+                                    <li><a href="about.html">A propos</a></li>
+                                    <li class="hot"><a href="#">Nouveauté</a>
+                                        <ul class="submenu">
+                                            <li><a href="evenement.html">Nos Evenement</a></li>
+                                            <li><a href="new_details.html">Nouveau Produit</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Forum</a>
+                                        <ul class="submenu">
+                                            <li><a href="{{ path('app_reclamation') }}">Reclamation</a></li>
+                                            <li><a href="{{ path('app_reclamation_showf') }}">Liste des Reclamations</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Nous Contacter</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header Right -->
+                        <div class="header-right">
+                            <ul>
+                                <li>
+                                    <div class="nav-search search-switch">
+                                        <span class="flaticon-search"></span>
+                                    </div>
+                                </li>
+                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
+                                <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+        <!-- ================ contact section start ================= -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                        <h2 class="contact-title text-center">List Reclamation</h2>
+                        <a href="{{path('app_reclamation')}}" class="button button-contactForm boxed-btn mb-3">Ajouter Reclamation</a>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Obj</th>
+                                <th scope="col">Contenu</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Etat</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for reclamationf in reclamationsf %}
+                                <tr>
+                                <th>{{reclamationf.nom}}</th>
+                                <td>{{reclamationf.email}}</td>
+                                <td>{{reclamationf.obj}}</td>
+                                <td>{{reclamationf.contenu}}</td>
+                                <td>{{reclamationf.type}}</td>
+                                {% if reclamationf.etat == 0  %}
+                                <td> Non Traitée</td>
+                                {% elseif reclamationf.etat == 1 %}
+                                    <td>Traitée</td>
+                                {% endif %}
+                                
+                                <td>{% if reclamationf.image %}
+                                    <img src="{{ asset('imgrec/' ~ reclamationf.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 200px;">
+                                {% endif %}</td>
+                                <td><a href="{{path('app_reclamation_edit', {'id': reclamationf.id })}}" style="color : black;">Edit</a> | <a href="{{path('app_reclamation_deletef', {'id': reclamationf.id })}}" style="color : black;">Delete</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                       
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ================ contact section end ================= -->
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="{{ asset('/img/logo/logo2_footer.png') }}" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Quick Links</h4>
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#"> Offers & Discounts</a></li>
+                                    <li><a href="#"> Get Coupon</a></li>
+                                    <li><a href="#">  Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>New Products</h4>
+                                <ul>
+                                    <li><a href="#">Woman Cloth</a></li>
+                                    <li><a href="#">Fashion Accessories</a></li>
+                                    <li><a href="#"> Man Accessories</a></li>
+                                    <li><a href="#"> Rubber made Toys</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Support</h4>
+                                <ul>
+                                    <li><a href="#">Frequently Asked Questions</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Report a Payment Issue</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer bottom -->
+                <div class="row align-items-center">
+                    <div class="col-xl-7 col-lg-8 col-md-7">
+                        <div class="footer-copy-right">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made </i> by <a href="" target="_blank">CodeCrafters</a></p>                  
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5">
+                        <div class="footer-copy-right f-right">
+                            <!-- social -->
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!--? Search model Begin -->
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Searching key.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+{% endblock %}
