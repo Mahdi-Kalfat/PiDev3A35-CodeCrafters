@@ -92,9 +92,10 @@
                             <div class="login_part_form_iner">
                                 <h3>Bienvenue !<br>
                                     Veuillez vous connecter</h3>
-                                     {{ form_start(form, {'attr': {'class': 'row contact_form'}}) }}
+                                     {{ form_start(form, {'attr': {novalidate: 'novalidate','class': 'row contact_form'}}) }}
                                     <div class="col-md-12 form-group p_star">
                                     {{ form_widget(form.mail, {'attr': {'placeholder': 'Votre E-mail', 'class': 'form-control', 'id': 'mail', 'name':'mail' }}) }}
+                                    {{form_errors(form.mail)}}
                                    </div>
                                     <div class="col-md-12 form-group p_star">
                                     {{ form_widget(form.mdp, {'attr': {'placeholder': 'Votre Mot De Passe', 'class': 'form-control', 'id': 'mdp', 'name':'mdp'}} ) }}
@@ -113,6 +114,7 @@
                                     {{ form_widget(form.submit, {'attr': {'class': 'btn_3 text-center'} }) }}
                                    </div>
                                     {{ form_end(form) }} 
+                                    <a href="{{path('app_user_forgot')}}" style="color:blue;" class="d-flex justify-content-end">Mot de passe oubiliée</a>
                             </div>
                         </div>
                     </div>

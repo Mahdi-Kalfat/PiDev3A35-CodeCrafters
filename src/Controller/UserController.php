@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Controller;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use App\Entity\User;
-use App\Form\ConnectionType;
-use App\Form\CreecompteType;
 use App\Form\EditProfilImgType;
 use App\Form\EditProfilType;
 use App\Repository\UserRepository;
@@ -26,75 +22,12 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
         ]);
     }
-    #[Route('/user/singin', name: 'app_user_singin')]
-    public function creecompte(UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $em, Request $req)
-    {
-        $user = new User();
-        $form = $this->createForm(CreecompteType::class, $user);
-        $defaultImage = 'Default.jpg';
-        $form->get('image')->setData($defaultImage);
-
-        $form->handleRequest($req);
-
-        if ($form->isSubmitted()) {
-            $encodedPassword = $passwordEncoder->hashPassword($user, $form->get('mdp')->getData());
-            $user->setMdp($encodedPassword);
-
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('app_user_login');
-        }
-
-        return $this->render('user/creecompte.html.twig', ['formAdd' => $form->createView()]);
-    }
-
+    
     #[Route('/user/home', name: 'app_user_home')]
     public function index4(): Response
     {
         return $this->render('user/home.html.twig', [
             'controller_name' => 'UserController',
-        ]);
-    }
-    #[Route('/user/profil', name: 'app_user_profil')]
-    public function index5(): Response
-    {
-        return $this->render('user/profil.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
-
-    #[Route('/user/login', name: 'app_user_login')]
-    public function login(UserRepository $userRepository, Request $request, SessionInterface $session,UserPasswordHasherInterface $passwordHasher): Response
-    {
-        $form = $this->createForm(ConnectionType::class);
-    
-        $form->handleRequest($request);
-    
-        if ($form->isSubmitted() && $form->isValid()) {
-            $formData = $form->getData();
-            // Access individual form fields
-            $mail = $formData->getMail();
-            $password =$form->get('mdp')->getData();
-    
-            // Find user by email and password
-            $user = $userRepository->findOneBy(['mail' => $mail]);
-    
-            if ($user && $passwordHasher->isPasswordValid($user, $password)) {
-                $stat = $user->getStat();
-    
-                if ($stat !== "bani") {
-                    $session->set('user_email', $mail);
-                    return $this->redirectToRoute('app_user_home');
-                } else {
-                    $this->addFlash('error', 'Désolée votre compte est banni !');
-                }
-            } else {
-                $this->addFlash('error', 'Email or password is incorrect.');
-            }
-        }
-        return $this->render('user/connect.html.twig', [
-            'form' => $form->createView(),
         ]);
     }
   
@@ -117,7 +50,7 @@ public function profile(SessionInterface $session, UserRepository $userRepositor
 
     $form=$this->createForm(EditProfilImgType::class,$user);
        $form->handleRequest($req);
-       if ($form->isSubmitted()){
+       if ($form->isSubmitted() && $form->isValid()){
         $imageFile = $form->get('image')->getData();
        /* if ($imageFile) {*/
             $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
@@ -160,7 +93,7 @@ public function profileedit($id,EntityManagerInterface $em,SessionInterface $ses
     $user = $userRepository->find($id);
        $form=$this->createForm(EditProfilType::class,$user);
        $form->handleRequest($req);
-       if ($form->isSubmitted()){
+       if ($form->isSubmitted() && $form->isValid()){
         $user->setImage($user->getImage());
         $em->persist($user);
         $em->flush();
@@ -177,4 +110,23 @@ public function profileedit($id,EntityManagerInterface $em,SessionInterface $ses
 
     ]);
 }
+#[Route('/user/del/{id}', name: 'app_user_del')]
+    public function unban($id,EntityManagerInterface $em,UserRepository $Ur)
+    {
+        $User = $Ur->find($id);
+
+        if (!$User) {
+            // Handle the case where Livreur is not found, maybe return a response or redirect
+            return $this->redirectToRoute('app_user_profil');
+        }
+        
+        // Change the status to 'Bani'
+        $User->setStat('dead');
+        
+        // Persist the changes
+        $em->persist($User);
+        $em->flush();
+        
+        return $this->redirectToRoute('app_user_login');
+    }
 }

@@ -24,6 +24,7 @@ class EditProfilImgType extends AbstractType
             ->add('mdp', HiddenType::class)
             ->add('image', FileType::class, [
                 'required' => false,
+                'empty_data'=>'',
                 'data_class' => null,
             ])
             ->add('submit' , SubmitType::class,[

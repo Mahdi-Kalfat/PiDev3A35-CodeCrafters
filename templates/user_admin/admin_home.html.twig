@@ -46,12 +46,6 @@
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin WeTek</span>
-    </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
@@ -60,19 +54,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
+          <a href="#" class="d-block">Admin Wetek</a>
         </div>
       </div>
 
@@ -171,7 +153,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-end  ">
-                            <a href="" class="btn btn-sm btn-danger mr-2">
+                            <a href="{{ path('app_user_ban', {'id': user.id }) }}" class="btn btn-sm btn-danger mr-2">
                                 <i class="fas fa-minus"></i> Bannir
                             </a>
                             <a href="#" class="btn btn-sm bg-teal mr-2">
@@ -181,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas d'utilisateur Pour le Moment</b></p>
+            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas d'utilisateur confirmée Pour le Moment</b></p>
             {% endfor %}
             
           </div>
@@ -217,14 +199,108 @@
             </button>
           </div>
         </div>
-        <div class="card-body">
-          Start creating your amazing application!
+                <div class="card-body">
+          <!-- Default box -->
+<div class="card">
+    <p class="d-flex justify-content-center mt-2"><b>Utilisateur Bani</b></p>
+    <div class="card-body pb-0">
+        <div class="row">
+            {% for userBani in usersBani %}
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-muted border-bottom-0">
+                        Utilisateur
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="text-muted text-sm"><b>Nom&Prenom:</b> {{ userBani.nom }} {{ userBani.prenom }}</p>
+                                <p class="text-muted text-sm"><b>Num Tel:</b> {{ userBani.num }}</p>
+                                <p class="text-muted text-sm"><b>Adresse:</b> {{ userBani.adresse }}</p>
+                                <p class="text-muted text-sm"><b>E-mail:</b>  {{ userBani.mail }}</p>
+                            </div>
+                            <div class="col-6 text-center">
+                                {% if userBani.image %}
+                                    <img src="{{ asset('imguser/' ~ userBani.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 140px;">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ path('app_user_unban', {'id': userBani.id }) }}" class="btn btn-sm bg-teal mr-2">
+                                <i class="fas fa-minus"></i>  UnBan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas d'utilisateur bani Pour le Moment</b></p>
+            {% endfor %}
+            
+          </div>
         </div>
+        
         <!-- /.card-body -->
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
 
+    </section>
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card collapsed-card">
+        <div class="card-header">
+          <h3 class="card-title">List compte Supprimée</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+                <div class="card-body">
+          <!-- Default box -->
+<div class="card card-solid">
+    <p class="d-flex justify-content-center mt-2"><b>Utilisateur Désactivée</b></p>
+    <div class="card-body pb-0">
+        <div class="row">
+            {% for deaduser in deadusers %}
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-muted border-bottom-0">
+                        Utilisateur
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="text-muted text-sm"><b>Nom&Prenom:</b> {{ deaduser.nom }} {{ deaduser.prenom }}</p>
+                                <p class="text-muted text-sm"><b>Num Tel:</b> {{ deaduser.num }}</p>
+                                <p class="text-muted text-sm"><b>Adresse:</b> {{ deaduser.adresse }}</p>
+                                <p class="text-muted text-sm"><b>E-mail:</b>  {{ deaduser.mail }}</p>
+                            </div>
+                            <div class="col-6 text-center">
+                                {% if deaduser.image %}
+                                    <img src="{{ asset('imguser/' ~ deaduser.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 140px;">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas d'utilisateur désactivée Pour le Moment</b></p>
+            {% endfor %}
+            
+          </div>
+        </div>
+        <!-- /.card-body -->
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
     </section>
     <!-- /.content -->
   </div>

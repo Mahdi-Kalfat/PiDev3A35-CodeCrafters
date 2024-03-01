@@ -82,7 +82,7 @@
 <div class="account-settings">
 <div class="user-profile">
 <div class="user-avatar">
-{{ form_start(formedit) }}
+{{ form_start(formedit, {'attr': {novalidate: 'novalidate'}}) }}
 <img src="{{ asset('imguser/' ~ img) }}" alt="Maxwell Admin">
 
 <div>
@@ -110,22 +110,26 @@
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group mt-5">
  {{ form_widget(formedit.nom, {'attr': {'placeholder': 'Votre Nom', 'class': 'form-control'}}) }}
+ {{form_errors(formedit.nom)}}
 </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group mt-5">
  {{ form_widget(formedit.prenom, {'attr': {'placeholder': 'Votre Prenom', 'class': 'form-control'}}) }}
+ {{form_errors(formedit.prenom)}}
 </div>
 </div>
 
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group mt-5">
  {{ form_widget(formedit.num, {'attr': {'placeholder': 'Votre Numero', 'class': 'form-control'}}) }}
+ {{form_errors(formedit.num)}}
 </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group mt-5">
  {{ form_widget(formedit.adresse, {'attr': {'placeholder': 'Votre Adresse', 'class': 'form-control'}}) }}
+ {{form_errors(formedit.adresse)}}
  </div>
 </div>
 </div>

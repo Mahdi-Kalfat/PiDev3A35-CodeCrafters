@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-	{% block body %}
-          <!--? Preloader Start -->
+{% block body %}
+      <!--? Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
@@ -78,48 +78,24 @@
         <section class="login_part section_padding ">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-md-6">
                         <div class="login_part_text text-center">
                             <div class="login_part_text_iner">
-                                <h2>Deja menmbre de WeTek ?</h2>
-                                <p>Connectez vous et vivez l'experience WeTek !</p>
-                                <a href="{{ path('app_user_login') }}" class="btn_3">Se Connecter</a>
+                                <h2>Mot de passe oubliée</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="login_part_form">
                             <div class="login_part_form_iner">
-                                <h3>Bienvenue !<br>
-                                    Veuillez Créer votre Compte</h3>
-                                    {{ form_start(formAdd, {'attr': {novalidate: 'novalidate','class': 'row contact_form'}}) }}
-                                    <div class="col-md-12 form-group p_star">
-                                    {{ form_widget(formAdd.nom, {'attr': {'placeholder': 'Votre Nom', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.nom)}}
-                                   </div>
-                                    <div class="col-md-12 form-group p_star">
-                                    {{ form_widget(formAdd.prenom, {'attr': {'placeholder': 'Votre Prenom', 'class': 'form-control'}} ) }}
-                                    {{form_errors(formAdd.prenom)}}
-                                   </div>
+                                <h3>Réinisialiser votre mot de passe</h3>
+                                {{ form_start(formAdd, {'attr': {novalidate: 'novalidate','class': 'row contact_form'}}) }}
                                    <div class="col-md-12 form-group p_star">
-                                    {{ form_widget(formAdd.num, {'attr': {'placeholder': 'Votre Numero', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.num)}}
-                                   </div>
-                                    <div class="col-md-12 form-group p_star">
-                                    {{ form_widget(formAdd.adresse, {'attr': {'placeholder': 'Votre Adresse', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.adresse)}}
-                                   </div>
-                                    <div class="col-md-12 form-group p_star">
-                                    {{ form_widget(formAdd.mail, {'attr': {'placeholder': 'Votre E-mail', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.mail)}}
-                                   </div>
-                                    <div class="col-md-12 form-group p_star">
                                     {{ form_widget(formAdd.mdp, {'attr': {'placeholder': 'Votre Mot de passe', 'class': 'form-control'} }) }}
                                     {{form_errors(formAdd.mdp)}}
                                    </div>
                                    <div class="col-md-12 form-group p_star">
                                     {{ form_widget(formAdd.confirmMdp, {'attr': {'placeholder': 'Confirmer Votre mot de passe', 'class': 'form-control'} }) }}
-                                    {{form_errors(formAdd.confirmMdp)}}
                                    </div>
                                    {% for flashType, flashMessages in app.flashes %}
                                         {% for flashMessage in flashMessages %}
@@ -132,9 +108,10 @@
                                         {% endfor %}
                                     {% endfor %}
                                     <div class="col-md-12 form-group p_star">
-                                    {{ form_widget(formAdd.submit, {'attr': {'class': 'btn_3 text-center'} }) }}
+                                    {{ form_widget(formAdd.Envoyer, {'attr': {'class': 'btn_3 text-center'} }) }}
                                    </div>
                                     {{ form_end(formAdd) }}
+                                    
                             </div>
                         </div>
                     </div>
@@ -143,4 +120,5 @@
         </section>
         <!--================login_part end =================-->
     </main>
-    {% endblock %}
+{% endblock %}
+

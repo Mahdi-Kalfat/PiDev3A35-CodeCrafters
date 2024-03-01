@@ -19,15 +19,19 @@ class CreecompteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('num', NumberType::class)
-            ->add('adresse', TextType::class)
+            ->add('nom', TextType::class,['empty_data'=>''])
+            ->add('prenom', TextType::class,['empty_data'=>''])
+            ->add('num', NumberType::class,['empty_data'=>''])
+            ->add('adresse', TextType::class,['empty_data'=>''])
             ->add('stat', HiddenType::class, [
                 'data' => 'user',
             ])
-            ->add('mail', EmailType::class)
-            ->add('mdp', PasswordType::class)
+            ->add('token', HiddenType::class, [
+                'data' => null,
+            ])
+            ->add('mail', EmailType::class,['empty_data'=>''])
+            ->add('mdp', PasswordType::class,['empty_data'=>''])
+            ->add('confirmMdp', PasswordType::class, ['mapped' => false, 'empty_data' => ''])
             ->add('image', HiddenType::class)
             ->add('submit', SubmitType::class, [
                 'label' => 'S\'inscrire',

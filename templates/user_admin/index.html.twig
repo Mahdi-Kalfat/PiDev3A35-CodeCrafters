@@ -10,7 +10,7 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Connectez-vous et commencer votre session</p>
-      {{ form_start(form) }}
+      {{ form_start(form, {'attr': {novalidate: 'novalidate'}}) }}
         <div class="input-group mb-3">
         {{ form_widget(form.mail, {'attr': {'placeholder': 'Votre E-mail', 'class': 'form-control', 'name':'mail' }}) }}
           <div class="input-group-append">
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-         {{ form_widget(form.mdp, {'attr': {'placeholder': 'Votre Mot De Passe', 'class': 'form-control', 'name':'mdp'}} ) }}
+         {{ form_widget(form.mdp, {'attr': {'placeholder': 'Votre Mot De Passe', 'class': 'form-control', 'name':'mdp','type':'file'}} ) }}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ConnectAdminType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +21,8 @@ class UserAdminController extends AbstractController
     
         $form->handleRequest($request);
     
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted()) {
             $formData = $form->getData();
-            // Access individual form fields
             $mail = $formData->getMail();
             $password =$form->get('mdp')->getData();
     
@@ -50,10 +50,52 @@ class UserAdminController extends AbstractController
     public function index(UserRepository $usr): Response
     {
         $user = $usr->findBy(['stat' => 'user']);
+        $userBan = $usr->findBy(["stat" => "bani"]);
+        $nouser =$usr->findBy(["stat" => "dead"]);
 
         return $this->render('user_admin/admin_home.html.twig', [
             'controller_name' => 'UserAdminController',
             'users' => $user,
+            'usersBani' => $userBan,
+            'deadusers' => $nouser,
         ]);
+    }
+    #[Route('/user/ban/{id}', name: 'app_user_ban')]
+    public function delauth($id,EntityManagerInterface $em,UserRepository $Ur)
+    {
+        $User = $Ur->find($id);
+
+        if (!$User) {
+            // Handle the case where Livreur is not found, maybe return a response or redirect
+            return $this->redirectToRoute('app_user_admin_home');
+        }
+        
+        // Change the status to 'Bani'
+        $User->setStat('bani');
+        
+        // Persist the changes
+        $em->persist($User);
+        $em->flush();
+        
+        return $this->redirectToRoute('app_user_admin_home');
+    }
+    #[Route('/user/unban/{id}', name: 'app_user_unban')]
+    public function unban($id,EntityManagerInterface $em,UserRepository $Ur)
+    {
+        $User = $Ur->find($id);
+
+        if (!$User) {
+            // Handle the case where Livreur is not found, maybe return a response or redirect
+            return $this->redirectToRoute('app_user_admin_home');
+        }
+        
+        // Change the status to 'Bani'
+        $User->setStat('user');
+        
+        // Persist the changes
+        $em->persist($User);
+        $em->flush();
+        
+        return $this->redirectToRoute('app_user_admin_home');
     }
 }
