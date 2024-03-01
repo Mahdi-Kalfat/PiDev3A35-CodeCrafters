@@ -108,16 +108,8 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"";
         // line 32
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_homme");
-        echo "\">Homme</a></li>
-                                            <li><a href=\"";
-        // line 33
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_femme");
-        echo "\">Femme</a></li>
-                                            <li><a href=\"";
-        // line 34
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_enfant");
-        echo "\">Enfant</a></li>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favoris");
+        echo "\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>
@@ -125,7 +117,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"evenement.html\">Nos Evenement</a></li>
                                             <li><a href=\"";
-        // line 41
+        // line 39
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
         echo "\">Nouveau Produit</a></li>
                                         </ul>
@@ -150,9 +142,24 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                                 </li>
                                 <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
                                 <li><a href=\"";
-        // line 63
+        // line 61
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
-        echo "\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+        echo "\"><span class=\"flaticon-shopping-cart\">
+                                    ";
+        // line 62
+        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 62, $this->source); })()), "session", [], "any", false, false, false, 62), "get", ["cart"], "method", false, false, false, 62)) {
+            // line 63
+            echo "                                    ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 63, $this->source); })()), "session", [], "any", false, false, false, 63), "get", ["cartData"], "method", false, false, false, 63), "data", [], "any", false, false, false, 63), "quantityCart", [], "any", false, false, false, 63), "html", null, true);
+            echo "
+                                    ";
+        } else {
+            // line 65
+            echo "                                        0   
+                                    ";
+        }
+        // line 67
+        echo "                                </span></a> </li>
                             </ul>
                         </div>
                     </div>
@@ -169,175 +176,123 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
         <!-- Latest Products Start -->
         <section class=\"popular-items\">
             <div class=\"container\">
-                <div class=\"row product-btn justify-content-between mb-30\">
-                    <div class=\"properties__button\">
-                        <!--Nav Button  -->
-                        <!--
-                        <nav>                                                      
-                            <div class=\"nav nav-tabs\" id=\"nav-tab\" role=\"tablist\">
-                                <a class=\"nav-item nav-link active\" id=\"nav-home-tab\" data-toggle=\"tab\" href=\"#nav-home\" role=\"tab\" aria-controls=\"nav-home\" aria-selected=\"true\">NewestArrivals</a>
-                                <a class=\"nav-item nav-link\" id=\"nav-profile-tab\" data-toggle=\"tab\" href=\"#nav-profile\" role=\"tab\" aria-controls=\"nav-profile\" aria-selected=\"false\"> Price high to low</a>
-                                <a class=\"nav-item nav-link\" id=\"nav-contact-tab\" data-toggle=\"tab\" href=\"#nav-contact\" role=\"tab\" aria-controls=\"nav-contact\" aria-selected=\"false\"> Most populer </a>
-                            </div>
-                        </nav>
-                        -->
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
-                </div>
-                <div class=\"d-flex justify-content-between mt-10\" style=\"padding-bottom: 20px;\">
-    <div>
-        <h6>Acceuil > Magasin > All</h6>
-    </div>
-    <div>
-        <a href=\"";
-        // line 101
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
-        echo "\" class=\"genric-btn danger circle\">Vendre un produit</a>
-    </div>
-</div>
 
-<div class=\"text-right mt-3\">
-    <a href=\"";
-        // line 106
+                <h6>Acceuil > Magasin > All</h6>
+                    
+                <div class=\"d-flex justify-content-end\" style=\"padding-bottom: 20px;\">
+                    <a href=\"";
+        // line 88
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
+        echo "\" class=\"genric-btn circle mr-2\" style=\"background-color: red; color: white;\">Vendre un produit</a>
+                    <a href=\"";
+        // line 89
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_afficherproduit");
-        echo "\" class=\"genric-btn danger circle\">Liste de mes produits</a>
-</div>
-            <div class=\"row\">
-            <h3 class=\"mb-30\">Filtrer Par :</h3>
-            <div class=\"d-flex\">
-                <div class=\"single-element-widget mt-30\" style=\"margin-left: 20px;\">
-                <div class=\"default-select\" id=\"default-select\">
-                     <style>
-                                .small-button {
-                                    padding: 0.25rem 0.5rem;
-                                    font-size: 0.875rem;
-                                    line-height: 1.5;
-                                    border-radius: 0.2rem;
-                                }
-                                </style>
-                    <div class=\"input-group-icon mt-10\">
-                    <div class=\"icon\"><i aria-hidden=\"true\"></i></div>
-                    <div class=\"dropdown\">
-                        <button class=\"btn btn-secondary small-button dropdown-toggle\" type=\"button\" id=\"categoryDropdown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Categorie
-                        </button>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"categoryDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">Robe</a>
-                        <a class=\"dropdown-item\" href=\"#\">Pull</a>
-                        <a class=\"dropdown-item\" href=\"#\">Veste</a>
-                        <a class=\"dropdown-item\" href=\"#\">Pantalon</a>
-                        <a class=\"dropdown-item\" href=\"#\">Chaussure</a>
-                        <a class=\"dropdown-item\" href=\"#\">Short</a>
-                        <a class=\"dropdown-item\" href=\"#\">Monteau</a>
-                        </div>
-                    </div>
-                    </div>
+        echo "\" class=\"genric-btn circle\" style=\"background-color: red; color: white;\">Liste de mes produits</a>
                 </div>
-                </div>
-                <div class=\"single-element-widget mt-30\" style=\"margin-left: 20px;\">
-                <div class=\"default-select\" id=\"default-select\">
-                    <style>
-                                .small-button {
-                                    padding: 0.25rem 0.5rem;
-                                    font-size: 0.875rem;
-                                    line-height: 1.5;
-                                    border-radius: 0.2rem;
-                                }
-                                </style>
-                    <div class=\"input-group-icon mt-10\">
-                    <div class=\"icon\"><i aria-hidden=\"true\"></i></div>
-                    <div class=\"dropdown\">
-                        <button class=\"btn btn-secondary small-button dropdown-toggle\" type=\"button\" id=\"sizeDropdown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Taille
-                        </button>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"sizeDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">XS</a>
-                        <a class=\"dropdown-item\" href=\"#\">S</a>
-                        <a class=\"dropdown-item\" href=\"#\">M</a>
-                        <a class=\"dropdown-item\" href=\"#\">L</a>
-                        <a class=\"dropdown-item\" href=\"#\">XL</a>
-                        <a class=\"dropdown-item\" href=\"#\">XXL</a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div class=\"single-element-widget mt-30\" style=\"margin-left: 20px;\">
-                <div class=\"default-select\" id=\"default-select\">
-                    <style>
-                                .small-button {
-                                    padding: 0.25rem 0.5rem;
-                                    font-size: 0.875rem;
-                                    line-height: 1.5;
-                                    border-radius: 0.2rem;
-                                }
-                                </style>
-                    <div class=\"input-group-icon mt-10\">
-                    <div class=\"icon\"><i aria-hidden=\"true\"></i></div>
-                    <div class=\"dropdown\">
-                        <button class=\"btn btn-secondary small-button dropdown-toggle\" type=\"button\" id=\"stateDropdown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Etat
-                        </button>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"stateDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">Neuf</a>
-                        <a class=\"dropdown-item\" href=\"#\">Comme Neuf</a>
-                        <a class=\"dropdown-item\" href=\"#\">Utiliser</a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+                <form action=\"";
+        // line 91
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
+        echo "\" method=\"GET\" style=\"margin-bottom: 20px;\">
+                <input type=\"text\" name=\"marque\" placeholder=\"Rechercher par marque...\" style=\"padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; width: 200px; font-size: 13px;\">
+                <button type=\"submit\" style=\"padding: 10px 20px; background-color: f2f2f2; color: black; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Rechercher</button>
+            </form>
+            <form action=\"";
+        // line 95
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
+        echo "\" method=\"GET\">
+        <div class=\"row\">
+        <h3 class=\"mb-30\">Filtrer Par :</h3>
+        <div class=\"d-flex\">
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+            
+                <select name=\"type\">
+                    <option value=\"\">Types</option>
+                    <option value=\"pull\">Pull</option>
+                    <option value=\"veste\">Veste</option>
+                    <option value=\"pantalon\">Pantalon</option>
+                    <option value=\"chaussure\">Chaussure</option>
+                </select>
+            </div>
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+                <select name=\"taille\">
+                    <option value=\"\">Tailles</option>
+                    <option value=\"XS\">XS</option>
+                    <option value=\"S\">S</option>
+                    <option value=\"M\">M</option>
+                    <option value=\"L\">L</option>
+                    <option value=\"XL\">XL</option>
+                    <option value=\"XXL\">XXL</option>
+                </select>
+            </div>
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+                <select name=\"etat\" >
+                    <option value=\"\">Etats</option>
+                    <option value=\"Neuf\">Neuf</option>
+                    <option value=\"Comme Neuf\">Comme Neuf</option>
+                    <option value=\"Utilisé\">Utilisé</option>
+                </select>
+            </div>
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+                <button type=\"submit\"  style=\"padding: 8px 30px; background-color: #f2f2f2; color: black; border: none; border-radius: 20px; cursor: pointer; font-size: 12px;\">Filtrer</button>
+            </div>
                 </div>
             </div>
-            </div>
+            </form>
                 <!-- Nav Card -->
                 <div class=\"tab-content mt-30\" id=\"nav-tabContent\">
                     <!-- card one -->
                     <div class=\"tab-pane fade show active\" id=\"nav-home\" role=\"tabpanel\" aria-labelledby=\"nav-home-tab\">
                         <div class=\"row\">
                         ";
-        // line 200
+        // line 139
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 200, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 139, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
-            // line 201
-            echo "                            <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-6\">
+            // line 140
+            echo "                            <div class=\"col-md-4\">
                                 <div class=\"single-popular-items mb-50 text-center\">
-                                    <div class=\"popular-img\">    <!-- 362*373 -->
+                                    <div class=\"popular-img\">
+                                        <div class=\"favorit-items\">
+                                            <a href=\"";
+            // line 144
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("add_to_favorites", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 144)]), "html", null, true);
+            echo "\">
+                                                <span class=\"flaticon-heart\" style=\"";
+            // line 145
+            if (twig_in_filter(twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 145), (isset($context["favoris"]) || array_key_exists("favoris", $context) ? $context["favoris"] : (function () { throw new RuntimeError('Variable "favoris" does not exist.', 145, $this->source); })()))) {
+                echo "color: red;";
+            }
+            echo "\"></span>
+                                            </a>
+                                        </div> <!-- 362*373 -->
                                 ";
-            // line 204
-            if (twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 204)) {
-                // line 205
+            // line 148
+            if (twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 148)) {
+                // line 149
                 echo "                                    <img src=\"";
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 205))), "html", null, true);
-                echo "\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 200px;\">
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 149))), "html", null, true);
+                echo "\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 215px; height: 250px;\">
                                 ";
             }
-            // line 207
+            // line 151
             echo "                                        <div class=\"img-cap\">
                                             <span><a href=\"";
-            // line 208
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
-            echo "\">Ajouter au panier</a></span>
-                                        </div>
-                                        <div class=\"favorit-items\">
-                                            <span class=\"flaticon-heart\"></span>
+            // line 152
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cartAdd", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 152)]), "html", null, true);
+            echo "\">Ajouter au panier</a> | <a href=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_details_produit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 152)]), "html", null, true);
+            echo "\">Détails</a></span>
                                         </div>
                                     </div>
                                     <div class=\"popular-caption\">
                                         <h3><a href=\"product_details.html\">";
-            // line 215
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 215), "html", null, true);
+            // line 156
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 156), "html", null, true);
             echo "</a></h3>
                                         <span>";
-            // line 216
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 216), "html", null, true);
-            echo " DT</span>
-                                         <!-- Ajout du bouton de détails -->
-                            <a href=\"";
-            // line 218
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_details_produit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 218)]), "html", null, true);
-            echo "\" class=\"btn btn-primary\">Détails</a>
+            // line 157
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 157), "html", null, true);
+            echo " DT</span>                           
                                     </div>
                                     
                                 </div>
@@ -347,7 +302,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 224
+        // line 163
         echo "                        </div>
                     </div>
                 </div>
@@ -398,7 +353,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 273
+        // line 212
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -510,7 +465,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  402 => 273,  351 => 224,  339 => 218,  334 => 216,  330 => 215,  320 => 208,  317 => 207,  311 => 205,  309 => 204,  304 => 201,  300 => 200,  203 => 106,  195 => 101,  154 => 63,  129 => 41,  119 => 34,  115 => 33,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  357 => 212,  306 => 163,  294 => 157,  290 => 156,  281 => 152,  278 => 151,  272 => 149,  270 => 148,  262 => 145,  258 => 144,  252 => 140,  248 => 139,  201 => 95,  194 => 91,  189 => 89,  185 => 88,  162 => 67,  158 => 65,  152 => 63,  150 => 62,  146 => 61,  121 => 39,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -546,9 +501,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                                     <li><a href=\"{{path('app_home')}}\">Acceuil</a></li>
                                     <li><a href=\"{{path('app_produit')}}\">Magasin</a>
                                         <ul class=\"submenu\">
-                                            <li><a href=\"{{path('app_homme')}}\">Homme</a></li>
-                                            <li><a href=\"{{path('app_femme')}}\">Femme</a></li>
-                                            <li><a href=\"{{path('app_enfant')}}\">Enfant</a></li>
+                                            <li><a href=\"{{path('favoris')}}\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>
@@ -577,7 +530,13 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                                     </div>
                                 </li>
                                 <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
-                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
                             </ul>
                         </div>
                     </div>
@@ -594,145 +553,80 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
         <!-- Latest Products Start -->
         <section class=\"popular-items\">
             <div class=\"container\">
-                <div class=\"row product-btn justify-content-between mb-30\">
-                    <div class=\"properties__button\">
-                        <!--Nav Button  -->
-                        <!--
-                        <nav>                                                      
-                            <div class=\"nav nav-tabs\" id=\"nav-tab\" role=\"tablist\">
-                                <a class=\"nav-item nav-link active\" id=\"nav-home-tab\" data-toggle=\"tab\" href=\"#nav-home\" role=\"tab\" aria-controls=\"nav-home\" aria-selected=\"true\">NewestArrivals</a>
-                                <a class=\"nav-item nav-link\" id=\"nav-profile-tab\" data-toggle=\"tab\" href=\"#nav-profile\" role=\"tab\" aria-controls=\"nav-profile\" aria-selected=\"false\"> Price high to low</a>
-                                <a class=\"nav-item nav-link\" id=\"nav-contact-tab\" data-toggle=\"tab\" href=\"#nav-contact\" role=\"tab\" aria-controls=\"nav-contact\" aria-selected=\"false\"> Most populer </a>
-                            </div>
-                        </nav>
-                        -->
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
-                </div>
-                <div class=\"d-flex justify-content-between mt-10\" style=\"padding-bottom: 20px;\">
-    <div>
-        <h6>Acceuil > Magasin > All</h6>
-    </div>
-    <div>
-        <a href=\"{{ path('app_addproduit') }}\" class=\"genric-btn danger circle\">Vendre un produit</a>
-    </div>
-</div>
 
-<div class=\"text-right mt-3\">
-    <a href=\"{{ path('app_afficherproduit') }}\" class=\"genric-btn danger circle\">Liste de mes produits</a>
-</div>
-            <div class=\"row\">
-            <h3 class=\"mb-30\">Filtrer Par :</h3>
-            <div class=\"d-flex\">
-                <div class=\"single-element-widget mt-30\" style=\"margin-left: 20px;\">
-                <div class=\"default-select\" id=\"default-select\">
-                     <style>
-                                .small-button {
-                                    padding: 0.25rem 0.5rem;
-                                    font-size: 0.875rem;
-                                    line-height: 1.5;
-                                    border-radius: 0.2rem;
-                                }
-                                </style>
-                    <div class=\"input-group-icon mt-10\">
-                    <div class=\"icon\"><i aria-hidden=\"true\"></i></div>
-                    <div class=\"dropdown\">
-                        <button class=\"btn btn-secondary small-button dropdown-toggle\" type=\"button\" id=\"categoryDropdown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Categorie
-                        </button>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"categoryDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">Robe</a>
-                        <a class=\"dropdown-item\" href=\"#\">Pull</a>
-                        <a class=\"dropdown-item\" href=\"#\">Veste</a>
-                        <a class=\"dropdown-item\" href=\"#\">Pantalon</a>
-                        <a class=\"dropdown-item\" href=\"#\">Chaussure</a>
-                        <a class=\"dropdown-item\" href=\"#\">Short</a>
-                        <a class=\"dropdown-item\" href=\"#\">Monteau</a>
-                        </div>
-                    </div>
-                    </div>
+                <h6>Acceuil > Magasin > All</h6>
+                    
+                <div class=\"d-flex justify-content-end\" style=\"padding-bottom: 20px;\">
+                    <a href=\"{{ path('app_addproduit') }}\" class=\"genric-btn circle mr-2\" style=\"background-color: red; color: white;\">Vendre un produit</a>
+                    <a href=\"{{ path('app_afficherproduit') }}\" class=\"genric-btn circle\" style=\"background-color: red; color: white;\">Liste de mes produits</a>
                 </div>
-                </div>
-                <div class=\"single-element-widget mt-30\" style=\"margin-left: 20px;\">
-                <div class=\"default-select\" id=\"default-select\">
-                    <style>
-                                .small-button {
-                                    padding: 0.25rem 0.5rem;
-                                    font-size: 0.875rem;
-                                    line-height: 1.5;
-                                    border-radius: 0.2rem;
-                                }
-                                </style>
-                    <div class=\"input-group-icon mt-10\">
-                    <div class=\"icon\"><i aria-hidden=\"true\"></i></div>
-                    <div class=\"dropdown\">
-                        <button class=\"btn btn-secondary small-button dropdown-toggle\" type=\"button\" id=\"sizeDropdown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Taille
-                        </button>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"sizeDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">XS</a>
-                        <a class=\"dropdown-item\" href=\"#\">S</a>
-                        <a class=\"dropdown-item\" href=\"#\">M</a>
-                        <a class=\"dropdown-item\" href=\"#\">L</a>
-                        <a class=\"dropdown-item\" href=\"#\">XL</a>
-                        <a class=\"dropdown-item\" href=\"#\">XXL</a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div class=\"single-element-widget mt-30\" style=\"margin-left: 20px;\">
-                <div class=\"default-select\" id=\"default-select\">
-                    <style>
-                                .small-button {
-                                    padding: 0.25rem 0.5rem;
-                                    font-size: 0.875rem;
-                                    line-height: 1.5;
-                                    border-radius: 0.2rem;
-                                }
-                                </style>
-                    <div class=\"input-group-icon mt-10\">
-                    <div class=\"icon\"><i aria-hidden=\"true\"></i></div>
-                    <div class=\"dropdown\">
-                        <button class=\"btn btn-secondary small-button dropdown-toggle\" type=\"button\" id=\"stateDropdown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Etat
-                        </button>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"stateDropdown\">
-                        <a class=\"dropdown-item\" href=\"#\">Neuf</a>
-                        <a class=\"dropdown-item\" href=\"#\">Comme Neuf</a>
-                        <a class=\"dropdown-item\" href=\"#\">Utiliser</a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+                <form action=\"{{ path('app_produit') }}\" method=\"GET\" style=\"margin-bottom: 20px;\">
+                <input type=\"text\" name=\"marque\" placeholder=\"Rechercher par marque...\" style=\"padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; width: 200px; font-size: 13px;\">
+                <button type=\"submit\" style=\"padding: 10px 20px; background-color: f2f2f2; color: black; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Rechercher</button>
+            </form>
+            <form action=\"{{ path('app_produit') }}\" method=\"GET\">
+        <div class=\"row\">
+        <h3 class=\"mb-30\">Filtrer Par :</h3>
+        <div class=\"d-flex\">
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+            
+                <select name=\"type\">
+                    <option value=\"\">Types</option>
+                    <option value=\"pull\">Pull</option>
+                    <option value=\"veste\">Veste</option>
+                    <option value=\"pantalon\">Pantalon</option>
+                    <option value=\"chaussure\">Chaussure</option>
+                </select>
+            </div>
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+                <select name=\"taille\">
+                    <option value=\"\">Tailles</option>
+                    <option value=\"XS\">XS</option>
+                    <option value=\"S\">S</option>
+                    <option value=\"M\">M</option>
+                    <option value=\"L\">L</option>
+                    <option value=\"XL\">XL</option>
+                    <option value=\"XXL\">XXL</option>
+                </select>
+            </div>
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+                <select name=\"etat\" >
+                    <option value=\"\">Etats</option>
+                    <option value=\"Neuf\">Neuf</option>
+                    <option value=\"Comme Neuf\">Comme Neuf</option>
+                    <option value=\"Utilisé\">Utilisé</option>
+                </select>
+            </div>
+            <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
+                <button type=\"submit\"  style=\"padding: 8px 30px; background-color: #f2f2f2; color: black; border: none; border-radius: 20px; cursor: pointer; font-size: 12px;\">Filtrer</button>
+            </div>
                 </div>
             </div>
-            </div>
+            </form>
                 <!-- Nav Card -->
                 <div class=\"tab-content mt-30\" id=\"nav-tabContent\">
                     <!-- card one -->
                     <div class=\"tab-pane fade show active\" id=\"nav-home\" role=\"tabpanel\" aria-labelledby=\"nav-home-tab\">
                         <div class=\"row\">
                         {% for produit in produits %}
-                            <div class=\"col-xl-4 col-lg-4 col-md-6 col-sm-6\">
+                            <div class=\"col-md-4\">
                                 <div class=\"single-popular-items mb-50 text-center\">
-                                    <div class=\"popular-img\">    <!-- 362*373 -->
+                                    <div class=\"popular-img\">
+                                        <div class=\"favorit-items\">
+                                            <a href=\"{{ path('add_to_favorites', {'id': produit.id}) }}\">
+                                                <span class=\"flaticon-heart\" style=\"{% if produit.id in favoris %}color: red;{% endif %}\"></span>
+                                            </a>
+                                        </div> <!-- 362*373 -->
                                 {% if produit.image %}
-                                    <img src=\"{{ asset('imgproduit/' ~ produit.image) }}\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 200px;\">
+                                    <img src=\"{{ asset('imgproduit/' ~ produit.image) }}\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 215px; height: 250px;\">
                                 {% endif %}
                                         <div class=\"img-cap\">
-                                            <span><a href=\"{{path('app_panier')}}\">Ajouter au panier</a></span>
-                                        </div>
-                                        <div class=\"favorit-items\">
-                                            <span class=\"flaticon-heart\"></span>
+                                            <span><a href=\"{{ path('cartAdd', {'id':produit.id})}}\">Ajouter au panier</a> | <a href=\"{{ path('app_details_produit', {'id': produit.id}) }}\">Détails</a></span>
                                         </div>
                                     </div>
                                     <div class=\"popular-caption\">
-                                        <h3><a href=\"product_details.html\">{{produit.description}}</a></h3>
-                                        <span>{{produit.prix}} DT</span>
-                                         <!-- Ajout du bouton de détails -->
-                            <a href=\"{{ path('app_details_produit', {'id': produit.id}) }}\" class=\"btn btn-primary\">Détails</a>
+                                        <h3><a href=\"product_details.html\">{{produit.nom}}</a></h3>
+                                        <span>{{produit.prix}} DT</span>                           
                                     </div>
                                     
                                 </div>

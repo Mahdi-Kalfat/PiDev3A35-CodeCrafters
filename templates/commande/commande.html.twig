@@ -95,10 +95,24 @@
                                      margin-right: 10px;
                                     }
                                     </style>
+                                    <div class="col-md-12 form-group p_star border rounded text-center">
+                                        <label for="produits" class="font-weight-bold">Produits associés à votre commande :</label>
+                                        <div class="products-list "> 
+                                            <ul class="list-unstyled ">
+                                                {% for nomProduit in nomsProduits %}
+                                                    <li><i class="fas fa-check-circle text-success mr-2"></i>{{ nomProduit }}</li> <!-- icone check-->
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <p class="mt-3">
+                                            <label for="produits" class="font-weight-bold">Montant total de votre commande :</label>
+                                            <span style="background-color: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px;">{{ prixTotalPanier }} DT</span> 
+                                        </p>
+                                    </div>                    
                                     <div class="col-md-12 form-group p_star d-flex justify-content-center">
                                     <div class="button-container">
-                                    {{ form_widget(formAdd.Checkout, {'attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }}
-                                    
+                                    {{ form_widget(formAdd.Valider, {'attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }}
+                                    <a href="{{path('app_panier')}}" class="genric-btn danger circle arrow">Retour ver le panier </a>                                   
                                     </div>
                                     </div>
                             {{ form_end(formAdd) }}

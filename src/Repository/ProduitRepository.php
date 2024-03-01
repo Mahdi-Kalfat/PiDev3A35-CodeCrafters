@@ -20,6 +20,36 @@ class ProduitRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produit::class);
     }
+    public function findByFilters($type, $taille, $etat)
+{
+    $query = $this->createQueryBuilder('p');
+
+    if ($type) {
+        $query->andWhere('p.type = :type')
+            ->setParameter('type', $type);
+    }
+
+    if ($taille) {
+        $query->andWhere('p.taille = :taille')
+            ->setParameter('taille', $taille);
+    }
+
+    if ($etat) {
+        $query->andWhere('p.etat = :etat')
+            ->setParameter('etat', $etat);
+    }
+
+    return $query->getQuery()->getResult();
+}
+
+public function findByMarque($marque)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.marque = :marque')
+            ->setParameter('marque', $marque)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Produit[] Returns an array of Produit objects

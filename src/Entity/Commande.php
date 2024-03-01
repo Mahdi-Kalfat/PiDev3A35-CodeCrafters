@@ -19,8 +19,8 @@ class Commande
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Le champ adresse ne peut pas être vide.")]
     #[Assert\Length(
-        min: 5,
-        minMessage:"le nom doit faire au moins 5 caractères"
+        min: 3,
+        minMessage:"le nom doit faire au moins 3 caractères"
     )]
     private ?string $adresse = null;
 
@@ -30,7 +30,10 @@ class Commande
 
     #[ORM\Column]
     #[Assert\NotBlank(message:"Le champ prix ne peut pas être vide.")]
-    #[Assert\Positive(message:"Le champ prix ne peut pas être négatif.")]
+    #[Assert\Regex(
+        pattern: "/^\d{8}$/",
+        message: "Le numéro de téléphone doit contenir exactement 8 chiffres."
+    )]
     private ?int $numero = null;
 
     #[ORM\Column]
@@ -40,6 +43,10 @@ class Commande
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom_entreprise = null;
+
+    #[ORM\Column]
+    private float $prixTotal;
+
 
 
     #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'commandes')]
@@ -111,6 +118,17 @@ class Commande
     public function setNomEntreprise(?string $nom_entreprise): static
     {
         $this->nom_entreprise = $nom_entreprise;
+
+        return $this;
+    }
+    public function getPrixTotal(): float
+    {
+        return $this->prixTotal;
+    }
+
+    public function setPrixTotal(float $prixTotal): static
+    {
+        $this->prixTotal = $prixTotal;
 
         return $this;
     }

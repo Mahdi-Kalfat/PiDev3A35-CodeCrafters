@@ -10,13 +10,32 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Services\PanierServices;
+
 
 class CommandeController extends AbstractController
 {
-    #[Route('/show', name: 'app_show_commande')]
-    public function show1(CommandeRepository $commandeRepository): Response
+    private $panierServices;
+
+    public function __construct(PanierServices $panierServices)
     {
-        $commande = $commandeRepository->findAll();
+        $this->panierServices = $panierServices;
+    }
+    #[Route('/show', name: 'app_show_commande')]
+    public function show1(Request $request,CommandeRepository $commandeRepository): Response
+    {
+        $adresse = $request->query->get('adresse');
+        $tri = $request->query->get('tri');
+
+        if ($adresse) {
+            $commande = $commandeRepository->findByAdresse($adresse); // Utiliser la méthode de recherche par adresse
+        } else {
+            if ($tri === 'desc') {
+                $commande = $commandeRepository->findByPrixTotal('DESC'); // Récupérer toutes les commandes triées par prix total décroissant
+            } else {
+                $commande = $commandeRepository->findByPrixTotal(); // Récupérer toutes les commandes triées par prix total croissant
+            }
+        }
         return $this->render('commande/index1.html.twig', [
             'controller_name' => 'CommandeController',
             'commandes' => $commande,
@@ -30,19 +49,40 @@ class CommandeController extends AbstractController
         ]);
     }
     #[Route('/ajoutercommande', name: 'app_addcommande')]
-    public function ajouterproduit (EntityManagerInterface $em,Request $req)
-    {
-       $commande = new Commande();
-       $form = $this->createForm(AjoutercommandeType::class, $commande);
-       $form->handleRequest($req);
-       if ($form->isSubmitted()&& $form->isValid()){
-        //liste ids 
+public function ajouterproduit(EntityManagerInterface $em, Request $req, PanierServices $panierServices)
+{
+    $commande = new Commande();
+    $panierData = $panierServices->getFullCart();
+
+    $nomsProduits = [];
+    foreach ($panierData['produits'] as $item) { // Récupérer les noms des produits ajoutés au panier
+        $produit = $item['produit']; 
+        
+        $commande->addProduit($produit); // Ajouter le produit à la commande
+        
+        $nomsProduits[] = $produit->getNom(); // Récupérer et stocker le nom du produit
+    }
+
+    $prixTotalPanier = $panierData['data']['subTotalTTC']; // Récupérer le prix total du panier
+    $commande->setPrixTotal($prixTotalPanier);
+
+    $form = $this->createForm(AjoutercommandeType::class, $commande);
+
+    $form->handleRequest($req);
+
+    if ($form->isSubmitted() && $form->isValid()) {
         $em->persist($commande);
         $em->flush();
         return $this->redirectToRoute('app_commande');
-       }
-       return $this->render('commande/commande.html.twig', ['formAdd'=>$form]);
     }
+
+    return $this->render('commande/commande.html.twig', [
+        'formAdd' => $form->createView(),
+        'nomsProduits' => $nomsProduits,
+        'prixTotalPanier' => $prixTotalPanier,
+    ]);
+}
+
     #[Route('/commande/edit/{id}', name: 'app_commande_edit')]
     public function editproduitForm($id,EntityManagerInterface $em,CommandeRepository $c,Request $req)
     {
@@ -52,7 +92,7 @@ class CommandeController extends AbstractController
        if ($form->isSubmitted()&& $form->isValid()){
         $em->persist($commande);
         $em->flush();
-        return $this->redirectToRoute('app_commande');
+        return $this->redirectToRoute('app_show_commande');
        }
        return $this->render('commande/editcommande.html.twig', ['formAdd'=>$form]);
     }
@@ -62,7 +102,7 @@ class CommandeController extends AbstractController
         $commande=$c->find($id);
         $em->remove($commande);
         $em->flush();
-        return $this->redirectToRoute('app_commande');
+        return $this->redirectToRoute('app_show_commande');
         
     }
     #[Route('/backcommande', name: 'app_backc')]

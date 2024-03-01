@@ -1,69 +1,149 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Panier AliExprass{% endblock %}
-
 {% block body %}
- {{ include("partials/title.html.twig", {'name':'Votre panier'}) }}
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="home.html"><img src="{{ asset('/img/logo/logo.png') }}" alt=""></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>                                                
+                                <ul id="navigation">  
+                                    <li><a href="{{path('app_home')}}">Acceuil</a></li>
+                                    <li><a href="{{path('app_produit')}}">Magasin</a>
+                                        <ul class="submenu">
+                                            <li><a href="{{path('app_homme')}}">Homme</a></li>
+                                            <li><a href="{{path('app_femme')}}">Femme</a></li>
+                                            <li><a href="{{path('app_enfant')}}">Enfant</a></li>
+                                        </ul> 
+                                    </li>
+                                    <li><a href="about.html">A propos</a></li>
+                                    <li class="hot"><a href="#">Nouveauté</a>
+                                        <ul class="submenu">
+                                            <li><a href="evenement.html">Nos Evenement</a></li>
+                                            <li><a href="{{path('app_addproduit')}}">Nouveau Produit</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Forum</a>
+                                        <ul class="submenu">
+                                            <li><a href="blog.html">Forum</a></li>
+                                            <li><a href="reclamation.html">Reclamation</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Nous Contacter</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header Right -->
+                        <div class="header-right">
+                            <ul>
+                                <li>
+                                    <div class="nav-search search-switch">
+                                        <span class="flaticon-search"></span>
+                                    </div>
+                                </li>
+                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
+                                <li><a href="{{path('app_panier')}}"><span class="flaticon-shopping-cart">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
     <div class="section">
-        <div class="container">
-              <div class="row">
-                  <div class="col-12">
-                      <div class="table-responsive shop_cart_table">
-                        <table class="table">
+    <div class="container">
+        <div class="hero-cap text-center">
+                              <h2>Cart List</h2>
+                          </div>
+        <div class="row">
+            <div class="col-12 text-right"> 
+            <div class="supprimer mb-3">
+                <a href="{{ path('cartDelete') }}" class="btn btn-outline-secondary rounded-pill btn-sm" style="padding: 16px 15px; font-size: 16px;">Vider votre panier !</a>
+            </div>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive shop_cart_table">
+                    <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="product-thumbnail">&nbsp;</th>
-                                    <th class="product-name">Produit</th>
-                                    <th class="product-price">Prix</th>
-                                    <th class="product-quantity">Quantité</th>
-                                    <th class="product-subtotal">Total</th>
-                                    <th class="product-remove">Supprimer</th>
+                                    <th class="produit-thumbnail">&nbsp;</th>
+                                    <th class="produit-name">Produit</th>
+                                    <th class="produit-price">Prix</th>
+                                    <th class="produit-quantity">Quantité</th>
+                                    <th class="produit-subtotal">Total</th>
+                                    <th class="produit-remove">Supprimer</th>
                                 </tr>
                             </thead> 
                             <tbody>
                               {% if app.session.get('cart') %}
-                                {% for element in cart.products %}
+                                {% for element in cart.produits %}
                                     <tr>
                                     
-                                        <td class="product-thumbnail"><a href="#"><img src="/assets/uploads/products/{{element.product.image}}" alt="{{element.product.nameProduct}}"></a></td>
-                                        <td class="product-name" data-title="Product"><a href="#">{{element.product.nameProduct}}</a></td>
-                                        <td class="product-price" data-title="Price">{{element.product.price/100}}</td>
-                                        <td class="product-quantity" data-title="Quantity"><div class="quantity">
-                                        <a href="{{ path('cartDelete', {'id':element.product.id})}}" type="button" value="-" class="minus"> - </a>
+                                        <td class="produit-thumbnail">
+                                            {% if element.produit.image %}
+                                                <img src="{{ asset('imgproduit/' ~ element.produit.image) }}" alt="{{ element.produit.nom }}" class="img-circle" style="max-width: 50px; max-height: 80px; border-radius: 50%;">
+                                            {% endif %}
+                                        </td>
+                                        <td class="produit-name" data-title="produit">{{element.produit.nom}}</td>
+                                        <td class="produit-price" data-title="Price">{{element.produit.prix}}</td>
+                                        <td class="produit-quantity" data-title="Quantity"><div class="quantity">
+                                        <a href="{{ path('cartDeletep', {'id': element.produit.id}) }}" class="minus" style="font-size: 10px;"><i class="fas fa-minus" style="color: black;"></i></a>
                                         <input type="text" name="quantity" value="{{element.quantity}}" title="Qty" class="qty" size="4">
-                                        <a href="{{ path('cartAdd', {'id':element.product.id})}}" type="button" value="+" class="plus"> + </a>
+                                        <a href="{{ path('cartAdd', {'id': element.produit.id}) }}" class="plus" style="font-size: 10px;">
+                                            <i class="fas fa-plus" style="color: black;"></i>
+                                        </a>
                                         </div></td>
-                                        <td class="product-subtotal" data-title="Total">€ {{ element.quantity * element.product.price/100 }}</td>
-                                        <td class="product-remove" data-title="Remove"><a href="{{ path('cartDeleteAll', {'id':element.product.id})}}"><i class="ti-close"></i></a></td>
+                                        <td class="produit-subtotal" data-title="Total">{{ element.quantity * element.produit.prix }} DT</td>
+                                        <td class="produit-remove" data-title="Remove">
+                                        <a href="{{ path('cartDeleteAll', {'id': element.produit.id}) }}" style="margin-right: 10px;">
+                                            <span class="text-danger" style="font-size: 24px;">
+                                                &times;
+                                            </span>
+                                        </a>
+                                    </td>
                                     </tr>
                                 {% endfor %}
                                {% else %}
-                                    <p>Votre panier est vide !<a href="{{ path('accueil')}}"> Poursuivre vos achats</a> </p>
+                                    <p>Votre panier est vide !<a href="{{ path('app_produit')}}"> Poursuivre vos achats</a> </p>
                                 {% endif %}
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th class="product-thumbnail">&nbsp;</th>
-                                    <th class="product-name">Produit</th>
-                                    <th class="product-price">Prix</th>
-                                    <th class="product-quantity">Quantité</th>
-                                    <th class="product-subtotal">Total</th>
-                                    <th class="product-remove">Supprimer</th>
+                                    <th class="produit-thumbnail">&nbsp;</th>
+                                    <th class="produit-name">Produit</th>
+                                    <th class="produit-price">Prix</th>
+                                    <th class="produit-quantity">Quantité</th>
+                                    <th class="produit-subtotal">Total</th>
+                                    <th class="produit-remove">Supprimer</th>
                                 </tr>
                             </tfoot>
                         </table>
-                         <p><a class="btn btn-fill-out" href="{{ path('accueil')}}">Poursuivre vos achats</a></p>
+                          <p>
+                             <a class="btn btn-outline-secondary rounded-pill btn-sm " href="{{ path('app_produit')}}" style="padding: 15px 15px; font-size: 14px;">Poursuivre vos achats <i class="ti-shopping-cart-full"></i></a>  
+                        </p>
                       </div>
-                  </div>
-              </div>   
-              <div class="row">
-                  <div class="col-12">
-                    <div class="medium_divider"></div>
-                    <div class="divider center_icon"><i class="ti-shopping-cart-full"></i></div>
-                    <div class="medium_divider"></div>
-                  </div>
-              </div> 
-                       
+                  </div>                    
               <div class="row">
                   <div class="col-md-6">
                   </div>
@@ -77,24 +157,115 @@
                                 <tbody>
                                     <tr>
                                         <td class="cart_total_label">Panier Sous total HT</td>
-                                        <td class="cart_total_amount">€ {{ cart.data.subTotalHT}}</td>
+                                        <td class="cart_total_amount"> {{ cart.data.subTotalHT}} DT</td>
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">Taxe (20%) </td>
-                                        <td class="cart_total_amount">€ {{ cart.data.Taxe }}</td>
+                                        <td class="cart_total_amount"> {{ cart.data.taxe }} DT</td>
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">Total TTC</td>
-                                        <td class="cart_total_amount"><strong>€ {{ cart.data.subTotalTTC  }}</strong></td>
+                                        <td class="cart_total_amount"><strong> {{ cart.data.subTotalTTC  }} DT</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <a href="{{ path('checkout')}}" class="btn btn-fill-out">Valider votre commande</a>
+                        <a href="{{ path('app_addcommande')}}" class="btn btn-fill-out">Valider votre commande</a>
                     </div>
                   </div>
               </div>
          </div>
       </div>
-
+<!-- Shop Method End-->
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="{{ asset('/img/logo/logo2_footer.png') }}" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Quick Links</h4>
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#"> Offers & Discounts</a></li>
+                                    <li><a href="#"> Get Coupon</a></li>
+                                    <li><a href="#">  Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>New Products</h4>
+                                <ul>
+                                    <li><a href="#">Woman Cloth</a></li>
+                                    <li><a href="#">Fashion Accessories</a></li>
+                                    <li><a href="#"> Man Accessories</a></li>
+                                    <li><a href="#"> Rubber made Toys</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Support</h4>
+                                <ul>
+                                    <li><a href="#">Frequently Asked Questions</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Report a Payment Issue</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer bottom -->
+                <div class="row align-items-center">
+                    <div class="col-xl-7 col-lg-8 col-md-7">
+                        <div class="footer-copy-right">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made </i> by <a href="" target="_blank">CodeCrafters</a></p>                 
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5">
+                        <div class="footer-copy-right f-right">
+                            <!-- social -->
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!--? Search model Begin -->
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Searching key.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
 {% endblock %}

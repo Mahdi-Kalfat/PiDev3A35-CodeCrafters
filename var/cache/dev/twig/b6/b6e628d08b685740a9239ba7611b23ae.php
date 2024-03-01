@@ -87,7 +87,7 @@ class __TwigTemplate_e382cc87cb8986ed18980aef2f20a838 extends Template
         echo "\">Acceuil</a></li>
                                     <li><a href=\"";
         // line 18
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_magasin");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
         echo "\">Magasin</a>
                                         <ul class=\"submenu\">
                                             <li><a href=\"";
@@ -403,7 +403,7 @@ class __TwigTemplate_e382cc87cb8986ed18980aef2f20a838 extends Template
                             <nav>                                                
                                 <ul id=\"navigation\">  
                                     <li><a href=\"{{path('app_home')}}\">Acceuil</a></li>
-                                    <li><a href=\"{{path('app_magasin')}}\">Magasin</a>
+                                    <li><a href=\"{{path('app_produit')}}\">Magasin</a>
                                         <ul class=\"submenu\">
                                             <li><a href=\"{{path('app_homme')}}\">Homme</a></li>
                                             <li><a href=\"{{path('app_femme')}}\">Femme</a></li>

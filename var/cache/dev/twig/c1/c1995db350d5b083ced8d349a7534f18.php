@@ -165,117 +165,91 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
         </div>
         <!-- Header End -->
     </header>
-     <main>
-        <!-- Latest Products Start -->
-        <section class=\"popular-items\">
-            <div class=\"container\">
-                <div class=\"row product-btn justify-content-between mb-30\">
-                    <div class=\"properties__button\">
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
-                </div>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-    th { background-color: #f2f2f2; }
-    .center { text-align: center; }
-    .add-button { text-align: center; margin-top: 20px; }
-</style>
-<div class=\"example-wrapper\">
+      <main>
+        <div class=\"example-wrapper\">
     <h1 class=\"text-center mb-4\">Liste de mes Produits</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Marque</th>
-                <th>Etat</th>
-                <th>Type</th>
-                <th>Taille</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            ";
-        // line 112
+        <section class=\"product-list\">
+            <div class=\"container\">
+               <div class=\"row\">
+    ";
+        // line 82
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 112, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 82, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
-            // line 113
-            echo "                <tr>
-                    <td>";
-            // line 114
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 114), "html", null, true);
-            echo "</td>
-                    <td><div class=\"col-6 text-center\">
-                                ";
-            // line 116
-            if (twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 116)) {
-                // line 117
-                echo "                                    <img src=\"";
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 117))), "html", null, true);
-                echo "\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 200px;\">
-                                ";
-            }
-            // line 119
-            echo "                            </div></td>
-                    <td>";
-            // line 120
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 120), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 121
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 121), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 122
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "marque", [], "any", false, false, false, 122), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 123
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "etat", [], "any", false, false, false, 123), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 124
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "type", [], "any", false, false, false, 124), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 125
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "taille", [], "any", false, false, false, 125), "html", null, true);
-            echo "</td>
-                    <td>
-                        <a style=\"color: green;\" href=\"";
-            // line 127
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 127)]), "html", null, true);
-            echo "\">Modifier</a>
-                        <a style=\"color: red;\" href=\"";
-            // line 128
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 128)]), "html", null, true);
-            echo "\">Supprimer</a>
-                    </td>
-                </tr>
-            ";
+            // line 83
+            echo "    <div class=\"col-lg-3 col-md-4 col-sm-6 mb-4\">
+        <div class=\"card h-100\">
+            <a><img class=\"card-img-top\" src=\"";
+            // line 85
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 85))), "html", null, true);
+            echo "\" alt=\"\" style=\"width: 100%; height: 280px;\"></a>
+            <div class=\"card-body\">
+                <h5 class=\"card-title\">";
+            // line 87
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 87), "html", null, true);
+            echo "</h5>
+                <p class=\"card-text\">
+                    <strong>Description: </strong>
+                    <span class=\"text-truncate\" style=\"max-width: 150px;\">";
+            // line 90
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 90), "html", null, true);
+            echo "</span><br>
+                    <strong>Prix: </strong>";
+            // line 91
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 91), "html", null, true);
+            echo " DT<br>
+                    <strong>Marque: </strong>";
+            // line 92
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "marque", [], "any", false, false, false, 92), "html", null, true);
+            echo "<br>
+                    <strong>État: </strong>";
+            // line 93
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "etat", [], "any", false, false, false, 93), "html", null, true);
+            echo "<br>
+                    <strong>Type: </strong>";
+            // line 94
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "type", [], "any", false, false, false, 94), "html", null, true);
+            echo "<br>
+                    <strong>Taille: </strong>";
+            // line 95
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "taille", [], "any", false, false, false, 95), "html", null, true);
+            echo "<br>
+                </p>
+            </div>
+            <div class=\"card-footer text-right\">
+                <a href=\"";
+            // line 99
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 99)]), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-primary\" style=\"padding: 5px 10px; font-size: 20px;\">
+                    <i class=\"fas fa-edit\"></i> 
+                </a>
+                <a href=\"";
+            // line 102
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 102)]), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-danger\" style=\"padding: 5px 10px; font-size: 20px;\">
+                    <i class=\"fas fa-trash\"></i> 
+                </a>
+            </div>
+        </div>
+    </div>
+";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 132
-        echo "        </tbody>
-    </table>
-    <div class=\"add-button\">
-    <a href=\"";
-        // line 135
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
-        echo "\" class=\"btn btn-primary\">Ajouter un autre produit</a>
-</div>
-</div>
+        // line 109
+        echo "</div>
 
-<!-- Shop Method End-->
+                        <div class=\"text-center mt-4\">
+                            <a href=\"";
+        // line 112
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
+        echo "\" class=\"btn btn-success\">Ajouter un autre produit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <!-- Footer Start-->
@@ -288,7 +262,7 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 151
+        // line 129
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -400,7 +374,7 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
      */
     public function getDebugInfo()
     {
-        return array (  292 => 151,  273 => 135,  268 => 132,  258 => 128,  254 => 127,  249 => 125,  245 => 124,  241 => 123,  237 => 122,  233 => 121,  229 => 120,  226 => 119,  220 => 117,  218 => 116,  213 => 114,  210 => 113,  206 => 112,  154 => 63,  129 => 41,  119 => 34,  115 => 33,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  266 => 129,  246 => 112,  241 => 109,  228 => 102,  222 => 99,  215 => 95,  211 => 94,  207 => 93,  203 => 92,  199 => 91,  195 => 90,  189 => 87,  184 => 85,  180 => 83,  176 => 82,  154 => 63,  129 => 41,  119 => 34,  115 => 33,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -480,70 +454,48 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
         </div>
         <!-- Header End -->
     </header>
-     <main>
-        <!-- Latest Products Start -->
-        <section class=\"popular-items\">
-            <div class=\"container\">
-                <div class=\"row product-btn justify-content-between mb-30\">
-                    <div class=\"properties__button\">
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
-                </div>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-    th { background-color: #f2f2f2; }
-    .center { text-align: center; }
-    .add-button { text-align: center; margin-top: 20px; }
-</style>
-<div class=\"example-wrapper\">
+      <main>
+        <div class=\"example-wrapper\">
     <h1 class=\"text-center mb-4\">Liste de mes Produits</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Marque</th>
-                <th>Etat</th>
-                <th>Type</th>
-                <th>Taille</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for produit in produits %}
-                <tr>
-                    <td>{{ produit.nom }}</td>
-                    <td><div class=\"col-6 text-center\">
-                                {% if produit.image %}
-                                    <img src=\"{{ asset('imgproduit/' ~ produit.image) }}\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 200px;\">
-                                {% endif %}
-                            </div></td>
-                    <td>{{ produit.description }}</td>
-                    <td>{{ produit.prix }}</td>
-                    <td>{{ produit.marque }}</td>
-                    <td>{{ produit.etat }}</td>
-                    <td>{{ produit.type }}</td>
-                    <td>{{ produit.taille }}</td>
-                    <td>
-                        <a style=\"color: green;\" href=\"{{ path('app_produit_edit', {'id': produit.id}) }}\">Modifier</a>
-                        <a style=\"color: red;\" href=\"{{ path('app_produit_delete', {'id': produit.id}) }}\">Supprimer</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class=\"add-button\">
-    <a href=\"{{ path('app_addproduit') }}\" class=\"btn btn-primary\">Ajouter un autre produit</a>
-</div>
+        <section class=\"product-list\">
+            <div class=\"container\">
+               <div class=\"row\">
+    {% for produit in produits %}
+    <div class=\"col-lg-3 col-md-4 col-sm-6 mb-4\">
+        <div class=\"card h-100\">
+            <a><img class=\"card-img-top\" src=\"{{ asset('imgproduit/' ~ produit.image) }}\" alt=\"\" style=\"width: 100%; height: 280px;\"></a>
+            <div class=\"card-body\">
+                <h5 class=\"card-title\">{{ produit.nom }}</h5>
+                <p class=\"card-text\">
+                    <strong>Description: </strong>
+                    <span class=\"text-truncate\" style=\"max-width: 150px;\">{{ produit.description }}</span><br>
+                    <strong>Prix: </strong>{{ produit.prix }} DT<br>
+                    <strong>Marque: </strong>{{ produit.marque }}<br>
+                    <strong>État: </strong>{{ produit.etat }}<br>
+                    <strong>Type: </strong>{{ produit.type }}<br>
+                    <strong>Taille: </strong>{{ produit.taille }}<br>
+                </p>
+            </div>
+            <div class=\"card-footer text-right\">
+                <a href=\"{{ path('app_produit_edit', {'id': produit.id}) }}\" class=\"btn btn-sm btn-primary\" style=\"padding: 5px 10px; font-size: 20px;\">
+                    <i class=\"fas fa-edit\"></i> 
+                </a>
+                <a href=\"{{ path('app_produit_delete', {'id': produit.id}) }}\" class=\"btn btn-sm btn-danger\" style=\"padding: 5px 10px; font-size: 20px;\">
+                    <i class=\"fas fa-trash\"></i> 
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
 </div>
 
-<!-- Shop Method End-->
+                        <div class=\"text-center mt-4\">
+                            <a href=\"{{ path('app_addproduit') }}\" class=\"btn btn-success\">Ajouter un autre produit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <!-- Footer Start-->

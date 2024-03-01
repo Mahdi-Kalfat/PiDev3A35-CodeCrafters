@@ -38,9 +38,9 @@ class AjouterproduitType extends AbstractType
             ->add('image', FileType::class, [
                 'required' => false,
                 'label' => 'Image',
-                'data_class' => null, // Set data_class to null
+                'data_class' => null, 
                 'attr' => ['accept' => '.jpg,.jpeg,.png'],
-                'empty_data'=>''
+                'empty_data'=>'' 
             ])
             ->add('type' , ChoiceType::class, [
                 'choices' => [

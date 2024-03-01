@@ -19,25 +19,25 @@ class Produit
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Le champ nom ne peut pas être vide.")]
-    #[Assert\Length(
-        min: 4,
-        minMessage:"le nom doit faire au moins 4 caractères"
+    #[Assert\Regex(
+        pattern :"/^[a-zA-Z\s]+$/",
+        message : "Le nom ne doit pas contenir de chiffres ou de symboles"
     )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Le champ description ne peut pas être vide.")]
     #[Assert\Length(
-        min: 5,
-        minMessage:"le nom doit faire au moins 5 caractères"
+        min: 3,
+        minMessage:"le nom doit faire au moins 3 caractères"
     )]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Le champ marque ne peut pas être vide.")]
     #[Assert\Length(
-        min: 4,
-        minMessage:"le nom doit faire au moins 4 caractères"
+        min: 2,
+        minMessage:"le nom doit faire au moins 2 caractères"
     )]
     private ?string $marque = null;
 

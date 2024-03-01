@@ -149,6 +149,8 @@
                             <th>Code Postal</th>
                             <th>Numero Tel</th>
                             <th>Nom Entreprise</th>
+                            <th>Prix Total de la commande</th>
+                                <th>Liste des Produits</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -160,10 +162,17 @@
                                     <td>{{ commande.codepostal }}</td>
                                     <td>{{ commande.numero }}</td>
                                     <td>{{ commande.getNomEntreprise }}</td>
+                                    <td>{{ commande.prixTotal }}</td>
                                     <td>
-                            <td> <a style="color: green;" href="{{ path('app_commande_edit', {'id': commande.id}) }}">Confirmer</a>
-                            |<a style="color: red;" href="{{ path('app_commande_delete', {'id': commande.id}) }}">Supprimer</a>
-                          </tr>
+                                            {% for produit in commande.produits %}
+                                            <li>{{ produit.nom }}</li>
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                        <a style="color: green;" href="">Confirmer</a> |
+                                        <a style="color: red;" href="{{ path('app_commande_delete', {'id': commande.id}) }}">Refuser</a>
+                                    </td>
+                                </tr>
                           {% endfor %}
                         </tbody>
                       </table>

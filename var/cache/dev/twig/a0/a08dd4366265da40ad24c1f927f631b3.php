@@ -220,7 +220,7 @@ class __TwigTemplate_96354edc62fb549ecfe2e59fcfc2b01b extends Template
                                     <div class=\"button-container\">
                                     ";
         // line 100
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 100, $this->source); })()), "Checkout", [], "any", false, false, false, 100), 'widget', ["attr" => ["class" => "btn btn-sm btn-primary genric-btn danger circle arrow"]]);
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 100, $this->source); })()), "Valider", [], "any", false, false, false, 100), 'widget', ["attr" => ["class" => "btn btn-sm btn-primary genric-btn danger circle arrow"]]);
         echo "
                                     
                                     </div>
@@ -452,7 +452,7 @@ class __TwigTemplate_96354edc62fb549ecfe2e59fcfc2b01b extends Template
                                     </style>
                                     <div class=\"col-md-12 form-group p_star d-flex justify-content-center\">
                                     <div class=\"button-container\">
-                                    {{ form_widget(formAdd.Checkout, {'attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }}
+                                    {{ form_widget(formAdd.Valider, {'attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }}
                                     
                                     </div>
                                     </div>

@@ -148,11 +148,29 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                                         <span class=\"flaticon-search\"></span>
                                     </div>
                                 </li>
-                                <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
+                                <li> <a href=\"";
+        // line 63
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back");
+        echo "\"><span class=\"flaticon-user\"></span></a></li>
                                 <li><a href=\"";
         // line 64
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
-        echo "\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+        echo "\"><span class=\"flaticon-shopping-cart\">
+                                    ";
+        // line 65
+        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 65, $this->source); })()), "session", [], "any", false, false, false, 65), "get", ["cart"], "method", false, false, false, 65)) {
+            // line 66
+            echo "                                    ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 66, $this->source); })()), "session", [], "any", false, false, false, 66), "get", ["cartData"], "method", false, false, false, 66), "data", [], "any", false, false, false, 66), "quantityCart", [], "any", false, false, false, 66), "html", null, true);
+            echo "
+                                    ";
+        } else {
+            // line 68
+            echo "                                        0   
+                                    ";
+        }
+        // line 70
+        echo "                                </span></a> </li>
                             </ul>
                         </div>
                     </div>
@@ -180,7 +198,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                                     <!-- Hero-btn -->
                                     <div class=\"hero__btn\" data-animation=\"fadeInLeft\" data-delay=\".8s\" data-duration=\"2000ms\">
                                         <a href=\"";
-        // line 91
+        // line 97
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
         echo "\" class=\"btn hero-btn\">vendre vos produits</a>
                                     </div>
@@ -189,7 +207,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                             <div class=\"col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block\">
                                 <div class=\"hero__img\" data-animation=\"bounceIn\" data-delay=\".4s\">
                                     <img src=\"";
-        // line 97
+        // line 103
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/hero/watch.png"), "html", null, true);
         echo "\" alt=\"\" class=\" heartbeat\">
                                 </div>
@@ -214,7 +232,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                             <div class=\"col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block\">
                                 <div class=\"hero__img\" data-animation=\"bounceIn\" data-delay=\".4s\">
                                     <img src=\"";
-        // line 119
+        // line 125
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/hero/watch.png"), "html", null, true);
         echo "\" alt=\"\" class=\" heartbeat\">
                                 </div>
@@ -287,7 +305,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                         <div class=\"single-popular-items mb-50 text-center\">
                             <div class=\"popular-img\">
                                 <img src=\"";
-        // line 189
+        // line 195
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/gallery/popular4.png"), "html", null, true);
         echo "\" alt=\"\">
                                 <div class=\"img-cap\">
@@ -307,7 +325,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                         <div class=\"single-popular-items mb-50 text-center\">
                             <div class=\"popular-img\">
                                 <img src=\"";
-        // line 206
+        // line 212
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/gallery/popular5.png"), "html", null, true);
         echo "\" alt=\"\">
                                 <div class=\"img-cap\">
@@ -327,7 +345,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                         <div class=\"single-popular-items mb-50 text-center\">
                             <div class=\"popular-img\">
                                 <img src=\"";
-        // line 223
+        // line 229
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/gallery/popular6.png"), "html", null, true);
         echo "\" alt=\"\">
                                 <div class=\"img-cap\">
@@ -414,7 +432,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 307
+        // line 313
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -526,7 +544,7 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
      */
     public function getDebugInfo()
     {
-        return array (  418 => 307,  331 => 223,  311 => 206,  291 => 189,  218 => 119,  193 => 97,  184 => 91,  154 => 64,  129 => 42,  119 => 35,  115 => 34,  111 => 33,  106 => 31,  102 => 30,  93 => 24,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  436 => 313,  349 => 229,  329 => 212,  309 => 195,  236 => 125,  211 => 103,  202 => 97,  173 => 70,  169 => 68,  163 => 66,  161 => 65,  157 => 64,  153 => 63,  129 => 42,  119 => 35,  115 => 34,  111 => 33,  106 => 31,  102 => 30,  93 => 24,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -593,8 +611,14 @@ class __TwigTemplate_add0e4af8b2e421a472ff70e9c161c8e extends Template
                                         <span class=\"flaticon-search\"></span>
                                     </div>
                                 </li>
-                                <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
-                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+                                <li> <a href=\"{{path('app_back')}}\"><span class=\"flaticon-user\"></span></a></li>
+                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
                             </ul>
                         </div>
                     </div>

@@ -71,8 +71,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plus"></i>
@@ -156,26 +155,29 @@
                           </tr>
                         </thead>
                         <tbody>
-                        {% for produit in produits %}
-                          <tr>
-                            <td>{{ produit.nom }}</td>
-                                    <td><div class="col-6 text-center">
-                                                {% if produit.image %}
-                                                    <img src="{{ asset('imgproduit/' ~ produit.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 200px;">
-                                                {% endif %}
-                                            </div></td>
-                                    <td>{{ produit.description }}</td>
-                                    <td>{{ produit.prix }}</td>
-                                    <td>{{ produit.marque }}</td>
-                                    <td>{{ produit.etat }}</td>
-                                    <td>{{ produit.type }}</td>
-                                    <td>{{ produit.taille }}</td>
-                                    <td>
-                            <td><a style="color: green;"  href="">Confirmer</a>
-                            |<a style="color: red;" href="{{ path('app_produit_delete', {'id': produit.id}) }}">Supprimer</a>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
+    {% for produit in produits %}
+    <tr>
+        <td>{{ produit.nom }}</td>
+        <td>
+            <div class="col-6 text-center">
+                {% if produit.image %}
+                <img src="{{ asset('imgproduit/' ~ produit.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 200px;">
+                {% endif %}
+            </div>
+        </td>
+        <td>{{ produit.description }}</td>
+        <td>{{ produit.prix }}</td>
+        <td>{{ produit.marque }}</td>
+        <td>{{ produit.etat }}</td>
+        <td>{{ produit.type }}</td>
+        <td>{{ produit.taille }}</td>
+        <td>
+            <a style="color: green;" href="">Confirmer</a> |
+            <a style="color: red;" href="{{ path('app_produit_delete', {'id': produit.id}) }}">Refuser</a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
                       </table>
       </div>
       <!-- /.card -->

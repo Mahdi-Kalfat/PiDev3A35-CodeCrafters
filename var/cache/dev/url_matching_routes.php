@@ -30,6 +30,7 @@ return [
         '/panierr' => [[['_route' => 'app_panierr', '_controller' => 'App\\Controller\\ProduitController::index7'], null, null, null, false, false, null]],
         '/ajouterproduit' => [[['_route' => 'app_addproduit', '_controller' => 'App\\Controller\\ProduitController::ajouterproduit'], null, null, null, false, false, null]],
         '/back' => [[['_route' => 'app_back', '_controller' => 'App\\Controller\\ProduitController::show2'], null, null, null, false, false, null]],
+        '/favoris' => [[['_route' => 'favoris', '_controller' => 'App\\Controller\\ProduitController::favoris'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -69,6 +70,8 @@ return [
                     .')'
                 .')'
                 .'|/detailsproduit/([^/]++)(*:422)'
+                .'|/add_to_favorites/([^/]++)(*:456)'
+                .'|/remove_from_favorites/([^/]++)(*:495)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -87,8 +90,10 @@ return [
         332 => [[['_route' => 'cartDeleteAll', '_controller' => 'App\\Controller\\PanierController::deleteALLToCart'], ['id'], null, null, false, true, null]],
         365 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitController::editproduitForm'], ['id'], null, null, false, true, null]],
         388 => [[['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitController::deleteproduit'], ['id'], null, null, false, true, null]],
-        422 => [
-            [['_route' => 'app_details_produit', '_controller' => 'App\\Controller\\ProduitController::detailsProduit'], ['id'], null, null, false, true, null],
+        422 => [[['_route' => 'app_details_produit', '_controller' => 'App\\Controller\\ProduitController::detailsProduit'], ['id'], null, null, false, true, null]],
+        456 => [[['_route' => 'add_to_favorites', '_controller' => 'App\\Controller\\ProduitController::addToFavorites'], ['id'], null, null, false, true, null]],
+        495 => [
+            [['_route' => 'remove_from_favorites', '_controller' => 'App\\Controller\\ProduitController::removeFromFavorites'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

@@ -41,6 +41,9 @@ return [
     'app_produit_edit' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::editproduitForm'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/produit/edit']], [], [], []],
     'app_produit_delete' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::deleteproduit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/produit/delete']], [], [], []],
     'app_back' => [[], ['_controller' => 'App\\Controller\\ProduitController::show2'], [], [['text', '/back']], [], [], []],
+    'add_to_favorites' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::addToFavorites'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/add_to_favorites']], [], [], []],
+    'favoris' => [[], ['_controller' => 'App\\Controller\\ProduitController::favoris'], [], [['text', '/favoris']], [], [], []],
+    'remove_from_favorites' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::removeFromFavorites'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/remove_from_favorites']], [], [], []],
     'App\Controller\CommandeController::show1' => [[], ['_controller' => 'App\\Controller\\CommandeController::show1'], [], [['text', '/show']], [], [], []],
     'App\Controller\CommandeController::index' => [[], ['_controller' => 'App\\Controller\\CommandeController::index'], [], [['text', '/commande']], [], [], []],
     'App\Controller\CommandeController::ajouterproduit' => [[], ['_controller' => 'App\\Controller\\CommandeController::ajouterproduit'], [], [['text', '/ajoutercommande']], [], [], []],
@@ -65,4 +68,7 @@ return [
     'App\Controller\ProduitController::editproduitForm' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::editproduitForm'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/produit/edit']], [], [], []],
     'App\Controller\ProduitController::deleteproduit' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::deleteproduit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/produit/delete']], [], [], []],
     'App\Controller\ProduitController::show2' => [[], ['_controller' => 'App\\Controller\\ProduitController::show2'], [], [['text', '/back']], [], [], []],
+    'App\Controller\ProduitController::addToFavorites' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::addToFavorites'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/add_to_favorites']], [], [], []],
+    'App\Controller\ProduitController::favoris' => [[], ['_controller' => 'App\\Controller\\ProduitController::favoris'], [], [['text', '/favoris']], [], [], []],
+    'App\Controller\ProduitController::removeFromFavorites' => [['id'], ['_controller' => 'App\\Controller\\ProduitController::removeFromFavorites'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/remove_from_favorites']], [], [], []],
 ];

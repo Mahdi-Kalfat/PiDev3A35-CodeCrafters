@@ -73,70 +73,48 @@
         </div>
         <!-- Header End -->
     </header>
-     <main>
-        <!-- Latest Products Start -->
-        <section class="popular-items">
-            <div class="container">
-                <div class="row product-btn justify-content-between mb-30">
-                    <div class="properties__button">
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
-                </div>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-    th { background-color: #f2f2f2; }
-    .center { text-align: center; }
-    .add-button { text-align: center; margin-top: 20px; }
-</style>
-<div class="example-wrapper">
+      <main>
+        <div class="example-wrapper">
     <h1 class="text-center mb-4">Liste de mes Produits</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Marque</th>
-                <th>Etat</th>
-                <th>Type</th>
-                <th>Taille</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for produit in produits %}
-                <tr>
-                    <td>{{ produit.nom }}</td>
-                    <td><div class="col-6 text-center">
-                                {% if produit.image %}
-                                    <img src="{{ asset('imgproduit/' ~ produit.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 200px;">
-                                {% endif %}
-                            </div></td>
-                    <td>{{ produit.description }}</td>
-                    <td>{{ produit.prix }}</td>
-                    <td>{{ produit.marque }}</td>
-                    <td>{{ produit.etat }}</td>
-                    <td>{{ produit.type }}</td>
-                    <td>{{ produit.taille }}</td>
-                    <td>
-                        <a style="color: green;" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
-                        <a style="color: red;" href="{{ path('app_produit_delete', {'id': produit.id}) }}">Supprimer</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="add-button">
-    <a href="{{ path('app_addproduit') }}" class="btn btn-primary">Ajouter un autre produit</a>
-</div>
+        <section class="product-list">
+            <div class="container">
+               <div class="row">
+    {% for produit in produits %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card h-100">
+            <a><img class="card-img-top" src="{{ asset('imgproduit/' ~ produit.image) }}" alt="" style="width: 100%; height: 280px;"></a>
+            <div class="card-body">
+                <h5 class="card-title">{{ produit.nom }}</h5>
+                <p class="card-text">
+                    <strong>Description: </strong>
+                    <span class="text-truncate" style="max-width: 150px;">{{ produit.description }}</span><br>
+                    <strong>Prix: </strong>{{ produit.prix }} DT<br>
+                    <strong>Marque: </strong>{{ produit.marque }}<br>
+                    <strong>État: </strong>{{ produit.etat }}<br>
+                    <strong>Type: </strong>{{ produit.type }}<br>
+                    <strong>Taille: </strong>{{ produit.taille }}<br>
+                </p>
+            </div>
+            <div class="card-footer text-right">
+                <a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-sm btn-primary" style="padding: 5px 10px; font-size: 20px;">
+                    <i class="fas fa-edit"></i> 
+                </a>
+                <a href="{{ path('app_produit_delete', {'id': produit.id}) }}" class="btn btn-sm btn-danger" style="padding: 5px 10px; font-size: 20px;">
+                    <i class="fas fa-trash"></i> 
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
 </div>
 
-<!-- Shop Method End-->
+                        <div class="text-center mt-4">
+                            <a href="{{ path('app_addproduit') }}" class="btn btn-success">Ajouter un autre produit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <!-- Footer Start-->

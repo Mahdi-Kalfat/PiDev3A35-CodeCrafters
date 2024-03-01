@@ -228,53 +228,74 @@ class __TwigTemplate_1677c67da0c83de5ee8a45fac9539b69 extends Template
                             <th>Code Postal</th>
                             <th>Numero Tel</th>
                             <th>Nom Entreprise</th>
+                            <th>Prix Total de la commande</th>
+                                <th>Liste des Produits</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
                         ";
-        // line 156
+        // line 158
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 156, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 158, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["commande"]) {
-            // line 157
+            // line 159
             echo "                          <tr>
                                     <td>";
-            // line 158
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "adresse", [], "any", false, false, false, 158), "html", null, true);
-            echo "</td>
-                                    <td>";
-            // line 159
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "paiement", [], "any", false, false, false, 159), "html", null, true);
-            echo "</td>
-                                    <td>";
             // line 160
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "codepostal", [], "any", false, false, false, 160), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "adresse", [], "any", false, false, false, 160), "html", null, true);
             echo "</td>
                                     <td>";
             // line 161
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "numero", [], "any", false, false, false, 161), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "paiement", [], "any", false, false, false, 161), "html", null, true);
             echo "</td>
                                     <td>";
             // line 162
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "getNomEntreprise", [], "any", false, false, false, 162), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "codepostal", [], "any", false, false, false, 162), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 163
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "numero", [], "any", false, false, false, 163), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 164
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "getNomEntreprise", [], "any", false, false, false, 164), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 165
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "prixTotal", [], "any", false, false, false, 165), "html", null, true);
             echo "</td>
                                     <td>
-                            <td> <a style=\"color: green;\" href=\"";
-            // line 164
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 164)]), "html", null, true);
-            echo "\">Confirmer</a>
-                            |<a style=\"color: red;\" href=\"";
-            // line 165
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 165)]), "html", null, true);
-            echo "\">Supprimer</a>
-                          </tr>
+                                            ";
+            // line 167
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["commande"], "produits", [], "any", false, false, false, 167));
+            foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
+                // line 168
+                echo "                                            <li>";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 168), "html", null, true);
+                echo "</li>
+                                            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 170
+            echo "                                        </td>
+                                        <td>
+                                        <a style=\"color: green;\" href=\"\">Confirmer</a> |
+                                        <a style=\"color: red;\" href=\"";
+            // line 173
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 173)]), "html", null, true);
+            echo "\">Refuser</a>
+                                    </td>
+                                </tr>
                           ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['commande'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 168
+        // line 177
         echo "                        </tbody>
                       </table>
       </div>
@@ -327,7 +348,7 @@ class __TwigTemplate_1677c67da0c83de5ee8a45fac9539b69 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  278 => 168,  269 => 165,  265 => 164,  260 => 162,  256 => 161,  252 => 160,  248 => 159,  244 => 158,  241 => 157,  237 => 156,  181 => 103,  161 => 86,  79 => 7,  75 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  299 => 177,  289 => 173,  284 => 170,  275 => 168,  271 => 167,  266 => 165,  262 => 164,  258 => 163,  254 => 162,  250 => 161,  246 => 160,  243 => 159,  239 => 158,  181 => 103,  161 => 86,  79 => 7,  75 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -483,6 +504,8 @@ class __TwigTemplate_1677c67da0c83de5ee8a45fac9539b69 extends Template
                             <th>Code Postal</th>
                             <th>Numero Tel</th>
                             <th>Nom Entreprise</th>
+                            <th>Prix Total de la commande</th>
+                                <th>Liste des Produits</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -494,10 +517,17 @@ class __TwigTemplate_1677c67da0c83de5ee8a45fac9539b69 extends Template
                                     <td>{{ commande.codepostal }}</td>
                                     <td>{{ commande.numero }}</td>
                                     <td>{{ commande.getNomEntreprise }}</td>
+                                    <td>{{ commande.prixTotal }}</td>
                                     <td>
-                            <td> <a style=\"color: green;\" href=\"{{ path('app_commande_edit', {'id': commande.id}) }}\">Confirmer</a>
-                            |<a style=\"color: red;\" href=\"{{ path('app_commande_delete', {'id': commande.id}) }}\">Supprimer</a>
-                          </tr>
+                                            {% for produit in commande.produits %}
+                                            <li>{{ produit.nom }}</li>
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                        <a style=\"color: green;\" href=\"\">Confirmer</a> |
+                                        <a style=\"color: red;\" href=\"{{ path('app_commande_delete', {'id': commande.id}) }}\">Refuser</a>
+                                    </td>
+                                </tr>
                           {% endfor %}
                         </tbody>
                       </table>

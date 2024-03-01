@@ -17,11 +17,9 @@ class PanierServices
     }
     public function addToCart($id){
         $cart = $this->getCart();
-        if(isset($cart[$id])){
-            //produit est deja dans le panier
+        if(isset($cart[$id])){ //produit est deja dans le panier         
             $cart[$id]++;
-        }else{
-            //le produit n'est pas dans le panier
+        }else{                 //le produit n'est pas dans le panier
             $cart[$id] = 1;
         }$this->updateCart($cart);
     }
@@ -46,7 +44,7 @@ class PanierServices
                     "produit" => $produit,
                 ];
                 $quantityCart +=$quantity;
-                $subTotal += $quantity * $produit ->getPrix()/100;
+                $subTotal += $quantity * $produit ->getPrix();
             }else{
                 $this->deleteFromCart($id);
             }
@@ -61,9 +59,7 @@ class PanierServices
     }
     public function deleteFromCart($id){    //supprimer une unite d'un article du panier
         $cart = $this->getCart();
-        //produit est dans le panier
-        if(isset($cart[$id])){
-            //quantity de produit superieur a 1
+        if(isset($cart[$id])){   //produit est dans le panier
             if ($cart[$id] > 1){
                 $cart[$id]--;
             }else{
@@ -74,10 +70,8 @@ class PanierServices
     }
     public function deleteALLToCart($id){  //supprimer un article du panier
         $cart = $this->getCart();
-        //produit est dans le panier
         if(isset($cart[$id])){
-            //supprimer tous
-            unset($cart[$id]);
+            unset($cart[$id]); //supprimer tous
             $this->updateCart($cart);
         }
     }

@@ -216,18 +216,50 @@ class __TwigTemplate_404dda53d0a72fe9c5e3cd6cab328ea9 extends Template
                                      margin-right: 10px;
                                     }
                                     </style>
+                                    <div class=\"col-md-12 form-group p_star border rounded text-center\">
+                                        <label for=\"produits\" class=\"font-weight-bold\">Produits associés à votre commande :</label>
+                                        <div class=\"products-list \"> 
+                                            <ul class=\"list-unstyled \">
+                                                ";
+        // line 102
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["nomsProduits"]) || array_key_exists("nomsProduits", $context) ? $context["nomsProduits"] : (function () { throw new RuntimeError('Variable "nomsProduits" does not exist.', 102, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["nomProduit"]) {
+            // line 103
+            echo "                                                    <li><i class=\"fas fa-check-circle text-success mr-2\"></i>";
+            echo twig_escape_filter($this->env, $context["nomProduit"], "html", null, true);
+            echo "</li> <!-- icone check-->
+                                                ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['nomProduit'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 105
+        echo "                                            </ul>
+                                        </div>
+                                        <p class=\"mt-3\">
+                                            <label for=\"produits\" class=\"font-weight-bold\">Montant total de votre commande :</label>
+                                            <span style=\"background-color: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px;\">";
+        // line 109
+        echo twig_escape_filter($this->env, (isset($context["prixTotalPanier"]) || array_key_exists("prixTotalPanier", $context) ? $context["prixTotalPanier"] : (function () { throw new RuntimeError('Variable "prixTotalPanier" does not exist.', 109, $this->source); })()), "html", null, true);
+        echo " DT</span> 
+                                        </p>
+                                    </div>                    
                                     <div class=\"col-md-12 form-group p_star d-flex justify-content-center\">
                                     <div class=\"button-container\">
                                     ";
-        // line 100
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 100, $this->source); })()), "Checkout", [], "any", false, false, false, 100), 'widget', ["attr" => ["class" => "btn btn-sm btn-primary genric-btn danger circle arrow"]]);
+        // line 114
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 114, $this->source); })()), "Valider", [], "any", false, false, false, 114), 'widget', ["attr" => ["class" => "btn btn-sm btn-primary genric-btn danger circle arrow"]]);
         echo "
-                                    
+                                    <a href=\"";
+        // line 115
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
+        echo "\" class=\"genric-btn danger circle arrow\">Retour ver le panier </a>                                   
                                     </div>
                                     </div>
                             ";
-        // line 104
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 104, $this->source); })()), 'form_end');
+        // line 118
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 118, $this->source); })()), 'form_end');
         echo "
                 </div>
             </div>
@@ -245,7 +277,7 @@ class __TwigTemplate_404dda53d0a72fe9c5e3cd6cab328ea9 extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 120
+        // line 134
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -348,7 +380,7 @@ class __TwigTemplate_404dda53d0a72fe9c5e3cd6cab328ea9 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  249 => 120,  230 => 104,  223 => 100,  211 => 91,  207 => 90,  201 => 87,  197 => 86,  191 => 83,  187 => 82,  180 => 78,  176 => 77,  169 => 73,  165 => 72,  160 => 70,  138 => 51,  113 => 29,  103 => 22,  99 => 21,  95 => 20,  90 => 18,  86 => 17,  77 => 11,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  281 => 134,  262 => 118,  256 => 115,  252 => 114,  244 => 109,  238 => 105,  229 => 103,  225 => 102,  211 => 91,  207 => 90,  201 => 87,  197 => 86,  191 => 83,  187 => 82,  180 => 78,  176 => 77,  169 => 73,  165 => 72,  160 => 70,  138 => 51,  113 => 29,  103 => 22,  99 => 21,  95 => 20,  90 => 18,  86 => 17,  77 => 11,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -450,10 +482,24 @@ class __TwigTemplate_404dda53d0a72fe9c5e3cd6cab328ea9 extends Template
                                      margin-right: 10px;
                                     }
                                     </style>
+                                    <div class=\"col-md-12 form-group p_star border rounded text-center\">
+                                        <label for=\"produits\" class=\"font-weight-bold\">Produits associés à votre commande :</label>
+                                        <div class=\"products-list \"> 
+                                            <ul class=\"list-unstyled \">
+                                                {% for nomProduit in nomsProduits %}
+                                                    <li><i class=\"fas fa-check-circle text-success mr-2\"></i>{{ nomProduit }}</li> <!-- icone check-->
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <p class=\"mt-3\">
+                                            <label for=\"produits\" class=\"font-weight-bold\">Montant total de votre commande :</label>
+                                            <span style=\"background-color: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px;\">{{ prixTotalPanier }} DT</span> 
+                                        </p>
+                                    </div>                    
                                     <div class=\"col-md-12 form-group p_star d-flex justify-content-center\">
                                     <div class=\"button-container\">
-                                    {{ form_widget(formAdd.Checkout, {'attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }}
-                                    
+                                    {{ form_widget(formAdd.Valider, {'attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }}
+                                    <a href=\"{{path('app_panier')}}\" class=\"genric-btn danger circle arrow\">Retour ver le panier </a>                                   
                                     </div>
                                     </div>
                             {{ form_end(formAdd) }}

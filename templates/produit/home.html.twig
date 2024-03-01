@@ -60,8 +60,14 @@
                                         <span class="flaticon-search"></span>
                                     </div>
                                 </li>
-                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
-                                <li><a href="{{path('app_panier')}}"><span class="flaticon-shopping-cart"></span></a> </li>
+                                <li> <a href="{{path('app_back')}}"><span class="flaticon-user"></span></a></li>
+                                <li><a href="{{path('app_panier')}}"><span class="flaticon-shopping-cart">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
                             </ul>
                         </div>
                     </div>

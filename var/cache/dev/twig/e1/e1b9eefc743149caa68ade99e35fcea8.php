@@ -166,94 +166,165 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
         <!-- Header End -->
     </header>
      <main>
-        <!-- Latest Products Start -->
-        <section class=\"popular-items\">
-            <div class=\"container\">
-                <div class=\"row product-btn justify-content-between mb-30\">
-                    <div class=\"properties__button\">
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
+    <!-- Latest Products Start -->
+    <section class=\"popular-items\">
+        <div class=\"container\">
+            <div class=\"row product-btn justify-content-between mb-30\">
+                <div class=\"properties__button\">
+                    <!--End Nav Button  -->
                 </div>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-    th { background-color: #f2f2f2; }
-    .center { text-align: center; }
-    .add-button { text-align: center; margin-top: 20px; }
-</style>
-<div class=\"example-wrapper\">
-    <h1 class=\"text-center mb-4\">Liste des commandes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Address</th>
-                <th>Paiement</th>
-                <th>Code Postal</th>
-                <th>Numero Tel</th>
-                <th>Nom Entreprise</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            ";
-        // line 109
+                <!-- Grid and List view -->
+            </div>
+            <style>
+                .card {
+                    height: 100%;
+                }
+
+                .card-body {
+                    height: 100%;
+                }
+
+                .btn-edit,
+                .btn-delete {
+                    padding: 5px 10px;
+                    font-size: 16px;
+                }
+            </style>
+            <div class=\"container mt-5\">
+                <h1 class=\"text-center mb-4\">Liste des commandes</h1>
+                <div class=\"row mb-4\">
+        <div class=\"col-md-6\">
+            <form action=\"";
+        // line 105
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_show_commande");
+        echo "\" method=\"GET\">
+                <div class=\"form-group\">
+                    <input type=\"text\" id=\"adresse\" name=\"adresse\" placeholder=\"Entrez une adresse\" style=\"padding: 11px; border: 1px solid #ccc; border-radius: 5px; margin-right: 0px; width: 300px; font-size: 13px;\">
+                </div>
+                <button type=\"submit\" style=\"padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Rechercher</button>
+            </form>
+        </div>
+        <div class=\"col-md-6\">
+            <form action=\"";
+        // line 113
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_show_commande");
+        echo "\" method=\"GET\" class=\"text-right\" >
+                <div class=\"form-group d-inline-block\">
+                    <select class=\"form-control mb-20\" id=\"tri\" name=\"tri\" >
+                        <option value=\"\">Trier par ordre :</option>
+                        <option value=\"asc\" ";
+        // line 117
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 117, $this->source); })()), "request", [], "any", false, false, false, 117), "query", [], "any", false, false, false, 117), "get", ["tri"], "method", false, false, false, 117) == "asc")) {
+            echo "selected";
+        }
+        echo ">Croissant</option>
+                        <option value=\"desc\" ";
+        // line 118
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 118, $this->source); })()), "request", [], "any", false, false, false, 118), "query", [], "any", false, false, false, 118), "get", ["tri"], "method", false, false, false, 118) == "desc")) {
+            echo "selected";
+        }
+        echo ">Décroissant</option>
+                    </select>
+                    <button type=\"submit\" style=\"padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Trier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+                <div class=\"row\">
+                    ";
+        // line 126
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 109, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 126, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["commande"]) {
-            // line 110
-            echo "                <tr>
-                    <td>";
-            // line 111
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "adresse", [], "any", false, false, false, 111), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 112
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "paiement", [], "any", false, false, false, 112), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 113
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "codepostal", [], "any", false, false, false, 113), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 114
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "numero", [], "any", false, false, false, 114), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 115
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "getNomEntreprise", [], "any", false, false, false, 115), "html", null, true);
-            echo "</td>
-                    <td>
-                        <a style=\"color: green;\" href=\"";
-            // line 117
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 117)]), "html", null, true);
-            echo "\">Modifier</a>
-                        <a style=\"color: red;\" href=\"";
-            // line 118
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 118)]), "html", null, true);
-            echo "\">Supprimer</a>
-                    </td>
-                </tr>
-            ";
+            // line 127
+            echo "                    <div class=\"col-md-6 mb-4\">
+                        <div class=\"card\">
+                            <div class=\"card-header text-center\">
+                                Commande Num : #";
+            // line 130
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 130), "html", null, true);
+            echo "
+                            </div>
+                            <div class=\"card-body\">
+                                <ul class=\"list-group\">
+                                    <li class=\"list-group-item\"><strong>Adresse:</strong> ";
+            // line 134
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "adresse", [], "any", false, false, false, 134), "html", null, true);
+            echo "</li>
+                                    <li class=\"list-group-item\"><strong>Paiement:</strong> ";
+            // line 135
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "paiement", [], "any", false, false, false, 135), "html", null, true);
+            echo "</li>
+                                    <li class=\"list-group-item\"><strong>Code Postal:</strong> ";
+            // line 136
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "codepostal", [], "any", false, false, false, 136), "html", null, true);
+            echo "</li>
+                                    <li class=\"list-group-item\"><strong>Numero Tel:</strong> ";
+            // line 137
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "numero", [], "any", false, false, false, 137), "html", null, true);
+            echo "</li>
+                                    <li class=\"list-group-item\"><strong>Nom Entreprise:</strong> ";
+            // line 138
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "getNomEntreprise", [], "any", false, false, false, 138), "html", null, true);
+            echo "</li>
+                                    <li class=\"list-group-item\"><strong>Prix Total de la commande:</strong> ";
+            // line 139
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "prixTotal", [], "any", false, false, false, 139), "html", null, true);
+            echo "</li>
+                                    <li class=\"list-group-item\"><strong>Produits:</strong>
+                                        <ul>
+                                            ";
+            // line 142
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["commande"], "produits", [], "any", false, false, false, 142));
+            foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
+                // line 143
+                echo "                                            <li>";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 143), "html", null, true);
+                echo "</li>
+                                            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 145
+            echo "                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class=\"card-footer text-right\">
+                                <a href=\"";
+            // line 150
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 150)]), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-primary btn-edit\">
+                                    <i class=\"fas fa-edit\"></i> Modifier
+                                </a>
+                                <a href=\"";
+            // line 153
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 153)]), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-danger btn-delete\">
+                                    <i class=\"fas fa-trash\"></i> Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['commande'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 122
-        echo "        </tbody>
-    </table>
-    <div class=\"add-button\">
-    <a href=\"";
-        // line 125
+        // line 160
+        echo "                </div>
+                <div class=\"mt-4\">
+                    <a href=\"";
+        // line 162
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
         echo "\" class=\"btn btn-primary\">Retour au catalogue</a>
-</div>
-</div>
-
-<!-- Shop Method End-->
-    </main>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Method End-->
+</main>
     <footer>
         <!-- Footer Start-->
         <div class=\"footer-area footer-padding\">
@@ -265,7 +336,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 141
+        // line 178
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -377,7 +448,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  269 => 141,  250 => 125,  245 => 122,  235 => 118,  231 => 117,  226 => 115,  222 => 114,  218 => 113,  214 => 112,  210 => 111,  207 => 110,  203 => 109,  154 => 63,  129 => 41,  119 => 34,  115 => 33,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  340 => 178,  321 => 162,  317 => 160,  304 => 153,  298 => 150,  291 => 145,  282 => 143,  278 => 142,  272 => 139,  268 => 138,  264 => 137,  260 => 136,  256 => 135,  252 => 134,  245 => 130,  240 => 127,  236 => 126,  223 => 118,  217 => 117,  210 => 113,  199 => 105,  154 => 63,  129 => 41,  119 => 34,  115 => 33,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -458,60 +529,97 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
         <!-- Header End -->
     </header>
      <main>
-        <!-- Latest Products Start -->
-        <section class=\"popular-items\">
-            <div class=\"container\">
-                <div class=\"row product-btn justify-content-between mb-30\">
-                    <div class=\"properties__button\">
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
+    <!-- Latest Products Start -->
+    <section class=\"popular-items\">
+        <div class=\"container\">
+            <div class=\"row product-btn justify-content-between mb-30\">
+                <div class=\"properties__button\">
+                    <!--End Nav Button  -->
                 </div>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-    th { background-color: #f2f2f2; }
-    .center { text-align: center; }
-    .add-button { text-align: center; margin-top: 20px; }
-</style>
-<div class=\"example-wrapper\">
-    <h1 class=\"text-center mb-4\">Liste des commandes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Address</th>
-                <th>Paiement</th>
-                <th>Code Postal</th>
-                <th>Numero Tel</th>
-                <th>Nom Entreprise</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for commande in commandes %}
-                <tr>
-                    <td>{{ commande.adresse }}</td>
-                    <td>{{ commande.paiement }}</td>
-                    <td>{{ commande.codepostal }}</td>
-                    <td>{{ commande.numero }}</td>
-                    <td>{{ commande.getNomEntreprise }}</td>
-                    <td>
-                        <a style=\"color: green;\" href=\"{{ path('app_commande_edit', {'id': commande.id}) }}\">Modifier</a>
-                        <a style=\"color: red;\" href=\"{{ path('app_commande_delete', {'id': commande.id}) }}\">Supprimer</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class=\"add-button\">
-    <a href=\"{{ path('app_produit') }}\" class=\"btn btn-primary\">Retour au catalogue</a>
-</div>
-</div>
+                <!-- Grid and List view -->
+            </div>
+            <style>
+                .card {
+                    height: 100%;
+                }
 
-<!-- Shop Method End-->
-    </main>
+                .card-body {
+                    height: 100%;
+                }
+
+                .btn-edit,
+                .btn-delete {
+                    padding: 5px 10px;
+                    font-size: 16px;
+                }
+            </style>
+            <div class=\"container mt-5\">
+                <h1 class=\"text-center mb-4\">Liste des commandes</h1>
+                <div class=\"row mb-4\">
+        <div class=\"col-md-6\">
+            <form action=\"{{ path('app_show_commande') }}\" method=\"GET\">
+                <div class=\"form-group\">
+                    <input type=\"text\" id=\"adresse\" name=\"adresse\" placeholder=\"Entrez une adresse\" style=\"padding: 11px; border: 1px solid #ccc; border-radius: 5px; margin-right: 0px; width: 300px; font-size: 13px;\">
+                </div>
+                <button type=\"submit\" style=\"padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Rechercher</button>
+            </form>
+        </div>
+        <div class=\"col-md-6\">
+            <form action=\"{{ path('app_show_commande') }}\" method=\"GET\" class=\"text-right\" >
+                <div class=\"form-group d-inline-block\">
+                    <select class=\"form-control mb-20\" id=\"tri\" name=\"tri\" >
+                        <option value=\"\">Trier par ordre :</option>
+                        <option value=\"asc\" {% if app.request.query.get('tri') == 'asc' %}selected{% endif %}>Croissant</option>
+                        <option value=\"desc\" {% if app.request.query.get('tri') == 'desc' %}selected{% endif %}>Décroissant</option>
+                    </select>
+                    <button type=\"submit\" style=\"padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Trier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+                <div class=\"row\">
+                    {% for commande in commandes %}
+                    <div class=\"col-md-6 mb-4\">
+                        <div class=\"card\">
+                            <div class=\"card-header text-center\">
+                                Commande Num : #{{ commande.id }}
+                            </div>
+                            <div class=\"card-body\">
+                                <ul class=\"list-group\">
+                                    <li class=\"list-group-item\"><strong>Adresse:</strong> {{ commande.adresse }}</li>
+                                    <li class=\"list-group-item\"><strong>Paiement:</strong> {{ commande.paiement }}</li>
+                                    <li class=\"list-group-item\"><strong>Code Postal:</strong> {{ commande.codepostal }}</li>
+                                    <li class=\"list-group-item\"><strong>Numero Tel:</strong> {{ commande.numero }}</li>
+                                    <li class=\"list-group-item\"><strong>Nom Entreprise:</strong> {{ commande.getNomEntreprise }}</li>
+                                    <li class=\"list-group-item\"><strong>Prix Total de la commande:</strong> {{ commande.prixTotal }}</li>
+                                    <li class=\"list-group-item\"><strong>Produits:</strong>
+                                        <ul>
+                                            {% for produit in commande.produits %}
+                                            <li>{{ produit.nom }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class=\"card-footer text-right\">
+                                <a href=\"{{ path('app_commande_edit', {'id': commande.id}) }}\" class=\"btn btn-sm btn-primary btn-edit\">
+                                    <i class=\"fas fa-edit\"></i> Modifier
+                                </a>
+                                <a href=\"{{ path('app_commande_delete', {'id': commande.id}) }}\" class=\"btn btn-sm btn-danger btn-delete\">
+                                    <i class=\"fas fa-trash\"></i> Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class=\"mt-4\">
+                    <a href=\"{{ path('app_produit') }}\" class=\"btn btn-primary\">Retour au catalogue</a>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Method End-->
+</main>
     <footer>
         <!-- Footer Start-->
         <div class=\"footer-area footer-padding\">

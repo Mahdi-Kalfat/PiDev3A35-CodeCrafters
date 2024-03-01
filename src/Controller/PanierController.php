@@ -23,28 +23,30 @@ class PanierController extends AbstractController
         }
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController',
-            'cart' => ['cart' => $cart], // Wrapper le tableau $cart avec la clé 'cart'
+            'cart' => $cart, 
         ]);
+        
     }
     #[Route('/panier/add/{id}', name: 'cartAdd')]
     public function addToCart($id): Response {
-        $this->panierServices->addToCart($id);
-        return $this->redirectToRoute('app_home');
-    }
+    $this->panierServices->addToCart($id);
+    return $this->redirectToRoute('app_panier'); 
+}
+
     #[Route('/panier/delete/{id}', name: 'cartDeletep')] //supprimer un produit
     public function deleteFromCart($id): Response {
 
         $this->panierServices->deleteFromCart($id);
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_panier');
     }
     #[Route('/panier/deleteAll/{id}', name: 'cartDeleteAll')] //supprimer la ligne 
     public function deleteALLToCart($id): Response {
         $this->panierServices->deleteALLToCart($id);
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_panier');
     }
     #[Route('/panier/deleteAll', name: 'cartDelete')] //supprimer tout le panier (vider)
     public function deleteALL(): Response {
         $this->panierServices->deleteCart();
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_produit');
     }
 }

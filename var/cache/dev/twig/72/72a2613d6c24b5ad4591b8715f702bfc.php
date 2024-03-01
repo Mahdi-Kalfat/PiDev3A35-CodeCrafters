@@ -235,15 +235,14 @@ class __TwigTemplate_acd90509b1402bf261a068dc618859e3 extends Template
         echo "
                                         </div>
                                     </div>
-                                   <div class=\"form-group\">
-                                    <label for=\"\">Image</label>
+                                   <div class=\"col-md-12 form-group p_star\">
                                     ";
-        // line 107
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 107, $this->source); })()), "image", [], "any", false, false, false, 107), 'widget', ["attr" => ["placeholder" => "Votre Image", "class" => "form-control"]]);
+        // line 106
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 106, $this->source); })()), "image", [], "any", false, false, false, 106), 'widget', ["attr" => ["placeholder" => "Votre Image"]]);
         echo "
                                     ";
-        // line 108
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 108, $this->source); })()), "image", [], "any", false, false, false, 108), 'errors');
+        // line 107
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 107, $this->source); })()), "image", [], "any", false, false, false, 107), 'errors');
         echo "
                                    </div>
                                     <style>
@@ -254,18 +253,18 @@ class __TwigTemplate_acd90509b1402bf261a068dc618859e3 extends Template
                                     <div class=\"col-md-12 form-group p_star d-flex justify-content-center\">
                                     <div class=\"button-container\">
                                     ";
-        // line 117
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 117, $this->source); })()), "ajouter", [], "any", false, false, false, 117), 'widget', ["attr" => ["class" => "genric-btn danger circle arrow"]]);
+        // line 116
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 116, $this->source); })()), "ajouter", [], "any", false, false, false, 116), 'widget', ["attr" => ["class" => "genric-btn danger circle arrow"]]);
         echo "
                                     <a href=\"";
-        // line 118
+        // line 117
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
-        echo "\" class=\"genric-btn danger circle\">Annuler</a>
+        echo "\" class=\"genric-btn danger circle arrow\">Annuler</a>
                                     </div>
                                     </div>
                             ";
-        // line 121
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 121, $this->source); })()), 'form_end');
+        // line 120
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formAdd"]) || array_key_exists("formAdd", $context) ? $context["formAdd"] : (function () { throw new RuntimeError('Variable "formAdd" does not exist.', 120, $this->source); })()), 'form_end');
         echo "
                 </div>
             </div>
@@ -283,7 +282,7 @@ class __TwigTemplate_acd90509b1402bf261a068dc618859e3 extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 137
+        // line 136
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -384,7 +383,7 @@ class __TwigTemplate_acd90509b1402bf261a068dc618859e3 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  287 => 137,  268 => 121,  262 => 118,  258 => 117,  246 => 108,  242 => 107,  234 => 102,  230 => 101,  222 => 96,  218 => 95,  210 => 90,  206 => 89,  199 => 85,  195 => 84,  189 => 81,  185 => 80,  179 => 77,  175 => 76,  169 => 73,  165 => 72,  160 => 70,  138 => 51,  113 => 29,  103 => 22,  99 => 21,  95 => 20,  90 => 18,  86 => 17,  77 => 11,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  286 => 136,  267 => 120,  261 => 117,  257 => 116,  245 => 107,  241 => 106,  234 => 102,  230 => 101,  222 => 96,  218 => 95,  210 => 90,  206 => 89,  199 => 85,  195 => 84,  189 => 81,  185 => 80,  179 => 77,  175 => 76,  169 => 73,  165 => 72,  160 => 70,  138 => 51,  113 => 29,  103 => 22,  99 => 21,  95 => 20,  90 => 18,  86 => 17,  77 => 11,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -493,9 +492,8 @@ class __TwigTemplate_acd90509b1402bf261a068dc618859e3 extends Template
                                             {{ form_errors(formAdd.taille) }}
                                         </div>
                                     </div>
-                                   <div class=\"form-group\">
-                                    <label for=\"\">Image</label>
-                                    {{ form_widget(formAdd.image, {'attr': {'placeholder': 'Votre Image', 'class': 'form-control'} }) }}
+                                   <div class=\"col-md-12 form-group p_star\">
+                                    {{ form_widget(formAdd.image, {'attr': {'placeholder': 'Votre Image'} }) }}
                                     {{ form_errors(formAdd.image) }}
                                    </div>
                                     <style>
@@ -506,7 +504,7 @@ class __TwigTemplate_acd90509b1402bf261a068dc618859e3 extends Template
                                     <div class=\"col-md-12 form-group p_star d-flex justify-content-center\">
                                     <div class=\"button-container\">
                                     {{ form_widget(formAdd.ajouter, {'attr': {'class': 'genric-btn danger circle arrow' } }) }}
-                                    <a href=\"{{path('app_produit')}}\" class=\"genric-btn danger circle\">Annuler</a>
+                                    <a href=\"{{path('app_produit')}}\" class=\"genric-btn danger circle arrow\">Annuler</a>
                                     </div>
                                     </div>
                             {{ form_end(formAdd) }}

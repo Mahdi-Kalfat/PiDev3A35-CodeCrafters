@@ -21,6 +21,24 @@ class CommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, Commande::class);
     }
 
+    public function findByAdresse($adresse)
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.adresse LIKE :adresse')
+        ->setParameter('adresse', '%' . $adresse . '%')
+        ->getQuery()
+        ->getResult();
+}
+
+public function findByPrixTotal($order = 'ASC')
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.prixTotal', $order)
+            ->getQuery()
+            ->getResult();
+    }
+    
+
 //    /**
 //     * @return Commande[] Returns an array of Commande objects
 //     */

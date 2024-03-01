@@ -144,8 +144,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
       <!-- Sidebar Menu -->
       <nav class=\"mt-2\">
         <ul class=\"nav nav-pills nav-sidebar flex-column\" data-widget=\"treeview\" role=\"menu\" data-accordion=\"false\">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
           <li class=\"nav-item\">
             <a href=\"#\" class=\"nav-link\">
               <i class=\"nav-icon fas fa-plus\"></i>
@@ -157,7 +156,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
             <ul class=\"nav nav-treeview\">
               <li class=\"nav-item\">
                 <a href=\"";
-        // line 86
+        // line 85
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back");
         echo "\" class=\"nav-link\">
                   <i class=\"far fa-plus nav-icon\"></i>
@@ -177,7 +176,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
             <ul class=\"nav nav-treeview\">
               <li class=\"nav-item\">
                 <a href=\"";
-        // line 103
+        // line 102
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_backc");
         echo "\" class=\"nav-link\">
                   <i class=\"far fa-plus nav-icon\"></i>
@@ -235,67 +234,70 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
                           </tr>
                         </thead>
                         <tbody>
-                        ";
-        // line 159
+    ";
+        // line 158
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 159, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 158, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
+            // line 159
+            echo "    <tr>
+        <td>";
             // line 160
-            echo "                          <tr>
-                            <td>";
-            // line 161
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 161), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 160), "html", null, true);
             echo "</td>
-                                    <td><div class=\"col-6 text-center\">
-                                                ";
+        <td>
+            <div class=\"col-6 text-center\">
+                ";
             // line 163
             if (twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 163)) {
                 // line 164
-                echo "                                                    <img src=\"";
+                echo "                <img src=\"";
                 echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 164))), "html", null, true);
                 echo "\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 200px;\">
-                                                ";
+                ";
             }
             // line 166
-            echo "                                            </div></td>
-                                    <td>";
-            // line 167
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 167), "html", null, true);
-            echo "</td>
-                                    <td>";
+            echo "            </div>
+        </td>
+        <td>";
             // line 168
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 168), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 168), "html", null, true);
             echo "</td>
-                                    <td>";
+        <td>";
             // line 169
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "marque", [], "any", false, false, false, 169), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 169), "html", null, true);
             echo "</td>
-                                    <td>";
+        <td>";
             // line 170
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "etat", [], "any", false, false, false, 170), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "marque", [], "any", false, false, false, 170), "html", null, true);
             echo "</td>
-                                    <td>";
+        <td>";
             // line 171
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "type", [], "any", false, false, false, 171), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "etat", [], "any", false, false, false, 171), "html", null, true);
             echo "</td>
-                                    <td>";
+        <td>";
             // line 172
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "taille", [], "any", false, false, false, 172), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "type", [], "any", false, false, false, 172), "html", null, true);
             echo "</td>
-                                    <td>
-                            <td><a style=\"color: green;\"  href=\"\">Confirmer</a>
-                            |<a style=\"color: red;\" href=\"";
-            // line 175
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 175)]), "html", null, true);
-            echo "\">Supprimer</a>
-                          </tr>
-                          ";
+        <td>";
+            // line 173
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "taille", [], "any", false, false, false, 173), "html", null, true);
+            echo "</td>
+        <td>
+            <a style=\"color: green;\" href=\"\">Confirmer</a> |
+            <a style=\"color: red;\" href=\"";
+            // line 176
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 176)]), "html", null, true);
+            echo "\">Refuser</a>
+        </td>
+    </tr>
+    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 178
-        echo "                        </tbody>
+        // line 180
+        echo "</tbody>
                       </table>
       </div>
       <!-- /.card -->
@@ -348,7 +350,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  298 => 178,  289 => 175,  283 => 172,  279 => 171,  275 => 170,  271 => 169,  267 => 168,  263 => 167,  260 => 166,  254 => 164,  252 => 163,  247 => 161,  244 => 160,  240 => 159,  181 => 103,  161 => 86,  79 => 7,  75 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  300 => 180,  290 => 176,  284 => 173,  280 => 172,  276 => 171,  272 => 170,  268 => 169,  264 => 168,  260 => 166,  254 => 164,  252 => 163,  246 => 160,  243 => 159,  239 => 158,  180 => 102,  160 => 85,  79 => 7,  75 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -426,8 +428,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
       <!-- Sidebar Menu -->
       <nav class=\"mt-2\">
         <ul class=\"nav nav-pills nav-sidebar flex-column\" data-widget=\"treeview\" role=\"menu\" data-accordion=\"false\">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
           <li class=\"nav-item\">
             <a href=\"#\" class=\"nav-link\">
               <i class=\"nav-icon fas fa-plus\"></i>
@@ -511,26 +512,29 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
                           </tr>
                         </thead>
                         <tbody>
-                        {% for produit in produits %}
-                          <tr>
-                            <td>{{ produit.nom }}</td>
-                                    <td><div class=\"col-6 text-center\">
-                                                {% if produit.image %}
-                                                    <img src=\"{{ asset('imgproduit/' ~ produit.image) }}\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 200px;\">
-                                                {% endif %}
-                                            </div></td>
-                                    <td>{{ produit.description }}</td>
-                                    <td>{{ produit.prix }}</td>
-                                    <td>{{ produit.marque }}</td>
-                                    <td>{{ produit.etat }}</td>
-                                    <td>{{ produit.type }}</td>
-                                    <td>{{ produit.taille }}</td>
-                                    <td>
-                            <td><a style=\"color: green;\"  href=\"\">Confirmer</a>
-                            |<a style=\"color: red;\" href=\"{{ path('app_produit_delete', {'id': produit.id}) }}\">Supprimer</a>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
+    {% for produit in produits %}
+    <tr>
+        <td>{{ produit.nom }}</td>
+        <td>
+            <div class=\"col-6 text-center\">
+                {% if produit.image %}
+                <img src=\"{{ asset('imgproduit/' ~ produit.image) }}\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 200px;\">
+                {% endif %}
+            </div>
+        </td>
+        <td>{{ produit.description }}</td>
+        <td>{{ produit.prix }}</td>
+        <td>{{ produit.marque }}</td>
+        <td>{{ produit.etat }}</td>
+        <td>{{ produit.type }}</td>
+        <td>{{ produit.taille }}</td>
+        <td>
+            <a style=\"color: green;\" href=\"\">Confirmer</a> |
+            <a style=\"color: red;\" href=\"{{ path('app_produit_delete', {'id': produit.id}) }}\">Refuser</a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
                       </table>
       </div>
       <!-- /.card -->

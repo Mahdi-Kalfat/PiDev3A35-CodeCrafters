@@ -102,9 +102,8 @@
                                             {{ form_errors(formAdd.taille) }}
                                         </div>
                                     </div>
-                                   <div class="form-group">
-                                    <label for="">Image</label>
-                                    {{ form_widget(formAdd.image, {'attr': {'placeholder': 'Votre Image', 'class': 'form-control'} }) }}
+                                   <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.image, {'attr': {'placeholder': 'Votre Image'} }) }}
                                     {{ form_errors(formAdd.image) }}
                                    </div>
                                     <style>
@@ -115,7 +114,7 @@
                                     <div class="col-md-12 form-group p_star d-flex justify-content-center">
                                     <div class="button-container">
                                     {{ form_widget(formAdd.ajouter, {'attr': {'class': 'genric-btn danger circle arrow' } }) }}
-                                    <a href="{{path('app_produit')}}" class="genric-btn danger circle">Annuler</a>
+                                    <a href="{{path('app_produit')}}" class="genric-btn danger circle arrow">Annuler</a>
                                     </div>
                                     </div>
                             {{ form_end(formAdd) }}

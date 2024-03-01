@@ -10,18 +10,34 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ProduitController extends AbstractController
 {
     #[Route('/produit', name: 'app_produit')]
-    public function show(ProduitRepository $produitRepository): Response
-    {
-        $produit = $produitRepository->findAll();
-        return $this->render('produit/showproduit.html.twig', [
-            'controller_name' => 'ProduitController',
-            'produits' => $produit,
-        ]);
+    public function show(ProduitRepository $produitRepository, Request $request, SessionInterface $session): Response
+{
+    $type = $request->query->get('type');
+    $taille = $request->query->get('taille');
+    $etat = $request->query->get('etat');
+    $marque = $request->query->get('marque');
+
+    // Utilisation de la méthode findByFilters avec les valeurs des filtres
+    $produits = $produitRepository->findByFilters($type, $taille, $etat);
+
+    // Filtrer par marque si la marque est spécifiée
+    if ($marque) {
+        $produits = $produitRepository->findBy(['marque' => $marque]);
     }
+    $favorisIds = $session->get('favoris', []);
+
+    return $this->render('produit/showproduit.html.twig', [
+        'controller_name' => 'ProduitController',
+        'produits' => $produits,
+        'favoris' => $favorisIds,
+    ]);
+}
     #[Route('/afficherproduit', name: 'app_afficherproduit')]
     public function show1(ProduitRepository $produitRepository): Response
     {
@@ -152,4 +168,59 @@ class ProduitController extends AbstractController
             'produits' => $listproduit,
         ]);
     }
+    #[Route('/add_to_favorites/{id}', name: 'add_to_favorites')]
+public function addToFavorites(Produit $produit, EntityManagerInterface $entityManager, SessionInterface $session): Response
+{
+    // Récupérer les produits favoris depuis la session
+    $favoris = $session->get('favoris', []);
+
+    // Ajouter le nouvel produit aux favoris s'il n'est pas déjà présent
+    if (!in_array($produit->getId(), $favoris)) {
+        $favoris[] = $produit->getId();
+        $session->set('favoris', $favoris);
+    }
+
+    // Rediriger vers la page des produits favoris
+    return $this->redirectToRoute('favoris');
+}
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
+    #[Route('/favoris', name: 'favoris')]
+public function favoris(ProduitRepository $produitRepository): Response
+{
+    // Récupérer les identifiants des produits favoris depuis la session
+    $favorisIds = $this->session->get('favoris', []);
+
+    // Récupérer les objets Produit correspondants aux identifiants
+    $favoris = [];
+    foreach ($favorisIds as $favoriId) {
+        $favoris[] = $produitRepository->find($favoriId);
+    }
+
+    return $this->render('produit/favoris.html.twig', [
+        'favoris' => $favoris,
+    ]);
+}
+#[Route('/remove_from_favorites/{id}', name: 'remove_from_favorites')]
+public function removeFromFavorites(Produit $produit): RedirectResponse
+{
+    // Récupérer les produits favoris depuis la session
+    $favoris = $this->session->get('favoris', []);
+
+    // Vérifier si le produit est dans la liste des favoris
+    $key = array_search($produit->getId(), $favoris);
+    if ($key !== false) {
+        // Retirer le produit de la liste des favoris
+        unset($favoris[$key]);
+        $this->session->set('favoris', $favoris);
+    }
+
+    // Rediriger vers la page des produits favoris
+    return $this->redirectToRoute('favoris');
+}
 }

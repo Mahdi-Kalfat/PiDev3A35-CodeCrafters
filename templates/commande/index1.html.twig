@@ -74,60 +74,97 @@
         <!-- Header End -->
     </header>
      <main>
-        <!-- Latest Products Start -->
-        <section class="popular-items">
-            <div class="container">
-                <div class="row product-btn justify-content-between mb-30">
-                    <div class="properties__button">
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
+    <!-- Latest Products Start -->
+    <section class="popular-items">
+        <div class="container">
+            <div class="row product-btn justify-content-between mb-30">
+                <div class="properties__button">
+                    <!--End Nav Button  -->
                 </div>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-    th { background-color: #f2f2f2; }
-    .center { text-align: center; }
-    .add-button { text-align: center; margin-top: 20px; }
-</style>
-<div class="example-wrapper">
-    <h1 class="text-center mb-4">Liste des commandes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Address</th>
-                <th>Paiement</th>
-                <th>Code Postal</th>
-                <th>Numero Tel</th>
-                <th>Nom Entreprise</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for commande in commandes %}
-                <tr>
-                    <td>{{ commande.adresse }}</td>
-                    <td>{{ commande.paiement }}</td>
-                    <td>{{ commande.codepostal }}</td>
-                    <td>{{ commande.numero }}</td>
-                    <td>{{ commande.getNomEntreprise }}</td>
-                    <td>
-                        <a style="color: green;" href="{{ path('app_commande_edit', {'id': commande.id}) }}">Modifier</a>
-                        <a style="color: red;" href="{{ path('app_commande_delete', {'id': commande.id}) }}">Supprimer</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="add-button">
-    <a href="{{ path('app_produit') }}" class="btn btn-primary">Retour au catalogue</a>
-</div>
-</div>
+                <!-- Grid and List view -->
+            </div>
+            <style>
+                .card {
+                    height: 100%;
+                }
 
-<!-- Shop Method End-->
-    </main>
+                .card-body {
+                    height: 100%;
+                }
+
+                .btn-edit,
+                .btn-delete {
+                    padding: 5px 10px;
+                    font-size: 16px;
+                }
+            </style>
+            <div class="container mt-5">
+                <h1 class="text-center mb-4">Liste des commandes</h1>
+                <div class="row mb-4">
+        <div class="col-md-6">
+            <form action="{{ path('app_show_commande') }}" method="GET">
+                <div class="form-group">
+                    <input type="text" id="adresse" name="adresse" placeholder="Entrez une adresse" style="padding: 11px; border: 1px solid #ccc; border-radius: 5px; margin-right: 0px; width: 300px; font-size: 13px;">
+                </div>
+                <button type="submit" style="padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;">Rechercher</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form action="{{ path('app_show_commande') }}" method="GET" class="text-right" >
+                <div class="form-group d-inline-block">
+                    <select class="form-control mb-20" id="tri" name="tri" >
+                        <option value="">Trier par ordre :</option>
+                        <option value="asc" {% if app.request.query.get('tri') == 'asc' %}selected{% endif %}>Croissant</option>
+                        <option value="desc" {% if app.request.query.get('tri') == 'desc' %}selected{% endif %}>Décroissant</option>
+                    </select>
+                    <button type="submit" style="padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;">Trier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+                <div class="row">
+                    {% for commande in commandes %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                Commande Num : #{{ commande.id }}
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><strong>Adresse:</strong> {{ commande.adresse }}</li>
+                                    <li class="list-group-item"><strong>Paiement:</strong> {{ commande.paiement }}</li>
+                                    <li class="list-group-item"><strong>Code Postal:</strong> {{ commande.codepostal }}</li>
+                                    <li class="list-group-item"><strong>Numero Tel:</strong> {{ commande.numero }}</li>
+                                    <li class="list-group-item"><strong>Nom Entreprise:</strong> {{ commande.getNomEntreprise }}</li>
+                                    <li class="list-group-item"><strong>Prix Total de la commande:</strong> {{ commande.prixTotal }}</li>
+                                    <li class="list-group-item"><strong>Produits:</strong>
+                                        <ul>
+                                            {% for produit in commande.produits %}
+                                            <li>{{ produit.nom }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer text-right">
+                                <a href="{{ path('app_commande_edit', {'id': commande.id}) }}" class="btn btn-sm btn-primary btn-edit">
+                                    <i class="fas fa-edit"></i> Modifier
+                                </a>
+                                <a href="{{ path('app_commande_delete', {'id': commande.id}) }}" class="btn btn-sm btn-danger btn-delete">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-4">
+                    <a href="{{ path('app_produit') }}" class="btn btn-primary">Retour au catalogue</a>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Method End-->
+</main>
     <footer>
         <!-- Footer Start-->
         <div class="footer-area footer-padding">
