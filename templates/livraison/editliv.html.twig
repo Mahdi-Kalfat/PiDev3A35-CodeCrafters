@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogohhh.png') }}" alt="AdminLTELogo" height="120" width="120">
+  </div>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -61,7 +65,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('dist/img/user2-160x160aaa.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Admin WeTek</a>
@@ -75,7 +79,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Gestion Livreur 
                 <i class="right fas fa-angle-left"></i>
@@ -83,7 +87,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./pages/examples/contacts.html" class="nav-link">
+                <a href="{{path('app_livreur')}}" class="nav-link">
                   <i class="far fa-plus nav-icon"></i>
                   <p>List Livreur</p>
                 </a>
@@ -98,7 +102,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+             <i class="nav-icon fas fa-truck"></i>
               <p>
                 Gestion Livraison
                 <i class="right fas fa-angle-left"></i>
@@ -140,11 +144,11 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid" style="margin-left:450px;">
-        <div class="row">
+    <section class="content ">
+      <div class="container-fluid " >
+        <div class="row d-flex justify-content-center">
           <div class="col-md-5">
-              {{ form_start(formAddliv) }}
+              {{ form_start(formAddliv,{'attr': {novalidate: 'novalidate'}} ) }}
             <div class="sticky-top mb-3">
               <!-- /.card -->
               <div class="card ">
@@ -152,32 +156,39 @@
                   <h3 class="card-title">Editer Livraison</h3>
                 </div>
                 <div class="card-body">
-                  <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                    
-                  </div>
+                
                  
                   <!-- /btn-group -->
-                  <div class="input-group">
+                  <div class="form-group">
+                  <label for="">Numero Livraison</label>
                     {{ form_widget(formAddliv.numliv, {'attr': {'placeholder': 'Votre numero de livraison', 'class': 'form-control'}}) }}
+                    {{form_errors(formAddliv.numliv)}}
                   </div>
-                  <div class="input-group">
-                   {{ form_widget(formAddliv.contenuliv, {'attr': {'placeholder': 'contenu livraison', 'class': 'form-control mt-2'}} ) }}
+                   <div class="form-group ml-3 mt-3">
+                   <label for="">Contenu Livraison</label>
+                    {{ form_widget(formAddliv.idcommande, { 'attr': {} }) }}
+                    {{form_errors(formAddliv.idcommande)}}
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
+                  <label for="">Zone Livraison</label>
                     {{ form_widget(formAddliv.zoneliv, {'attr': {'placeholder': 'zoneliv', 'class': 'form-control mt-2' }}) }}
+                    {{form_errors(formAddliv.zoneliv)}}
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
+                  <label for="">Date Livrasion</label>
                     {{ form_widget(formAddliv.dateliv, {'attr': {'placeholder': 'dateliv', 'class': 'form-control mt-2'}}) }}   
+                    {{form_errors(formAddliv.dateliv)}}
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
+                  <label for="">ID Livreur</label>
                      {{ form_widget(formAddliv.idlivreur, {'attr': {'placeholder': 'idlivreur', 'class': 'form-control mt-2'}}) }}    
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
                    {{ form_widget(formAddliv.etatliv, {'attr': {'placeholder': 'etatliv', 'class': 'form-control mt-2'} }) }}
                   </div>
-                  <div class="input-group">
-                   {{ form_widget(formAddliv.submit, {'attr': {'type':'button', 'class' : 'btn btn-primary mt-2','id': 'add-new-event'} }) }}
-                  </div>
+                  
+                   {{ form_widget(formAddliv.submit, {'attr': {'class' : 'btn btn-primary mt-2'} }) }}
+                  
                   <!-- /input-group -->
                 </div>
                 {{ form_end(formAddliv) }}

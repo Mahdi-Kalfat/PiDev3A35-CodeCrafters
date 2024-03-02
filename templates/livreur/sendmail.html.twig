@@ -134,7 +134,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Modifier Livreur</li>
+              <li class="breadcrumb-item active">Ajouter Livreur</li>
             </ol>
           </div>
         </div>
@@ -161,60 +161,32 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Modifier Livreur</h3>
+              <h3 class="card-title">Envoyer Mail</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-                    {{ form_start(formAdd,{'attr': {novalidate: 'novalidate'}} ) }}
+                    {{ form_start(form) }}
                 <div class="card-body">
-                                    <div class="form-group">
-                                    <label for="">ID Livreur</label>
-                                    {{ form_widget(formAdd.idlivreur, {'attr': {'placeholder': 'ID Livreur', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.idlivreur)}}
+                <div class="row">
+                                    <div class="form-group col-md-6">
+                                    {{ form_widget(form.from, {'attr': {'placeholder': 'From', 'class': 'form-control'}}) }}
                                    </div>
-                                    <div class="form-group">
-                                    <label for="">Nom</label>
-                                    {{ form_widget(formAdd.nom, {'attr': {'placeholder': 'Votre Nom', 'class': 'form-control'}} ) }}
-                                    {{form_errors(formAdd.nom)}}
+                                    <div class="form-group col-md-6">
+                                    {{ form_widget(form.to, {'attr': {'placeholder': 'To', 'class': 'form-control' ,'value': email}} ) }}
                                    </div>
+                </div>
                                    <div class="form-group">
-                                    <label for="">Prenom</label>
-                                    {{ form_widget(formAdd.prenom, {'attr': {'placeholder': 'Votre Prenom', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.prenom)}}
+                                    {{ form_widget(form.subject, {'attr': {'placeholder': 'Subject', 'class': 'form-control'}}) }}
                                    </div>
                                     <div class="form-group">
-                                    <label for="">E-mail</label>
-                                    {{ form_widget(formAdd.email, {'attr': {'placeholder': 'Votre E-mail', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.email)}}
-                                   </div>
-                                    <div class="form-group">
-                                    <label for="">Num Tel</label>
-                                    {{ form_widget(formAdd.numtel, {'attr': {'placeholder': 'Votre Num Tel', 'class': 'form-control'}}) }}
-                                    {{form_errors(formAdd.numtel)}}
-                                   </div>
-                                    <div class="form-group">
-                                    <label for="">Vehicule</label>
-                                    {{ form_widget(formAdd.vehicule, {'attr': {'placeholder': 'Votre Vehicule', 'class': 'form-control'} }) }}
-                                   </div>
-                                   <div class="form-group">
-                                    <label for="">Disponibilite</label>
-                                    {{ form_widget(formAdd.disponibilite, {'attr': {'placeholder': 'Votre Disponibilite', 'class': 'form-control'} }) }}
-                                   </div>
-                                   <div class="form-group">
-                                    <label for="">Zone Livraison</label>
-                                    {{ form_widget(formAdd.zonelivraison, {'attr': {'placeholder': 'Votre Zone Livraison', 'class': 'form-control'} }) }}
-                                   </div>
-                                   <div class="form-group">
-                                    <label for="">Image</label>
-                                    {{ form_widget(formAdd.image, {'attr': {'placeholder': 'Votre Image', 'class': 'form-control'} }) }}
-                                    {{form_errors(formAdd.image)}}
+                                    {{ form_widget(form.mail, {'attr': {'placeholder': 'Message', 'class': 'form-control'}}) }}
                                    </div>
                                    <div class="col-md-12 form-group p_star d-flex justify-content-end">
-                                    {{ form_widget(formAdd.submit, {'attr': {'class': 'btn btn-primary'} }) }}
-                                   </div>
+                                    {{ form_widget(form.Envoyer, {'attr': {'class': 'btn btn-primary'} }) }}
+                                   </div> 
                                 </div>
                                     
-                                    {{ form_end(formAdd) }}
+                                    {{ form_end(form) }}
           </div>
         </div>
       </div>
@@ -227,6 +199,7 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.1.0
     </div>
     <strong>Copyright &copy; 2023-2024 <a href="">Admin WeTek</a>.</strong> All rights reserved.
   </footer>

@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{{ asset('dist/img/AdminLTELogohhh.png') }}" alt="AdminLTELogo" height="120" width="120">
+  </div>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -63,7 +67,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('dist/img/user2-160x160aaa.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Admin WeTek </a>
@@ -76,7 +80,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Gestion Livreur 
                 <i class="right fas fa-angle-left"></i>
@@ -99,7 +103,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-truck"></i>
               <p>
                 Gestion Livraison
                 <i class="right fas fa-angle-left"></i>
@@ -145,7 +149,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
-              {{ form_start(formAddliv,{'attr': {'novalidate': 'novalidate'}} ) }}
+              {{ form_start(formAddliv,{'attr': {novalidate: 'novalidate'}} ) }}
             <div class="sticky-top mb-3">
               <!-- /.card -->
               <div class="card ">
@@ -158,22 +162,31 @@
                   </div>
                  
                   <!-- /btn-group -->
-                  <div class="input-group">
+                  <div class="form-group">
+                  <label for="">Numero Livraison</label>
                     {{ form_widget(formAddliv.numliv, {'attr': {'placeholder': 'Votre numero de livraison', 'class': 'form-control'}}) }}
+                    {{form_errors(formAddliv.numliv)}}
                   </div>
-                  <div class="input-group">
-                   {{ form_widget(formAddliv.contenuliv, {'attr': {'placeholder': 'contenu livraison', 'class': 'form-control mt-2'}} ) }}
+                 <div class="form-group ml-3">
+                 <label for="">Contenu Livraison</label>
+                    {{ form_widget(formAddliv.idcommande, { 'attr': {} }) }}
+                    {{form_errors(formAddliv.idcommande)}}
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
+                  <label for="">Zone Livraison</label>
                     {{ form_widget(formAddliv.zoneliv, {'attr': {'placeholder': 'zoneliv', 'class': 'form-control mt-2' }}) }}
+                    {{form_errors(formAddliv.zoneliv)}}
                   </div>
-                  <div class="input-group">
-                    {{ form_widget(formAddliv.dateliv, {'attr': {'placeholder': 'dateliv', 'class': 'form-control mt-2'}}) }}   
+                  <div class="form-group mt-2">
+                  <label for="">Date Livrasion</label>
+                    {{ form_widget(formAddliv.dateliv, {'attr': {'placeholder': 'dateliv', 'class': 'form-control'}}) }}
+                    {{form_errors(formAddliv.dateliv)}}
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
+                  <label for="">ID Livreur</label>
                      {{ form_widget(formAddliv.idlivreur, {'attr': {'placeholder': 'idlivreur', 'class': 'form-control mt-2'}}) }}    
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
                    {{ form_widget(formAddliv.etatliv, {'attr': {'placeholder': 'etatliv', 'class': 'form-control mt-2'} }) }}
                   </div>
                   <div class="input-group">
@@ -212,12 +225,14 @@
                         {% for livraison in livraisons %}
                         <tr>
                           <td>{{livraison.numliv}}</td>
-                          <td>{{livraison.contenuliv}}</td>
+                          <td>{% for commande in livraison.idcommande %}
+                                  {{ commande.idcommande }}
+                              {% endfor %}</td>
                           <td>{{livraison.zoneliv}}</td>
-                          <td>{{livraison.dateliv}}</td>
+                          <td>{{livraison.dateliv|date('d/m/Y')}}</td>
                           <td>{{livraison.idlivreur}}</td>
                           <td>{{livraison.etatliv}}</td>
-                          <td><a href="{{ path('app_livraison_edit', {'id': livraison.id }) }}" style="color : black;">Edit</a> / <a href="{{ path('app_livraison_livre', {'id': livraison.id }) }}" style="color : black;">Livrée</a></td>
+                          <td><a href="{{ path('app_livraison_edit', {'id': livraison.id }) }}" class="btn btn-info mb-1">Edit</a><a href="{{ path('app_livraison_livre', {'id': livraison.id }) }}" class="btn btn-success">Livrée</a></td>
                         </tr>
                         {% endfor %}
                       </tbody>
@@ -245,11 +260,14 @@
                         <tr>
                         
                           <td>{{liv.numliv}}</td>
-                          <td>{{liv.contenuliv}}</td>
+                          <td>{% for commande in liv.idcommande %}
+                                  {{ commande.idcommande }}
+                              {% endfor %}
+                          </td>
                           <td>{{liv.zoneliv}}</td>
-                          <td>{{liv.dateliv}}</td>
+                          <td>{{liv.dateliv|date('d/m/Y')}}</td>
                           <td>{{liv.idlivreur}}</td>
-                          <td>{{liv.etatliv}}</td>
+                          <td style="color : green;"><b>{{liv.etatliv}}</b></td>
                          
                         </tr>
                         {% endfor %}

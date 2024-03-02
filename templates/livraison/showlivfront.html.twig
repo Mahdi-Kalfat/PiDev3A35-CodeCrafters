@@ -99,31 +99,30 @@
                     <div class="col-12">
                         <h2 class="contact-title text-center">List Livraison</h2>
                     </div>
-                    <div class="">
+                    <div class="card col-md-12">
                         
                                         <!-- Code Start Here -->
                                                 <table class="table">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Num Livraison</th>
-                                                    <th scope="col">Contenu Livraison</th>
-                                                    <th scope="col">Zone Livraison</th>
-                                                    <th scope="col">date Livraison</th>
+                                                    <th scope="col">Adresse</th>
+                                                    <th scope="col">Date Livraison</th>
                                                     <th scope="col">Etat Livraison</th>
-                                                    <th scope="col">Action</th>
+                                                    <th scope="col"  style="text-align: center;">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for Livraison in Livraisons %}
                                                     <tr>
                                                     <td>{{Livraison.numliv}}</td>
-                                                    <td>{{Livraison.contenuliv}}</td>
                                                     <td>{{Livraison.zoneliv}}</td>
-                                                    <td>{{Livraison.dateliv}}</td>
+                                                    <td>{{Livraison.dateliv|date('d/m/Y')}}</td>
                                                     <td>{{Livraison.etatliv}}</td>
-                                                    <td><a href="{{ path('app_livraison_suivi', {'id': Livraison.id }) }}" style="color : blue;">Suivi Livraison</a></td>
+                                                    <td class="d-flex justify-content-center"><a href="{{ path('app_livraison_suivi', {'id': Livraison.id }) }}" class="genric-btn danger-border radius small">Suivi Livraison</a></td>
                                                     </tr>
                                                 {% endfor %}
+                                                
                                                 </tbody>
                                                 </table>
                                          <!-- Code End Here -->

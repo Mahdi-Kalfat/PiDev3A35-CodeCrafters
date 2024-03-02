@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Livreur;
 use App\Form\AddlivreurType;
+use App\Form\SendMailType;
 use App\Repository\LivreurRepository;
+use App\Services\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LivreurController extends AbstractController
@@ -28,8 +32,55 @@ class LivreurController extends AbstractController
         ]);
     }
 
+    #[Route('/livreur/new', name: 'app_livreur_new')]
+    public function ajouterlivreur(EntityManagerInterface $em,Request $req)
+    {
+       $livreur = new Livreur();
+       $form=$this->createForm(AddlivreurType::class,$livreur);
+       $form->handleRequest($req);
+       if ($form->isSubmitted() && $form->isValid()) {
+        $imageFile = $form->get('image')->getData();
+        if ($imageFile) {
+            $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
+            $imageFile->move(
+                'C:\Users\raoud\Desktop\crud-livraison\projet_wetek1A\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
+                $newFileName
+            );
+        }
+            $livreur->setImage($newFileName);
+        $em->persist($livreur);
+        $em->flush();
+        return $this->redirectToRoute('app_livreur');
+       }
+       return $this->render('livreur/Addlivreur.html.twig', ['formAdd'=>$form]);
+    
+    }
+
+    #[Route('/livreur/form/edit/{id}', name: 'app_livreur_form_edit')]
+    public function editlivreur($id,EntityManagerInterface $em,LivreurRepository $Lr,Request $req)
+    {
+       $livreur = $Lr->find($id);
+       $form=$this->createForm(AddlivreurType::class,$livreur);
+       $form->handleRequest($req);
+       if ($form->isSubmitted() && $form->isValid()){
+        $imageFile = $form->get('image')->getData();
+       /* if ($imageFile) {*/
+            $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
+            $imageFile->move(
+                'C:\Users\raoud\Desktop\crud-livraison\projet_wetek1A\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
+                $newFileName 
+            );
+       // }*/
+            $livreur->setImage($newFileName);
+        $em->persist($livreur);
+        $em->flush();
+        return $this->redirectToRoute('app_livreur');
+       }
+       return $this->render('livreur/editlivreur.html.twig', ['formAdd'=>$form]);
+    }
+
     #[Route('/livreur/ban/{id}', name: 'app_livreur_ban')]
-    public function delauth($id,EntityManagerInterface $em,LivreurRepository $Lr)
+    public function ban($id,EntityManagerInterface $em,LivreurRepository $Lr)
     {
         $livreur = $Lr->find($id);
 
@@ -66,54 +117,52 @@ class LivreurController extends AbstractController
         
         return $this->redirectToRoute('app_livreur');
     }
-
-    #[Route('/livreur/form/edit/{id}', name: 'app_livreur_form_edit')]
-    public function editcarForm($id,EntityManagerInterface $em,LivreurRepository $Lr,Request $req)
+    #[Route('/livreur/recherche', name: 'app_livreur_recherche')]
+    public function recherche1(LivreurRepository $LivreurRepository, Request $request): Response
     {
-       $livreur = $Lr->find($id);
-       dump($livreur);
-       $form=$this->createForm(AddlivreurType::class,$livreur);
-       $form->handleRequest($req);
-       if ($form->isSubmitted() ){
-        $imageFile = $form->get('image')->getData();
-       /* if ($imageFile) {*/
-            $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
-            $imageFile->move(
-                'C:\Users\raoud\Desktop\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
-                $newFileName 
-            );
-       // }*/
-            $livreur->setImage($newFileName);
-        $em->persist($livreur);
-        $em->flush();
-        return $this->redirectToRoute('app_livreur');
-       }
-       return $this->render('livreur/editlivreur.html.twig', ['formAdd'=>$form]);
+        // Extract the search term from the query parameters
+        $searchTerm = $request->query->get('q', '');
+        // Find offers filtered by titre
+        $livreurs = $LivreurRepository->findByzoneOrvehicule($searchTerm);
+        $nonactiveLivreurs = $LivreurRepository->findBy(['statut' => 'bani']);
+
+        // Render your template with the filtered offers
+        return $this->render('livreur/showlivreur.html.twig', [
+            'livreurs' => $livreurs,
+            'nonlivreurs' => $nonactiveLivreurs,
+        ]);
+        
     }
 
-    #[Route('/livreur/new', name: 'app_livreur_new')]
-    public function ajouterlivreur(EntityManagerInterface $em,Request $req)
+    #[Route('/livreur/sendmail/{id}', name: 'app_livreur_send_mail')]
+    public function sendmail($id,LivreurRepository $livreurRepository,Request $req,MailerInterface $mailer): Response
     {
-       $livreur = new Livreur();
-       $form=$this->createForm(AddlivreurType::class,$livreur);
-       $form->handleRequest($req);
-       if ($form->isSubmitted()  ) {
-        $imageFile = $form->get('image')->getData();
-        if ($imageFile) {
-            $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
-            $imageFile->move(
-                'C:\Users\raoud\Desktop\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
-                $newFileName
-            );
+        $Livreurs = $livreurRepository->findBy(['idlivreur' => $id]);
+        foreach ($Livreurs as $livreur) {
+            $emails = $livreur->getEmail();
         }
-            $livreur->setImage($newFileName);
-        $em->persist($livreur);
-        $em->flush();
-        return $this->redirectToRoute('app_livreur');
-       }
-       return $this->render('livreur/Addlivreur.html.twig', ['formAdd'=>$form]);
-    
-    }
+        $form=$this->createForm(SendMailType::class);
+        $form->handleRequest($req);
 
+        if ($form->isSubmitted())
+        {
+        $data = $form->getData();
+        $fromValue = $data['from'];
+        $toValue = $data['to'];
+        $subjectValue = $data['subject'];
+        $mailValue = $data['mail'];
+
+            $email = (new Email())
+            ->from($fromValue)
+            ->to($toValue)
+            ->subject($subjectValue)
+            ->text($mailValue);
+
+            $mailer->send($email);
+        return $this->redirectToRoute('app_livreur');
+        }
+
+        return $this->render('livreur/sendmail.html.twig', ['form'=>$form,'email' => $emails,]);
+    }
     
 }

@@ -19,11 +19,11 @@ class AddlivreurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('idlivreur',TextType::class)
-            ->add('nom',TextType::class)
-            ->add('prenom',TextType::class)
-            ->add('email',EmailType::class)
-            ->add('numtel',NumberType::class)
+            ->add('idlivreur',TextType::class,['empty_data'=>''])
+            ->add('nom',TextType::class,['empty_data'=>''])
+            ->add('prenom',TextType::class,['empty_data'=>''])
+            ->add('email',EmailType::class,['empty_data'=>''])
+            ->add('numtel',NumberType::class,['empty_data'=>'Number'])
             ->add('vehicule', ChoiceType::class, [
                 'choices' => [
                     'Moto' => 'moto',

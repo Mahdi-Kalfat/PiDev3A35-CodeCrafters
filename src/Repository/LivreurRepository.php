@@ -57,6 +57,18 @@ public function updateLivreurStatus(string $id, string $statut): void
             $entityManager->flush();
         }
     }
+    public function findByzoneOrvehicule(string $searchTerm): array
+{
+    $queryBuilder = $this->createQueryBuilder('o');
+
+    if (!empty($searchTerm)) {
+        $queryBuilder->andWhere('o.zonelivraison LIKE :searchTerm')
+            ->orWhere('o.vehicule LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%');
+    }
+
+    return $queryBuilder->getQuery()->getResult();
+}
 
 
 
