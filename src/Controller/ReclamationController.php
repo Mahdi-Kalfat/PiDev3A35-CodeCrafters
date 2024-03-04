@@ -32,17 +32,21 @@ class ReclamationController extends AbstractController
        $form->handleRequest($req);
        if ($form->isSubmitted() && $form->isValid()){
         $reclamation->setEtat(false);
+        // Récupération du fichier image depuis le formulaire
         $imageFile = $form->get('image')->getData();
+        // Vérification si un fichier image a été fourni
         if ($imageFile) {
+            // Génération d'un nom de fichier unique basé sur le hachage md5 et l'extension du fichier
             $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
+            // Déplacement du fichier image vers le répertoire de stockage
             $imageFile->move(
-                'C:\Users\Admin\Desktop\projet_reclamation\public\imgrec', // Répertoire de stockage des images
+                'C:\sarra\projet_reclamation3\projet_reclamation3\public\imgrec', // Répertoire de stockage des images
                 $newFileName
             );
             $reclamation->setImage($newFileName);
-        }
-            
+        } 
         $em->persist($reclamation);
+        // Exécution des opérations d'écriture en base de données
         $em->flush();
         return $this->redirectToRoute('app_reclamation_showf');
        }
@@ -52,7 +56,7 @@ class ReclamationController extends AbstractController
     #[Route('/reclamation/show', name: 'app_reclamation_show')]
     public function show(ReclamationRepository $RR): Response
     {
-        // Find Livreurs with 'Active' status
+        // Find reclamations with 'Active' status
         $listreclamation = $RR->findAll();
 
         return $this->render('reclamation/showreclamation.html.twig', [
@@ -60,19 +64,31 @@ class ReclamationController extends AbstractController
             'reclamationsf' => $listreclamation,
         ]);
     }
+
     #[Route('/reclamation/showf', name: 'app_reclamation_showf')]
-    public function showf(ReclamationRepository $RR): Response
+    public function showf(ReclamationRepository $RR, Request $request): Response
     {
-        // Find Livreurs with 'Active' status
-        $listreclamationf = $RR->findAll();
+        $tri = $request->query->get('tri');
+        $reclamations = new Reclamation();
+        $email = 'sarra@esprit.tn';
+        $idreclamation = [];
+        // Recherche de toutes les réclamations associées à l'adresse email
+        $reclamations = $RR->findBy(['email' => $email]);
+        // Initialisation d'un tableau pour stocker les identifiants des réclamations trouvées
+        foreach ($reclamations as $reclamations) {
+            $idreclamation[] = $reclamations->getId();
+        }
+         // Recherche des réclamations par identifiant
+        $reclamationlist = $RR->findBy(['id' => $idreclamation]);
 
         return $this->render('reclamation/showrecf.html.twig', [
             'controller_name' => 'ReclamationController',
-            'reclamationsf' => $listreclamationf,
+            'reclamationf' => $reclamationlist,
         ]);
     }
+
     #[Route('/reclamation/edit/{id}', name: 'app_reclamation_edit')]
-    public function editproduitForm($id,EntityManagerInterface $em,ReclamationRepository $p,Request $req)
+    public function editreclamationForm($id,EntityManagerInterface $em,ReclamationRepository $p,Request $req)
     {
        $reclamation = $p->find($id);
        $form=$this->createForm(AddEditReclamationType::class,$reclamation);
@@ -82,7 +98,7 @@ class ReclamationController extends AbstractController
         if ($imageFile) {
             $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
             $imageFile->move(
-                'C:\Users\Admin\Desktop\projet_reclamation\public\imgrec', // Répertoire de stockage des images
+                'C:sarra\projet_reclamation3\projet_reclamation3\public\imgrec', // Répertoire de stockage des images
                 $newFileName
             );
         }
@@ -93,15 +109,7 @@ class ReclamationController extends AbstractController
        }
        return $this->render('reclamation/editreclamation.html.twig', ['formAdd'=>$form]);
     }
-    #[Route('/reclamation/delete/{id}', name: 'app_reclamation_delete')]
-    public function deleteproduit($id,EntityManagerInterface $em ,ReclamationRepository $p)
-    {
-        $reclamation=$p->find($id);
-        $em->remove($reclamation);
-        $em->flush();
-        return $this->redirectToRoute('app_reclamation_show');
-
-    }
+      
     #[Route('/reclamation/deletef/{id}', name: 'app_reclamation_deletef')]
     public function deleteproduitf($id,EntityManagerInterface $em ,ReclamationRepository $RR)
     {
@@ -110,4 +118,18 @@ class ReclamationController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_reclamation');
     }
+    #[Route('/reclamation/recherche', name: 'app_reclamation_recherche')]
+    public function recherche1(ReclamationRepository $rec, Request $request): Response
+    {
+        // Extract the search term from the query parameters
+        $searchTerm = $request->query->get('q', '');
+
+        // Find offers filtered by titre
+        $listreclamation = $rec->findByObjet($searchTerm);
+
+        // Render your template with the filtered offers
+        return $this->render('reclamation/showreclamation.html.twig', [
+            'reclamationsf' => $listreclamation,
+        ]);
+    }  
 }

@@ -44,6 +44,7 @@
                                     <li><a href="#">Avis</a>
                                         <ul class="submenu">
                                             <li><a href="{{ path('app_reclamation') }}">Reclamation</a></li>
+                                            <li><a href="{{ path('app_reclamation_showf') }}">Liste de mes Reclamations</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">Nous Contacter</a></li>
@@ -125,7 +126,7 @@
                                    </div>
                                 </div>
                                     <div class="col-md-12 form-group p_star d-flex justify-content-end">
-                                    {{ form_widget(formAdd.Enregistrer, {'attr': {'class': 'button button-contactForm boxed-btn'} }) }}
+                                    {{ form_widget(formAdd.Envoyer, {'attr': {'class': 'btn btn-danger '} }) }}
                                    </div>
                                    <div><!-- validate --></div>
                                 {{ form_end(formAdd) }}

@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -24,11 +25,20 @@ class AddEditReclamationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('nom', TextType::class)
+        ->add('nom', TextType::class, [
+            'empty_data' => '',
+            'constraints' => [
+                new Regex([
+                    'pattern' => '/^[a-zA-Z]+$/',
+                    'message' => 'Le nom ne doit pas contenir de chiffres ou de symboles',
+                ]),
+            ],
+        ])
+        
         ->add('email', EmailType::class, [
             'constraints' => [
-                new NotBlank(['message' => 'Le mail ne peut pas être vide.']),
-                new Email(['message' => 'Email non valide.']),
+                new NotBlank(['message' => 'Lemail est obligatoire']),
+                new Email(['message' => 'Lemail {{ value }} nest pas valide.']),
             ],
         ])
             ->add('obj')
@@ -53,10 +63,9 @@ class AddEditReclamationType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('Enregistrer', SubmitType::class)
+            ->add('Envoyer', SubmitType::class)
         ;
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

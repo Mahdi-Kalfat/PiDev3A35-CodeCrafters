@@ -1,7 +1,6 @@
 {% extends 'back.html.twig' %}
 
 {% block body %}
-  
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -41,17 +40,18 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="../../index3.html" class="brand-link">
+      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Admin WeTek</span>
+    </a>
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
@@ -60,11 +60,24 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="../../index.html" class="d-block">Sarra Sta</a>
+          <a href="#" class="d-block">Sarra Sta</a>
         </div>
       </div>
 
-     <nav class="mt-2">
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+          <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -95,72 +108,77 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Reponse</h1>
+          </div>
+          <div class="col-sm-6">
+           
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
     <!-- Main content -->
     <section class="content">
-<form action="{{ path('app_reclamation_recherche') }}" method="get" class="mb-3">
-    <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Recherche par titre..." aria-label="Recherche" aria-describedby="button-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
-        </div>
+
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
     </div>
-</form>
-<!-- Default box -->
-                <div class="card bg-light">
-                    <div class="card-header text-white bg-blue border-bottom-0">
-                        Reclamation
-                    </div>
-                      <table class="table table-striped-columns">
-                        <thead>
-                          <tr>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Objet</th>
-                            <th>Contenu</th>
-                            <th>Type</th>
-                            <th>Image</th>
-                            <th>Actions</th>
-                            <th>Réponse</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {% for reclamation in reclamationsf %}
-                          <tr>
-                            <td>{{reclamation.nom}}</td>
-                            <td>{{reclamation.email}}</td>
-                            <td>{{reclamation.obj}}</td>
-                            <td>{{reclamation.contenu}}</td>
-                            <td>{{reclamation.type}}</td>
-                            <td>
-                            <div class="col-6 text-center">
-                                {% if reclamation.image %}
-                                   <img src="{{ asset('imgrec/' ~ reclamation.image) }}" alt="user-avatar" class="img-fluid mx-auto" style="width: 120px; height: 80px;">
-                                {% endif %}
-                            </div>
-                            </td>
-                            <td><a href="{{ path('app_reponse_new', {'id': reclamation.id}) }}" style ="color:green;">Repondre </a>|<a href="" style ="color:red;"> Fermer</a>
-                            </td>
-                            <td>
-                            {% if reclamation.etat == 1 %}
-                            <a href="{{ path('app_reponse_show', {'id': reclamation.id}) }}" style ="color:black;" class="btn btn-warning">Afficher Réponse</a>
-                            {% else %}
-                            {% endif %}
-                            </td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>  
-                      </table>
+    <div class="card-body">
+      <!-- Default box -->
+      <div class="card card-solid">
+        <p class="d-flex justify-content-center mt-2"><b>Ajouter Réponse</b></p>
+        <div class="card-body pb-0">
+            {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+            <div class="col-md-12 form-group p_star">
+              {{ form_widget(form.Nom, {'attr': {'placeholder': 'Votre Nom', 'class': 'form-control'}}) }}
+              {{ form_errors(form.Nom) }}
+            </div>
+            <div class="col-md-12 form-group p_star">
+              {{ form_widget(form.Email, {'attr': {'placeholder': 'Votre Email', 'class': 'form-control'}} ) }}
+              {{ form_errors(form.Email) }}
+            </div>
+            <div class="col-md-12 form-group p_star">
+              {{ form_widget(form.Description, {'attr': {'placeholder': 'Votre Description', 'class': 'form-control'}}) }}
+              {{ form_errors(form.Description) }}
+            </div>
+            {{ form_end(form) }}    
+        </div>
+        <!-- /.card-body -->
+
+        <!-- /.card-footer -->
       </div>
       <!-- /.card -->
-    </section>
+
+    </div>  
+    <!-- /.card-body -->
+
+    <!-- /.card-footer-->
+  </div>
+  <!-- /.card -->
+
+</section>
+
+    <!-- Main content -->
+    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2023-2024 <a href="">Admin WeTek</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -170,6 +188,5 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
 {% endblock %}
-
-

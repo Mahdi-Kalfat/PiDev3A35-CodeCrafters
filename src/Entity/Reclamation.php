@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use symfony\component\Validator\Constraints as assert;
 use Symfony\Component\Validator\Constraints\Date;
@@ -17,24 +19,18 @@ class Reclamation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:"Le nom ne peut pas être vide.")]
-        #[Assert\Regex(
-             pattern:"/^[a-zA-Z\s]+$/",
-             message:"Le nom ne doit pas contenir de chiffres ou de symboles"
-         )]
+    #[Assert\NotBlank(message:"Le champ nom ne peut pas être vide.")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:"L'email est obligatoire")]
-    #[Assert\Email(message : "L'email '{{ value }}' n'est pas valide.")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:"L'objet ne peut pas être vide.")]
+    #[Assert\NotBlank(message:"L'objet est obligatoire.")]
     private ?string $obj = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:"Le contenu ne peut pas être vide.")]
+    #[Assert\NotBlank(message:"Le contenu est obligatoire.")]
     private ?string $contenu = null;
 
     #[ORM\Column(length: 255)]
@@ -45,6 +41,14 @@ class Reclamation
 
     #[ORM\Column]
     private ?bool $Etat = null;
+
+    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'reponserelation')]
+    private Collection $reponses;
+
+    public function __construct()
+    {
+        $this->reponses = new ArrayCollection();
+    }
 
     
 
@@ -134,6 +138,42 @@ class Reclamation
     public function setEtat(bool $Etat): self
     {
         $this->Etat = $Etat;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        // Customize this method based on how you want to represent the object as a string
+        return (string) $this->id;
+    }
+
+    /**
+     * @return Collection<int, Reponse>
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponse $reponse): static
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses->add($reponse);
+            $reponse->setReponserelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponse $reponse): static
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getReponserelation() === $this) {
+                $reponse->setReponserelation(null);
+            }
+        }
 
         return $this;
     }

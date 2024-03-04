@@ -44,7 +44,7 @@
                                     <li><a href="#">Avis</a>
                                         <ul class="submenu">
                                             <li><a href="{{ path('app_reclamation') }}">Reclamation</a></li>
-                                            <li><a href="{{ path('app_reclamation_showf') }}">Liste des Reclamations</a></li>
+                                            <li><a href="{{ path('app_reclamation_showf') }}">Liste de mes Reclamations</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">Nous Contacter</a></li>
@@ -75,55 +75,44 @@
     </header>
     <main>
         <!-- ================ contact section start ================= -->
-        <section class="contact-section">
+        <section class="contact-section d-flex justify-content-center">
             <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-12">
-                        <h2 class="contact-title text-center">Modifier votre reclamation</h2>
-                    </div>
-                    <div class="col-lg-8">
-                        {{ form_start(formAdd, {'attr': {'class': 'form-contact contact_form'}}) }}
-                        <div class="card-body">
-                            <div class="row">
-                            <div class="col-sm-6">
-                                    <div class="form-group">
-                                    {{ form_widget(formAdd.nom, {'attr': {'placeholder': 'Nom&Prenom', 'class': 'form-control valid'}}) }}
-                                   </div>
-                            </div>
-                            <div class="col-sm-6">
-                                    <div class="form-group">
-                                    {{ form_widget(formAdd.email, {'attr': {'placeholder': 'E-mail', 'class': 'form-control valid'}} ) }}
-                                   </div>
-                                   </div>
-                                    <div class="col-md-12 ">
-                                   <div class="form-group">
-                                    {{ form_widget(formAdd.obj, {'attr': {'placeholder': 'Objet', 'class': 'form-control valid'}}) }}
-                                   </div>
-                                   </div>
-                                   <div class="col-sm-6">
-                                    <div class="form-group">
-                                    {{form_widget(formAdd.type, { 'attr': {'placeholder': 'Select a date','class': 'form-control valid','type': 'date', 'readonly': 'readonly'}}) }}
-                                   </div>
-                                   </div>
-                                   <div class="col-sm-6">
-                                    <div class="form-group">
-                                    {{ form_widget(formAdd.image, {'attr': {'placeholder': 'Votre Image', 'class': 'form-control'} }) }}
-                                   </div>
-                                   </div>
-                                   <div class="col-md-12 ">
-                                    <div class="form-group">
-                                    {{ form_widget(formAdd.contenu, {'attr': {'placeholder': 'Contenu', 'class': 'form-control valid'}}) }}
-                                   </div>
-                                   </div>
-                                </div>
-                                    <div class="col-md-12 form-group p_star d-flex justify-content-end">
-                                    {{ form_widget(formAdd.Enregistrer, {'attr': {'class': 'button button-contactForm boxed-btn'} }) }}
-                                   </div>
-                                   
-                                    {{ form_end(formAdd) }}
-                            </div>
-                    </div>
-                </div>
+
+
+                <div class="card card-solid ">
+    <p class="d-flex justify-content-center mt-2"><b>Details Reponse</b></p>
+    <div class="card-body pb-0">
+        <div class="row ">
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reponse in reponses %}
+                    <tr>
+                        <td>{{ reponse.getNom() }}</td>
+                        <td>{{ reponse.getEmail() }}</td>
+                        <td>{{ reponse.getDescription() }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+          </div>
+        </div>
+        
+        <!-- /.card-body -->
+        
+        <!-- /.card-footer -->
+      </div>
+
+
+
+
+               
             </div>
         </section>
         <!-- ================ contact section end ================= -->

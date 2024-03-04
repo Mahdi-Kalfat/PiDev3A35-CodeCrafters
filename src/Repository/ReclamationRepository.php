@@ -20,6 +20,17 @@ class ReclamationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Reclamation::class);
     }
+    public function findByObjet(string $searchTerm): array
+{
+    $queryBuilder = $this->createQueryBuilder('o');
+
+    if (!empty($searchTerm)) {
+        $queryBuilder->andWhere('o.obj LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%');
+    }
+
+    return $queryBuilder->getQuery()->getResult();
+}
 
 //    /**
 //     * @return Reclamation[] Returns an array of Reclamation objects
