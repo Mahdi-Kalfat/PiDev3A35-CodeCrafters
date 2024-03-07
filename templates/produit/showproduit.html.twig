@@ -88,13 +88,30 @@
                     <a href="{{ path('app_addproduit') }}" class="genric-btn circle mr-2" style="background-color: red; color: white;">Vendre un produit</a>
                     <a href="{{ path('app_afficherproduit') }}" class="genric-btn circle" style="background-color: red; color: white;">Liste de mes produits</a>
                 </div>
+        <div class="row mb-4">
+        <div class="col-md-6">
                 <form action="{{ path('app_produit') }}" method="GET" style="margin-bottom: 20px;">
                 <input type="text" name="marque" placeholder="Rechercher par marque..." style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; width: 200px; font-size: 13px;">
                 <button type="submit" style="padding: 10px 20px; background-color: f2f2f2; color: black; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;">Rechercher</button>
             </form>
+            </div>
+            <div class="col-md-6">
+                         <form action="{{ path('app_produit') }}" method="GET" class="text-right" >
+                <div class="form-group d-inline-block">
+                    <select class="form-control mb-20" id="tri" name="tri" >
+                        <option value="">Trier par ordre :</option>
+                        <option value="asc" {% if app.request.query.get('tri') == 'asc' %}selected{% endif %}>Croissant</option>
+                        <option value="desc" {% if app.request.query.get('tri') == 'desc' %}selected{% endif %}>Décroissant</option>
+                    </select>
+                    <button type="submit" style="padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;">Trier</button>
+                </div>
+            </form>
+    </div>
+    </div>
             <form action="{{ path('app_produit') }}" method="GET">
-        <div class="row">
-        <h3 class="mb-30">Filtrer Par :</h3>
+        <div class="row ">
+            <div class="col-md-12">
+        <h3 class="mb-10">Filtrer Par :</h3>
         <div class="d-flex">
             <div class="single-element-widget mt-10" style="margin-left: 20px;">
             
@@ -128,9 +145,9 @@
             <div class="single-element-widget mt-10" style="margin-left: 20px;">
                 <button type="submit"  style="padding: 8px 30px; background-color: #f2f2f2; color: black; border: none; border-radius: 20px; cursor: pointer; font-size: 12px;">Filtrer</button>
             </div>
-                </div>
-            </div>
-            </form>
+        </div>
+    </div>
+</form>
                 <!-- Nav Card -->
                 <div class="tab-content mt-30" id="nav-tabContent">
                     <!-- card one -->

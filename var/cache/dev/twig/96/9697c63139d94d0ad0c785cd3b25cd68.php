@@ -152,7 +152,22 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
                                 <li><a href=\"";
         // line 64
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
-        echo "\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+        echo "\"><span class=\"flaticon-shopping-cart\">
+                                    ";
+        // line 65
+        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 65, $this->source); })()), "session", [], "any", false, false, false, 65), "get", ["cart"], "method", false, false, false, 65)) {
+            // line 66
+            echo "                                    ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 66, $this->source); })()), "session", [], "any", false, false, false, 66), "get", ["cartData"], "method", false, false, false, 66), "data", [], "any", false, false, false, 66), "quantityCart", [], "any", false, false, false, 66), "html", null, true);
+            echo "
+                                    ";
+        } else {
+            // line 68
+            echo "                                        0   
+                                    ";
+        }
+        // line 70
+        echo "                                </span></a> </li>
                             </ul>
                         </div>
                     </div>
@@ -175,7 +190,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
     </div>
     <div>
         <a href=\"";
-        // line 86
+        // line 92
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
         echo "\" class=\"genric-btn danger circle\">Vendre un produit</a>
     </div>
@@ -183,7 +198,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
 
 <div class=\"text-right mt-3\">
     <a href=\"";
-        // line 91
+        // line 97
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_afficherproduit");
         echo "\" class=\"genric-btn danger circle\">Liste de mes produits</a>
 </div>
@@ -284,7 +299,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
                                 <div class=\"single-popular-items mb-50 text-center\">
                                     <div class=\"popular-img\">
                                         <img src=\"";
-        // line 189
+        // line 195
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/gallery/popular2.png"), "html", null, true);
         echo "\" alt=\"\">
                                         <div class=\"img-cap\">
@@ -304,7 +319,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
                                 <div class=\"single-popular-items mb-50 text-center\">
                                     <div class=\"popular-img\">
                                         <img src=\"";
-        // line 206
+        // line 212
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/gallery/popular3.png"), "html", null, true);
         echo "\" alt=\"\">
                                         <div class=\"img-cap\">
@@ -324,7 +339,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
                                 <div class=\"single-popular-items mb-50 text-center\">
                                     <div class=\"popular-img\">
                                         <img src=\"";
-        // line 223
+        // line 229
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/gallery/popular12.png"), "html", null, true);
         echo "\" alt=\"\">
                                         <div class=\"img-cap\">
@@ -344,7 +359,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
                                 <div class=\"single-popular-items mb-50 text-center\">
                                     <div class=\"popular-img\">
                                         <img src=\"";
-        // line 240
+        // line 246
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/gallery/popular13.png"), "html", null, true);
         echo "\" alt=\"\">
                                         <div class=\"img-cap\">
@@ -410,7 +425,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 303
+        // line 309
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -522,7 +537,7 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  414 => 303,  348 => 240,  328 => 223,  308 => 206,  288 => 189,  187 => 91,  179 => 86,  154 => 64,  129 => 42,  119 => 35,  115 => 34,  111 => 33,  106 => 31,  102 => 30,  93 => 24,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  429 => 309,  363 => 246,  343 => 229,  323 => 212,  303 => 195,  202 => 97,  194 => 92,  170 => 70,  166 => 68,  160 => 66,  158 => 65,  154 => 64,  129 => 42,  119 => 35,  115 => 34,  111 => 33,  106 => 31,  102 => 30,  93 => 24,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -590,7 +605,13 @@ class __TwigTemplate_b8f04bc44d7cbe6049b0e2eaeef37138 extends Template
                                     </div>
                                 </li>
                                 <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
-                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
                             </ul>
                         </div>
                     </div>

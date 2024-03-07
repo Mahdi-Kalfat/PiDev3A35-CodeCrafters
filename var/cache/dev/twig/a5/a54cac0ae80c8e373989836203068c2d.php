@@ -128,16 +128,8 @@ class __TwigTemplate_fa95c352914f8861b3bfb4ab5d6df12c extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"";
         // line 33
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_homme");
-        echo "\">Homme</a></li>
-                                            <li><a href=\"";
-        // line 34
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_femme");
-        echo "\">Femme</a></li>
-                                            <li><a href=\"";
-        // line 35
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_enfant");
-        echo "\">Enfant</a></li>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favoris");
+        echo "\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>
@@ -145,7 +137,7 @@ class __TwigTemplate_fa95c352914f8861b3bfb4ab5d6df12c extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"evenement.html\">Nos Evenement</a></li>
                                             <li><a href=\"";
-        // line 42
+        // line 40
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
         echo "\">Nouveau Produit</a></li>
                                         </ul>
@@ -170,9 +162,24 @@ class __TwigTemplate_fa95c352914f8861b3bfb4ab5d6df12c extends Template
                                 </li>
                                 <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
                                 <li><a href=\"";
-        // line 64
+        // line 62
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
-        echo "\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+        echo "\"><span class=\"flaticon-shopping-cart\">
+                                    ";
+        // line 63
+        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 63, $this->source); })()), "session", [], "any", false, false, false, 63), "get", ["cart"], "method", false, false, false, 63)) {
+            // line 64
+            echo "                                    ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 64, $this->source); })()), "session", [], "any", false, false, false, 64), "get", ["cartData"], "method", false, false, false, 64), "data", [], "any", false, false, false, 64), "quantityCart", [], "any", false, false, false, 64), "html", null, true);
+            echo "
+                                    ";
+        } else {
+            // line 66
+            echo "                                        0   
+                                    ";
+        }
+        // line 68
+        echo "                                </span></a> </li>
                             </ul>
                         </div>
                     </div>
@@ -208,50 +215,50 @@ class __TwigTemplate_fa95c352914f8861b3bfb4ab5d6df12c extends Template
                         <div class=\"row\">
                             <div class=\"col-md-6\">
                                 <h5 class=\"card-title\">";
-        // line 99
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 99, $this->source); })()), "nom", [], "any", false, false, false, 99), "html", null, true);
+        // line 103
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 103, $this->source); })()), "nom", [], "any", false, false, false, 103), "html", null, true);
         echo "</h5>
                                 <p class=\"card-text\"><strong>Description:</strong> ";
-        // line 100
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 100, $this->source); })()), "description", [], "any", false, false, false, 100), "html", null, true);
+        // line 104
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 104, $this->source); })()), "description", [], "any", false, false, false, 104), "html", null, true);
         echo "</p>
                                 <p class=\"card-text\"><strong>Marque:</strong> ";
-        // line 101
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 101, $this->source); })()), "marque", [], "any", false, false, false, 101), "html", null, true);
+        // line 105
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 105, $this->source); })()), "marque", [], "any", false, false, false, 105), "html", null, true);
         echo "</p>
                                 <p class=\"card-text\"><strong>État:</strong> ";
-        // line 102
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 102, $this->source); })()), "etat", [], "any", false, false, false, 102), "html", null, true);
+        // line 106
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 106, $this->source); })()), "etat", [], "any", false, false, false, 106), "html", null, true);
         echo "</p>
                                 <p class=\"card-text\"><strong>Type:</strong> ";
-        // line 103
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 103, $this->source); })()), "type", [], "any", false, false, false, 103), "html", null, true);
+        // line 107
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 107, $this->source); })()), "type", [], "any", false, false, false, 107), "html", null, true);
         echo "</p>
                                 <p class=\"card-text\"><strong>Taille:</strong> ";
-        // line 104
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 104, $this->source); })()), "taille", [], "any", false, false, false, 104), "html", null, true);
+        // line 108
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 108, $this->source); })()), "taille", [], "any", false, false, false, 108), "html", null, true);
         echo "</p>
                                 <p class=\"card-text\"><strong>Prix:</strong> ";
-        // line 105
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 105, $this->source); })()), "prix", [], "any", false, false, false, 105), "html", null, true);
+        // line 109
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 109, $this->source); })()), "prix", [], "any", false, false, false, 109), "html", null, true);
         echo " DT</p>
                             </div>
                             <div class=\"col-md-6 text-right\">
                                 ";
-        // line 108
-        if (twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 108, $this->source); })()), "image", [], "any", false, false, false, 108)) {
-            // line 109
+        // line 112
+        if (twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 112, $this->source); })()), "image", [], "any", false, false, false, 112)) {
+            // line 113
             echo "                                    <img src=\"";
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 109, $this->source); })()), "image", [], "any", false, false, false, 109))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 113, $this->source); })()), "image", [], "any", false, false, false, 113))), "html", null, true);
             echo "\" alt=\"Image du produit\" class=\"img-fluid mb-3\">
                                 ";
         }
-        // line 111
+        // line 115
         echo "                            </div>
                         </div>
                     </div>
                      <a href=\"";
-        // line 114
+        // line 118
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
         echo "\" class=\"btn btn-sm btn-primary\">Retour vers les produits</a>
                 </div>
@@ -288,7 +295,7 @@ class __TwigTemplate_fa95c352914f8861b3bfb4ab5d6df12c extends Template
      */
     public function getDebugInfo()
     {
-        return array (  255 => 114,  250 => 111,  244 => 109,  242 => 108,  236 => 105,  232 => 104,  228 => 103,  224 => 102,  220 => 101,  216 => 100,  212 => 99,  174 => 64,  149 => 42,  139 => 35,  135 => 34,  131 => 33,  126 => 31,  122 => 30,  113 => 24,  96 => 10,  88 => 4,  78 => 3,  59 => 2,  36 => 1,);
+        return array (  262 => 118,  257 => 115,  251 => 113,  249 => 112,  243 => 109,  239 => 108,  235 => 107,  231 => 106,  227 => 105,  223 => 104,  219 => 103,  182 => 68,  178 => 66,  172 => 64,  170 => 63,  166 => 62,  141 => 40,  131 => 33,  126 => 31,  122 => 30,  113 => 24,  96 => 10,  88 => 4,  78 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -325,9 +332,7 @@ class __TwigTemplate_fa95c352914f8861b3bfb4ab5d6df12c extends Template
                                     <li><a href=\"{{path('app_home')}}\">Acceuil</a></li>
                                     <li><a href=\"{{path('app_produit')}}\">Magasin</a>
                                         <ul class=\"submenu\">
-                                            <li><a href=\"{{path('app_homme')}}\">Homme</a></li>
-                                            <li><a href=\"{{path('app_femme')}}\">Femme</a></li>
-                                            <li><a href=\"{{path('app_enfant')}}\">Enfant</a></li>
+                                            <li><a href=\"{{path('favoris')}}\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>
@@ -356,7 +361,13 @@ class __TwigTemplate_fa95c352914f8861b3bfb4ab5d6df12c extends Template
                                     </div>
                                 </li>
                                 <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
-                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
+                                <li><a href=\"{{path('app_panier')}}\"><span class=\"flaticon-shopping-cart\">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
                             </ul>
                         </div>
                     </div>

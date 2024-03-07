@@ -17,27 +17,37 @@ class ProduitController extends AbstractController
 {
     #[Route('/produit', name: 'app_produit')]
     public function show(ProduitRepository $produitRepository, Request $request, SessionInterface $session): Response
-{
-    $type = $request->query->get('type');
-    $taille = $request->query->get('taille');
-    $etat = $request->query->get('etat');
-    $marque = $request->query->get('marque');
-
-    // Utilisation de la méthode findByFilters avec les valeurs des filtres
-    $produits = $produitRepository->findByFilters($type, $taille, $etat);
-
-    // Filtrer par marque si la marque est spécifiée
-    if ($marque) {
-        $produits = $produitRepository->findBy(['marque' => $marque]);
+    {
+        $type = $request->query->get('type');
+        $taille = $request->query->get('taille');
+        $etat = $request->query->get('etat');
+        $marque = $request->query->get('marque');
+        $tri = $request->query->get('tri');
+    
+        // Utilisation de la méthode findByFilters avec les valeurs des filtres
+        $produits = $produitRepository->findByFilters($type, $taille, $etat);
+    
+        // Filtrer par marque si la marque est spécifiée
+        if ($marque) {
+            $produits = $produitRepository->findBy(['marque' => $marque]);
+        }
+    
+        // Trier les produits si le paramètre de tri est spécifié
+        if ($tri === 'desc') {
+            $produits = $produitRepository->findByPrix('DESC'); // Trier par prix décroissant
+        } elseif ($tri === 'asc') {
+            $produits = $produitRepository->findByPrix('ASC'); // Trier par prix croissant
+        }
+    
+        $favorisIds = $session->get('favoris', []);
+    
+        return $this->render('produit/showproduit.html.twig', [
+            'controller_name' => 'ProduitController',
+            'produits' => $produits,
+            'favoris' => $favorisIds,
+        ]);
     }
-    $favorisIds = $session->get('favoris', []);
-
-    return $this->render('produit/showproduit.html.twig', [
-        'controller_name' => 'ProduitController',
-        'produits' => $produits,
-        'favoris' => $favorisIds,
-    ]);
-}
+    
     #[Route('/afficherproduit', name: 'app_afficherproduit')]
     public function show1(ProduitRepository $produitRepository): Response
     {
@@ -55,41 +65,7 @@ class ProduitController extends AbstractController
             'controller_name' => 'ProduitController',
         ]);
     }
-    #[Route('/magasin', name: 'app_magasin')]
-    public function index3(): Response
-    {
-        return $this->render('produit/magasin.html.twig', [
-            'controller_name' => 'ProduitController',
-        ]);
-    }
-    #[Route('/homme', name: 'app_homme')]
-    public function index4(): Response
-    {
-        return $this->render('produit/homme.html.twig', [
-            'controller_name' => 'ProduitController',
-        ]);
-    }
-    #[Route('/femme', name: 'app_femme')]
-    public function index5(): Response
-    {
-        return $this->render('produit/femme.html.twig', [
-            'controller_name' => 'ProduitController',
-        ]);
-    }
-    #[Route('/enfant', name: 'app_enfant')]
-    public function index6(): Response
-    {
-        return $this->render('produit/enfant.html.twig', [
-            'controller_name' => 'ProduitController',
-        ]);
-    }
-    #[Route('/panierr', name: 'app_panierr')]
-    public function index7(): Response
-    {
-        return $this->render('produit/panier.html.twig', [
-            'controller_name' => 'ProduitController',
-        ]);
-    }
+    
     #[Route('/detailsproduit/{id}', name: 'app_details_produit')]
     public function detailsProduit(ProduitRepository $produitRepository, $id): Response
     {

@@ -17,9 +17,7 @@
                                     <li><a href="{{path('app_home')}}">Acceuil</a></li>
                                     <li><a href="{{path('app_produit')}}">Magasin</a>
                                         <ul class="submenu">
-                                            <li><a href="{{path('app_homme')}}">Homme</a></li>
-                                            <li><a href="{{path('app_femme')}}">Femme</a></li>
-                                            <li><a href="{{path('app_enfant')}}">Enfant</a></li>
+                                            <li><a href="{{path('favoris')}}">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href="about.html">A propos</a></li>
@@ -67,6 +65,26 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8 col-md-8">
                     <h3 class="mt-30 mb-30 text-center">Entrez les détails nécessaire pour finaliser votre achat !</h3>
+                    
+                  <form action="" method="POST">
+<div class="col-md-12 form-group p_star d-flex justify-content-center">
+    <label for="stripePayment" class="border rounded p-2 text-center">
+            Vous pouvez effectuer le paiement directement via la carte bancaire :
+            <!-- Bouton Pay With Card -->
+            <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
+                data-key="pk_test_51OpfUGDCxyxLdTEx8rvGvuSEDP05VTMnHqHRcMF90HBvlp7wDfFoVPNpUTdkt8Fc38Jk7t7faOC7eOdMFpDgAFOi00dgiRStca"
+                data-amount="{{ prixTotalPanier * 100 }}" 
+                data-name="Wetek"
+                data-description="Entrez les détails de votre carte !"
+                data-image="{{ asset('/img/logo/logo.png') }}"
+                data-locale="auto">
+            </script>
+            <!-- Texte approprié -->
+            
+        </label>
+    </div>
+</form>
                             {{ form_start(formAdd, {attr: {novalidate: 'novalidate'}}) }}
                                     <div class="col-md-12 form-group p_star">
                                         {{ form_widget(formAdd.adresse, {'attr': {'placeholder': 'Address ', 'class': 'form-control'}}) }}
@@ -116,6 +134,7 @@
                                     </div>
                                     </div>
                             {{ form_end(formAdd) }}
+
                 </div>
             </div>
         </div>

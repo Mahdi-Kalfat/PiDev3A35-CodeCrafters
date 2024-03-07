@@ -51,6 +51,14 @@ public function findByMarque($marque)
             ->getResult();
     }
 
+    public function findByPrix($order = 'ASC')
+    {
+        return $this->createQueryBuilder('d')
+            ->orderBy('d.prix', $order)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */

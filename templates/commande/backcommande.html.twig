@@ -169,8 +169,7 @@
                                             {% endfor %}
                                         </td>
                                         <td>
-                                        <a style="color: green;" href="">Confirmer</a> |
-                                        <a style="color: red;" href="{{ path('app_commande_delete', {'id': commande.id}) }}">Refuser</a>
+                                        <a style="color: red;" href="{{ path('app_commande_delete', {'id': commande.id}) }}"><i class="fas fa-trash"></i> Supprimer</a>
                                     </td>
                                 </tr>
                           {% endfor %}

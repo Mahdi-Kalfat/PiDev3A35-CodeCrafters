@@ -29,9 +29,7 @@
                                     <li><a href="{{path('app_home')}}">Acceuil</a></li>
                                     <li><a href="{{path('app_produit')}}">Magasin</a>
                                         <ul class="submenu">
-                                            <li><a href="{{path('app_homme')}}">Homme</a></li>
-                                            <li><a href="{{path('app_femme')}}">Femme</a></li>
-                                            <li><a href="{{path('app_enfant')}}">Enfant</a></li>
+                                            <li><a href="{{path('favoris')}}">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href="about.html">A propos</a></li>
@@ -127,8 +125,10 @@
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-header text-center">
-                                Commande Num : #{{ commande.id }}
+                                Commande Num : #{{ commande.id }}  <a href="{{ path('app_commande_pdf', {'id': commande.id}) }}" class="btn btn-sm btn-danger" style="padding: 5px 10px; background-color:grey;font-size: 20px; margin-left: 290px;"><i class="fas fa-file-pdf"></i></a>
+                                
                             </div>
+                            
                             <div class="card-body">
                                 <ul class="list-group">
                                     <li class="list-group-item"><strong>Adresse:</strong> {{ commande.adresse }}</li>
@@ -153,6 +153,7 @@
                                 <a href="{{ path('app_commande_delete', {'id': commande.id}) }}" class="btn btn-sm btn-danger btn-delete">
                                     <i class="fas fa-trash"></i> Supprimer
                                 </a>
+                            
                             </div>
                         </div>
                     </div>

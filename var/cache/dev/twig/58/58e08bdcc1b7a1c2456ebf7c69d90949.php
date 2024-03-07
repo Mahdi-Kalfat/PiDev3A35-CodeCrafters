@@ -284,11 +284,10 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "taille", [], "any", false, false, false, 173), "html", null, true);
             echo "</td>
         <td>
-            <a style=\"color: green;\" href=\"\">Confirmer</a> |
             <a style=\"color: red;\" href=\"";
-            // line 176
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 176)]), "html", null, true);
-            echo "\">Refuser</a>
+            // line 175
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 175)]), "html", null, true);
+            echo "\"><i class=\"fas fa-trash\"></i> Supprimer</a>
         </td>
     </tr>
     ";
@@ -296,7 +295,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 180
+        // line 179
         echo "</tbody>
                       </table>
       </div>
@@ -350,7 +349,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  300 => 180,  290 => 176,  284 => 173,  280 => 172,  276 => 171,  272 => 170,  268 => 169,  264 => 168,  260 => 166,  254 => 164,  252 => 163,  246 => 160,  243 => 159,  239 => 158,  180 => 102,  160 => 85,  79 => 7,  75 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  299 => 179,  289 => 175,  284 => 173,  280 => 172,  276 => 171,  272 => 170,  268 => 169,  264 => 168,  260 => 166,  254 => 164,  252 => 163,  246 => 160,  243 => 159,  239 => 158,  180 => 102,  160 => 85,  79 => 7,  75 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -529,8 +528,7 @@ class __TwigTemplate_0ed5780be08af51b950bd957a3e8a211 extends Template
         <td>{{ produit.type }}</td>
         <td>{{ produit.taille }}</td>
         <td>
-            <a style=\"color: green;\" href=\"\">Confirmer</a> |
-            <a style=\"color: red;\" href=\"{{ path('app_produit_delete', {'id': produit.id}) }}\">Refuser</a>
+            <a style=\"color: red;\" href=\"{{ path('app_produit_delete', {'id': produit.id}) }}\"><i class=\"fas fa-trash\"></i> Supprimer</a>
         </td>
     </tr>
     {% endfor %}

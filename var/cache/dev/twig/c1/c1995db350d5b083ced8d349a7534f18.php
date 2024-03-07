@@ -108,16 +108,8 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"";
         // line 32
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_homme");
-        echo "\">Homme</a></li>
-                                            <li><a href=\"";
-        // line 33
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_femme");
-        echo "\">Femme</a></li>
-                                            <li><a href=\"";
-        // line 34
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_enfant");
-        echo "\">Enfant</a></li>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favoris");
+        echo "\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>
@@ -125,7 +117,7 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"evenement.html\">Nos Evenement</a></li>
                                             <li><a href=\"";
-        // line 41
+        // line 39
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
         echo "\">Nouveau Produit</a></li>
                                         </ul>
@@ -150,7 +142,7 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
                                 </li>
                                 <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
                                 <li><a href=\"";
-        // line 63
+        // line 61
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
         echo "\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
                             </ul>
@@ -172,60 +164,60 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
             <div class=\"container\">
                <div class=\"row\">
     ";
-        // line 82
+        // line 80
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 82, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 80, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
-            // line 83
+            // line 81
             echo "    <div class=\"col-lg-3 col-md-4 col-sm-6 mb-4\">
         <div class=\"card h-100\">
             <a><img class=\"card-img-top\" src=\"";
-            // line 85
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 85))), "html", null, true);
+            // line 83
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 83))), "html", null, true);
             echo "\" alt=\"\" style=\"width: 100%; height: 280px;\"></a>
             <div class=\"card-body\">
                 <h5 class=\"card-title\">";
-            // line 87
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 87), "html", null, true);
+            // line 85
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 85), "html", null, true);
             echo "</h5>
                 <p class=\"card-text\">
                     <strong>Description: </strong>
                     <span class=\"text-truncate\" style=\"max-width: 150px;\">";
-            // line 90
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 90), "html", null, true);
+            // line 88
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 88), "html", null, true);
             echo "</span><br>
                     <strong>Prix: </strong>";
-            // line 91
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 91), "html", null, true);
+            // line 89
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 89), "html", null, true);
             echo " DT<br>
                     <strong>Marque: </strong>";
-            // line 92
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "marque", [], "any", false, false, false, 92), "html", null, true);
+            // line 90
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "marque", [], "any", false, false, false, 90), "html", null, true);
             echo "<br>
                     <strong>État: </strong>";
-            // line 93
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "etat", [], "any", false, false, false, 93), "html", null, true);
+            // line 91
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "etat", [], "any", false, false, false, 91), "html", null, true);
             echo "<br>
                     <strong>Type: </strong>";
-            // line 94
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "type", [], "any", false, false, false, 94), "html", null, true);
+            // line 92
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "type", [], "any", false, false, false, 92), "html", null, true);
             echo "<br>
                     <strong>Taille: </strong>";
-            // line 95
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "taille", [], "any", false, false, false, 95), "html", null, true);
+            // line 93
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "taille", [], "any", false, false, false, 93), "html", null, true);
             echo "<br>
                 </p>
             </div>
             <div class=\"card-footer text-right\">
                 <a href=\"";
-            // line 99
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 99)]), "html", null, true);
+            // line 97
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 97)]), "html", null, true);
             echo "\" class=\"btn btn-sm btn-primary\" style=\"padding: 5px 10px; font-size: 20px;\">
                     <i class=\"fas fa-edit\"></i> 
                 </a>
                 <a href=\"";
-            // line 102
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 102)]), "html", null, true);
+            // line 100
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 100)]), "html", null, true);
             echo "\" class=\"btn btn-sm btn-danger\" style=\"padding: 5px 10px; font-size: 20px;\">
                     <i class=\"fas fa-trash\"></i> 
                 </a>
@@ -237,12 +229,12 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 109
+        // line 107
         echo "</div>
 
                         <div class=\"text-center mt-4\">
                             <a href=\"";
-        // line 112
+        // line 110
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
         echo "\" class=\"btn btn-success\">Ajouter un autre produit</a>
                         </div>
@@ -262,7 +254,7 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 129
+        // line 127
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -374,7 +366,7 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
      */
     public function getDebugInfo()
     {
-        return array (  266 => 129,  246 => 112,  241 => 109,  228 => 102,  222 => 99,  215 => 95,  211 => 94,  207 => 93,  203 => 92,  199 => 91,  195 => 90,  189 => 87,  184 => 85,  180 => 83,  176 => 82,  154 => 63,  129 => 41,  119 => 34,  115 => 33,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  258 => 127,  238 => 110,  233 => 107,  220 => 100,  214 => 97,  207 => 93,  203 => 92,  199 => 91,  195 => 90,  191 => 89,  187 => 88,  181 => 85,  176 => 83,  172 => 81,  168 => 80,  146 => 61,  121 => 39,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -410,9 +402,7 @@ class __TwigTemplate_35977a6418c5344a9dc988d434337c4b extends Template
                                     <li><a href=\"{{path('app_home')}}\">Acceuil</a></li>
                                     <li><a href=\"{{path('app_produit')}}\">Magasin</a>
                                         <ul class=\"submenu\">
-                                            <li><a href=\"{{path('app_homme')}}\">Homme</a></li>
-                                            <li><a href=\"{{path('app_femme')}}\">Femme</a></li>
-                                            <li><a href=\"{{path('app_enfant')}}\">Enfant</a></li>
+                                            <li><a href=\"{{path('favoris')}}\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>

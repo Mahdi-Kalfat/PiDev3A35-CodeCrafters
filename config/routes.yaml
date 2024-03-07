@@ -1,5 +1,15 @@
+# config/routes.yaml
+
+# Import des routes des contrôleurs
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+    resource: ../src/Controller/
+    type: annotation
+
+# Définition de votre route de traitement Stripe
+votre_route_de_traitement_stripe:
+    path: '/traitement/stripe'
+    controller: 'App\Controller\StripeController::traitementStripe'
+
+app_commande_pdf:
+    path: '/commande/{id}/pdf'
+    controller: 'App\Controller\CommandeController::generatePdf'

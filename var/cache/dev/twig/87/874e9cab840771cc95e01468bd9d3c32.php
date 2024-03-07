@@ -189,19 +189,49 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_afficherproduit");
         echo "\" class=\"genric-btn circle\" style=\"background-color: red; color: white;\">Liste de mes produits</a>
                 </div>
+        <div class=\"row mb-4\">
+        <div class=\"col-md-6\">
                 <form action=\"";
-        // line 91
+        // line 93
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
         echo "\" method=\"GET\" style=\"margin-bottom: 20px;\">
                 <input type=\"text\" name=\"marque\" placeholder=\"Rechercher par marque...\" style=\"padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; width: 200px; font-size: 13px;\">
                 <button type=\"submit\" style=\"padding: 10px 20px; background-color: f2f2f2; color: black; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Rechercher</button>
             </form>
+            </div>
+            <div class=\"col-md-6\">
+                         <form action=\"";
+        // line 99
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
+        echo "\" method=\"GET\" class=\"text-right\" >
+                <div class=\"form-group d-inline-block\">
+                    <select class=\"form-control mb-20\" id=\"tri\" name=\"tri\" >
+                        <option value=\"\">Trier par ordre :</option>
+                        <option value=\"asc\" ";
+        // line 103
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 103, $this->source); })()), "request", [], "any", false, false, false, 103), "query", [], "any", false, false, false, 103), "get", ["tri"], "method", false, false, false, 103) == "asc")) {
+            echo "selected";
+        }
+        echo ">Croissant</option>
+                        <option value=\"desc\" ";
+        // line 104
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 104, $this->source); })()), "request", [], "any", false, false, false, 104), "query", [], "any", false, false, false, 104), "get", ["tri"], "method", false, false, false, 104) == "desc")) {
+            echo "selected";
+        }
+        echo ">Décroissant</option>
+                    </select>
+                    <button type=\"submit\" style=\"padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Trier</button>
+                </div>
+            </form>
+    </div>
+    </div>
             <form action=\"";
-        // line 95
+        // line 111
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
         echo "\" method=\"GET\">
-        <div class=\"row\">
-        <h3 class=\"mb-30\">Filtrer Par :</h3>
+        <div class=\"row \">
+            <div class=\"col-md-12\">
+        <h3 class=\"mb-10\">Filtrer Par :</h3>
         <div class=\"d-flex\">
             <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
             
@@ -235,63 +265,63 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
             <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
                 <button type=\"submit\"  style=\"padding: 8px 30px; background-color: #f2f2f2; color: black; border: none; border-radius: 20px; cursor: pointer; font-size: 12px;\">Filtrer</button>
             </div>
-                </div>
-            </div>
-            </form>
+        </div>
+    </div>
+</form>
                 <!-- Nav Card -->
                 <div class=\"tab-content mt-30\" id=\"nav-tabContent\">
                     <!-- card one -->
                     <div class=\"tab-pane fade show active\" id=\"nav-home\" role=\"tabpanel\" aria-labelledby=\"nav-home-tab\">
                         <div class=\"row\">
                         ";
-        // line 139
+        // line 156
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 139, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 156, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
-            // line 140
+            // line 157
             echo "                            <div class=\"col-md-4\">
                                 <div class=\"single-popular-items mb-50 text-center\">
                                     <div class=\"popular-img\">
                                         <div class=\"favorit-items\">
                                             <a href=\"";
-            // line 144
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("add_to_favorites", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 144)]), "html", null, true);
+            // line 161
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("add_to_favorites", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 161)]), "html", null, true);
             echo "\">
                                                 <span class=\"flaticon-heart\" style=\"";
-            // line 145
-            if (twig_in_filter(twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 145), (isset($context["favoris"]) || array_key_exists("favoris", $context) ? $context["favoris"] : (function () { throw new RuntimeError('Variable "favoris" does not exist.', 145, $this->source); })()))) {
+            // line 162
+            if (twig_in_filter(twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 162), (isset($context["favoris"]) || array_key_exists("favoris", $context) ? $context["favoris"] : (function () { throw new RuntimeError('Variable "favoris" does not exist.', 162, $this->source); })()))) {
                 echo "color: red;";
             }
             echo "\"></span>
                                             </a>
                                         </div> <!-- 362*373 -->
                                 ";
-            // line 148
-            if (twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 148)) {
-                // line 149
+            // line 165
+            if (twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 165)) {
+                // line 166
                 echo "                                    <img src=\"";
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 149))), "html", null, true);
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("imgproduit/" . twig_get_attribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 166))), "html", null, true);
                 echo "\" alt=\"user-avatar\" class=\"img-circle img-fluid mx-auto\" style=\"width: 215px; height: 250px;\">
                                 ";
             }
-            // line 151
+            // line 168
             echo "                                        <div class=\"img-cap\">
                                             <span><a href=\"";
-            // line 152
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cartAdd", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 152)]), "html", null, true);
+            // line 169
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cartAdd", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 169)]), "html", null, true);
             echo "\">Ajouter au panier</a> | <a href=\"";
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_details_produit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 152)]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_details_produit", ["id" => twig_get_attribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 169)]), "html", null, true);
             echo "\">Détails</a></span>
                                         </div>
                                     </div>
                                     <div class=\"popular-caption\">
                                         <h3><a href=\"product_details.html\">";
-            // line 156
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 156), "html", null, true);
+            // line 173
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 173), "html", null, true);
             echo "</a></h3>
                                         <span>";
-            // line 157
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 157), "html", null, true);
+            // line 174
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 174), "html", null, true);
             echo " DT</span>                           
                                     </div>
                                     
@@ -302,7 +332,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 163
+        // line 180
         echo "                        </div>
                     </div>
                 </div>
@@ -353,7 +383,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 212
+        // line 229
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -465,7 +495,7 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  357 => 212,  306 => 163,  294 => 157,  290 => 156,  281 => 152,  278 => 151,  272 => 149,  270 => 148,  262 => 145,  258 => 144,  252 => 140,  248 => 139,  201 => 95,  194 => 91,  189 => 89,  185 => 88,  162 => 67,  158 => 65,  152 => 63,  150 => 62,  146 => 61,  121 => 39,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  387 => 229,  336 => 180,  324 => 174,  320 => 173,  311 => 169,  308 => 168,  302 => 166,  300 => 165,  292 => 162,  288 => 161,  282 => 157,  278 => 156,  230 => 111,  218 => 104,  212 => 103,  205 => 99,  196 => 93,  189 => 89,  185 => 88,  162 => 67,  158 => 65,  152 => 63,  150 => 62,  146 => 61,  121 => 39,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -560,13 +590,30 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
                     <a href=\"{{ path('app_addproduit') }}\" class=\"genric-btn circle mr-2\" style=\"background-color: red; color: white;\">Vendre un produit</a>
                     <a href=\"{{ path('app_afficherproduit') }}\" class=\"genric-btn circle\" style=\"background-color: red; color: white;\">Liste de mes produits</a>
                 </div>
+        <div class=\"row mb-4\">
+        <div class=\"col-md-6\">
                 <form action=\"{{ path('app_produit') }}\" method=\"GET\" style=\"margin-bottom: 20px;\">
                 <input type=\"text\" name=\"marque\" placeholder=\"Rechercher par marque...\" style=\"padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; width: 200px; font-size: 13px;\">
                 <button type=\"submit\" style=\"padding: 10px 20px; background-color: f2f2f2; color: black; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Rechercher</button>
             </form>
+            </div>
+            <div class=\"col-md-6\">
+                         <form action=\"{{ path('app_produit') }}\" method=\"GET\" class=\"text-right\" >
+                <div class=\"form-group d-inline-block\">
+                    <select class=\"form-control mb-20\" id=\"tri\" name=\"tri\" >
+                        <option value=\"\">Trier par ordre :</option>
+                        <option value=\"asc\" {% if app.request.query.get('tri') == 'asc' %}selected{% endif %}>Croissant</option>
+                        <option value=\"desc\" {% if app.request.query.get('tri') == 'desc' %}selected{% endif %}>Décroissant</option>
+                    </select>
+                    <button type=\"submit\" style=\"padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;\">Trier</button>
+                </div>
+            </form>
+    </div>
+    </div>
             <form action=\"{{ path('app_produit') }}\" method=\"GET\">
-        <div class=\"row\">
-        <h3 class=\"mb-30\">Filtrer Par :</h3>
+        <div class=\"row \">
+            <div class=\"col-md-12\">
+        <h3 class=\"mb-10\">Filtrer Par :</h3>
         <div class=\"d-flex\">
             <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
             
@@ -600,9 +647,9 @@ class __TwigTemplate_eb7a51eabfa55fddcb33582867a5c9a6 extends Template
             <div class=\"single-element-widget mt-10\" style=\"margin-left: 20px;\">
                 <button type=\"submit\"  style=\"padding: 8px 30px; background-color: #f2f2f2; color: black; border: none; border-radius: 20px; cursor: pointer; font-size: 12px;\">Filtrer</button>
             </div>
-                </div>
-            </div>
-            </form>
+        </div>
+    </div>
+</form>
                 <!-- Nav Card -->
                 <div class=\"tab-content mt-30\" id=\"nav-tabContent\">
                     <!-- card one -->

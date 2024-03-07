@@ -30,9 +30,7 @@
                                     <li><a href="{{path('app_home')}}">Acceuil</a></li>
                                     <li><a href="{{path('app_produit')}}">Magasin</a>
                                         <ul class="submenu">
-                                            <li><a href="{{path('app_homme')}}">Homme</a></li>
-                                            <li><a href="{{path('app_femme')}}">Femme</a></li>
-                                            <li><a href="{{path('app_enfant')}}">Enfant</a></li>
+                                            <li><a href="{{path('favoris')}}">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href="about.html">A propos</a></li>
@@ -61,7 +59,13 @@
                                     </div>
                                 </li>
                                 <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
-                                <li><a href="{{path('app_panier')}}"><span class="flaticon-shopping-cart"></span></a> </li>
+                                <li><a href="{{path('app_panier')}}"><span class="flaticon-shopping-cart">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
                             </ul>
                         </div>
                     </div>

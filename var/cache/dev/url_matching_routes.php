@@ -18,19 +18,17 @@ return [
         '/commande' => [[['_route' => 'app_commande', '_controller' => 'App\\Controller\\CommandeController::index'], null, null, null, false, false, null]],
         '/ajoutercommande' => [[['_route' => 'app_addcommande', '_controller' => 'App\\Controller\\CommandeController::ajouterproduit'], null, null, null, false, false, null]],
         '/backcommande' => [[['_route' => 'app_backc', '_controller' => 'App\\Controller\\CommandeController::show2'], null, null, null, false, false, null]],
+        '/payer' => [[['_route' => 'app_stripe', '_controller' => 'App\\Controller\\CommandeController::index5'], null, null, null, false, false, null]],
+        '/search' => [[['_route' => 'search_commande_ajax', '_controller' => 'App\\Controller\\CommandeController::searchCommandeAjax'], null, ['GET' => 0], null, false, false, null]],
         '/panier' => [[['_route' => 'app_panier', '_controller' => 'App\\Controller\\PanierController::index'], null, null, null, false, false, null]],
         '/panier/deleteAll' => [[['_route' => 'cartDelete', '_controller' => 'App\\Controller\\PanierController::deleteALL'], null, null, null, false, false, null]],
         '/produit' => [[['_route' => 'app_produit', '_controller' => 'App\\Controller\\ProduitController::show'], null, null, null, false, false, null]],
         '/afficherproduit' => [[['_route' => 'app_afficherproduit', '_controller' => 'App\\Controller\\ProduitController::show1'], null, null, null, false, false, null]],
         '/home' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\ProduitController::index2'], null, null, null, false, false, null]],
-        '/magasin' => [[['_route' => 'app_magasin', '_controller' => 'App\\Controller\\ProduitController::index3'], null, null, null, false, false, null]],
-        '/homme' => [[['_route' => 'app_homme', '_controller' => 'App\\Controller\\ProduitController::index4'], null, null, null, false, false, null]],
-        '/femme' => [[['_route' => 'app_femme', '_controller' => 'App\\Controller\\ProduitController::index5'], null, null, null, false, false, null]],
-        '/enfant' => [[['_route' => 'app_enfant', '_controller' => 'App\\Controller\\ProduitController::index6'], null, null, null, false, false, null]],
-        '/panierr' => [[['_route' => 'app_panierr', '_controller' => 'App\\Controller\\ProduitController::index7'], null, null, null, false, false, null]],
         '/ajouterproduit' => [[['_route' => 'app_addproduit', '_controller' => 'App\\Controller\\ProduitController::ajouterproduit'], null, null, null, false, false, null]],
         '/back' => [[['_route' => 'app_back', '_controller' => 'App\\Controller\\ProduitController::show2'], null, null, null, false, false, null]],
         '/favoris' => [[['_route' => 'favoris', '_controller' => 'App\\Controller\\ProduitController::favoris'], null, null, null, false, false, null]],
+        '/traitement/stripe' => [[['_route' => 'votre_route_de_traitement_stripe', '_controller' => 'App\\Controller\\StripeController::traitementStripe'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -55,23 +53,28 @@ return [
                 .'|/commande/(?'
                     .'|edit/([^/]++)(*:228)'
                     .'|delete/([^/]++)(*:251)'
+                    .'|([^/]++)/pdf(*:271)'
                 .')'
                 .'|/p(?'
                     .'|anier/(?'
-                        .'|add/([^/]++)(*:286)'
+                        .'|add/([^/]++)(*:306)'
                         .'|delete(?'
-                            .'|/([^/]++)(*:312)'
-                            .'|All/([^/]++)(*:332)'
+                            .'|/([^/]++)(*:332)'
+                            .'|All/([^/]++)(*:352)'
                         .')'
                     .')'
                     .'|roduit/(?'
-                        .'|edit/([^/]++)(*:365)'
-                        .'|delete/([^/]++)(*:388)'
+                        .'|edit/([^/]++)(*:385)'
+                        .'|delete/([^/]++)(*:408)'
                     .')'
                 .')'
-                .'|/detailsproduit/([^/]++)(*:422)'
-                .'|/add_to_favorites/([^/]++)(*:456)'
-                .'|/remove_from_favorites/([^/]++)(*:495)'
+                .'|/detailsproduit/([^/]++)(*:442)'
+                .'|/add_to_favorites/([^/]++)(*:476)'
+                .'|/remove_from_favorites/([^/]++)(*:515)'
+                .'|/stripe/(?'
+                    .'|([^/]++)(*:542)'
+                    .'|create\\-charge(*:564)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -85,15 +88,18 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         228 => [[['_route' => 'app_commande_edit', '_controller' => 'App\\Controller\\CommandeController::editproduitForm'], ['id'], null, null, false, true, null]],
         251 => [[['_route' => 'app_commande_delete', '_controller' => 'App\\Controller\\CommandeController::deleteproduit'], ['id'], null, null, false, true, null]],
-        286 => [[['_route' => 'cartAdd', '_controller' => 'App\\Controller\\PanierController::addToCart'], ['id'], null, null, false, true, null]],
-        312 => [[['_route' => 'cartDeletep', '_controller' => 'App\\Controller\\PanierController::deleteFromCart'], ['id'], null, null, false, true, null]],
-        332 => [[['_route' => 'cartDeleteAll', '_controller' => 'App\\Controller\\PanierController::deleteALLToCart'], ['id'], null, null, false, true, null]],
-        365 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitController::editproduitForm'], ['id'], null, null, false, true, null]],
-        388 => [[['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitController::deleteproduit'], ['id'], null, null, false, true, null]],
-        422 => [[['_route' => 'app_details_produit', '_controller' => 'App\\Controller\\ProduitController::detailsProduit'], ['id'], null, null, false, true, null]],
-        456 => [[['_route' => 'add_to_favorites', '_controller' => 'App\\Controller\\ProduitController::addToFavorites'], ['id'], null, null, false, true, null]],
-        495 => [
-            [['_route' => 'remove_from_favorites', '_controller' => 'App\\Controller\\ProduitController::removeFromFavorites'], ['id'], null, null, false, true, null],
+        271 => [[['_route' => 'app_commande_pdf', '_controller' => 'App\\Controller\\CommandeController::generatePdf'], ['id'], null, null, false, false, null]],
+        306 => [[['_route' => 'cartAdd', '_controller' => 'App\\Controller\\PanierController::addToCart'], ['id'], null, null, false, true, null]],
+        332 => [[['_route' => 'cartDeletep', '_controller' => 'App\\Controller\\PanierController::deleteFromCart'], ['id'], null, null, false, true, null]],
+        352 => [[['_route' => 'cartDeleteAll', '_controller' => 'App\\Controller\\PanierController::deleteALLToCart'], ['id'], null, null, false, true, null]],
+        385 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitController::editproduitForm'], ['id'], null, null, false, true, null]],
+        408 => [[['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitController::deleteproduit'], ['id'], null, null, false, true, null]],
+        442 => [[['_route' => 'app_details_produit', '_controller' => 'App\\Controller\\ProduitController::detailsProduit'], ['id'], null, null, false, true, null]],
+        476 => [[['_route' => 'add_to_favorites', '_controller' => 'App\\Controller\\ProduitController::addToFavorites'], ['id'], null, null, false, true, null]],
+        515 => [[['_route' => 'remove_from_favorites', '_controller' => 'App\\Controller\\ProduitController::removeFromFavorites'], ['id'], null, null, false, true, null]],
+        542 => [[['_route' => 'stripe', '_controller' => 'App\\Controller\\StripeController::index'], ['id'], null, null, false, true, null]],
+        564 => [
+            [['_route' => 'stripe_charge', '_controller' => 'App\\Controller\\StripeController::createCharge'], [], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

@@ -108,16 +108,8 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"";
         // line 32
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_homme");
-        echo "\">Homme</a></li>
-                                            <li><a href=\"";
-        // line 33
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_femme");
-        echo "\">Femme</a></li>
-                                            <li><a href=\"";
-        // line 34
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_enfant");
-        echo "\">Enfant</a></li>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("favoris");
+        echo "\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>
@@ -125,7 +117,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                                         <ul class=\"submenu\">
                                             <li><a href=\"evenement.html\">Nos Evenement</a></li>
                                             <li><a href=\"";
-        // line 41
+        // line 39
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_addproduit");
         echo "\">Nouveau Produit</a></li>
                                         </ul>
@@ -150,7 +142,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                                 </li>
                                 <li> <a href=\"login.html\"><span class=\"flaticon-user\"></span></a></li>
                                 <li><a href=\"";
-        // line 63
+        // line 61
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
         echo "\"><span class=\"flaticon-shopping-cart\"></span></a> </li>
                             </ul>
@@ -195,7 +187,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                 <div class=\"row mb-4\">
         <div class=\"col-md-6\">
             <form action=\"";
-        // line 105
+        // line 103
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_show_commande");
         echo "\" method=\"GET\">
                 <div class=\"form-group\">
@@ -206,21 +198,21 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
         </div>
         <div class=\"col-md-6\">
             <form action=\"";
-        // line 113
+        // line 111
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_show_commande");
         echo "\" method=\"GET\" class=\"text-right\" >
                 <div class=\"form-group d-inline-block\">
                     <select class=\"form-control mb-20\" id=\"tri\" name=\"tri\" >
                         <option value=\"\">Trier par ordre :</option>
                         <option value=\"asc\" ";
-        // line 117
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 117, $this->source); })()), "request", [], "any", false, false, false, 117), "query", [], "any", false, false, false, 117), "get", ["tri"], "method", false, false, false, 117) == "asc")) {
+        // line 115
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 115, $this->source); })()), "request", [], "any", false, false, false, 115), "query", [], "any", false, false, false, 115), "get", ["tri"], "method", false, false, false, 115) == "asc")) {
             echo "selected";
         }
         echo ">Croissant</option>
                         <option value=\"desc\" ";
-        // line 118
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 118, $this->source); })()), "request", [], "any", false, false, false, 118), "query", [], "any", false, false, false, 118), "get", ["tri"], "method", false, false, false, 118) == "desc")) {
+        // line 116
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 116, $this->source); })()), "request", [], "any", false, false, false, 116), "query", [], "any", false, false, false, 116), "get", ["tri"], "method", false, false, false, 116) == "desc")) {
             echo "selected";
         }
         echo ">Décroissant</option>
@@ -232,19 +224,23 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
     </div>
                 <div class=\"row\">
                     ";
-        // line 126
+        // line 124
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 126, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 124, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["commande"]) {
-            // line 127
+            // line 125
             echo "                    <div class=\"col-md-6 mb-4\">
                         <div class=\"card\">
                             <div class=\"card-header text-center\">
                                 Commande Num : #";
-            // line 130
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 130), "html", null, true);
-            echo "
+            // line 128
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 128), "html", null, true);
+            echo "  <a href=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_pdf", ["id" => twig_get_attribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 128)]), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-danger\" style=\"padding: 5px 10px; background-color:grey;font-size: 20px; margin-left: 290px;\"><i class=\"fas fa-file-pdf\"></i></a>
+                                
                             </div>
+                            
                             <div class=\"card-body\">
                                 <ul class=\"list-group\">
                                     <li class=\"list-group-item\"><strong>Adresse:</strong> ";
@@ -305,6 +301,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
             echo "\" class=\"btn btn-sm btn-danger btn-delete\">
                                     <i class=\"fas fa-trash\"></i> Supprimer
                                 </a>
+                            
                             </div>
                         </div>
                     </div>
@@ -313,11 +310,11 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['commande'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 160
+        // line 161
         echo "                </div>
                 <div class=\"mt-4\">
                     <a href=\"";
-        // line 162
+        // line 163
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit");
         echo "\" class=\"btn btn-primary\">Retour au catalogue</a>
                 </div>
@@ -336,7 +333,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                                 <!-- logo -->
                                 <div class=\"footer-logo\">
                                     <a href=\"index.html\"><img src=\"";
-        // line 178
+        // line 179
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/img/logo/logo2_footer.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                 </div>
@@ -448,7 +445,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  340 => 178,  321 => 162,  317 => 160,  304 => 153,  298 => 150,  291 => 145,  282 => 143,  278 => 142,  272 => 139,  268 => 138,  264 => 137,  260 => 136,  256 => 135,  252 => 134,  245 => 130,  240 => 127,  236 => 126,  223 => 118,  217 => 117,  210 => 113,  199 => 105,  154 => 63,  129 => 41,  119 => 34,  115 => 33,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  337 => 179,  318 => 163,  314 => 161,  300 => 153,  294 => 150,  287 => 145,  278 => 143,  274 => 142,  268 => 139,  264 => 138,  260 => 137,  256 => 136,  252 => 135,  248 => 134,  237 => 128,  232 => 125,  228 => 124,  215 => 116,  209 => 115,  202 => 111,  191 => 103,  146 => 61,  121 => 39,  111 => 32,  106 => 30,  102 => 29,  93 => 23,  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -484,9 +481,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                                     <li><a href=\"{{path('app_home')}}\">Acceuil</a></li>
                                     <li><a href=\"{{path('app_produit')}}\">Magasin</a>
                                         <ul class=\"submenu\">
-                                            <li><a href=\"{{path('app_homme')}}\">Homme</a></li>
-                                            <li><a href=\"{{path('app_femme')}}\">Femme</a></li>
-                                            <li><a href=\"{{path('app_enfant')}}\">Enfant</a></li>
+                                            <li><a href=\"{{path('favoris')}}\">Liste de mes produits favoris</a></li>   
                                         </ul> 
                                     </li>
                                     <li><a href=\"about.html\">A propos</a></li>
@@ -582,8 +577,10 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                     <div class=\"col-md-6 mb-4\">
                         <div class=\"card\">
                             <div class=\"card-header text-center\">
-                                Commande Num : #{{ commande.id }}
+                                Commande Num : #{{ commande.id }}  <a href=\"{{ path('app_commande_pdf', {'id': commande.id}) }}\" class=\"btn btn-sm btn-danger\" style=\"padding: 5px 10px; background-color:grey;font-size: 20px; margin-left: 290px;\"><i class=\"fas fa-file-pdf\"></i></a>
+                                
                             </div>
+                            
                             <div class=\"card-body\">
                                 <ul class=\"list-group\">
                                     <li class=\"list-group-item\"><strong>Adresse:</strong> {{ commande.adresse }}</li>
@@ -608,6 +605,7 @@ class __TwigTemplate_249f5a84bd10b54cf4502ec02f9de7d8 extends Template
                                 <a href=\"{{ path('app_commande_delete', {'id': commande.id}) }}\" class=\"btn btn-sm btn-danger btn-delete\">
                                     <i class=\"fas fa-trash\"></i> Supprimer
                                 </a>
+                            
                             </div>
                         </div>
                     </div>
