@@ -16,16 +16,37 @@ use DateTime;
 
 class ReclamationController extends AbstractController
 {
+
+    #[Route('/notificationf', name: 'notification')]
+    public function showN(ReclamationRepository $RR, Request $request): Response
+    {
+        $tri = $request->query->get('tri');
+        $reclamations = new Reclamation();
+        $email = 'sarra@esprit.tn';
+        $idreclamation = [];
+        $reclamations = $RR->findBy(['email' => $email]);
+        foreach ($reclamations as $reclamations) {
+            $idreclamation[] = $reclamations->getId();
+        }
+        $reclamationlist = $RR->findBy(['id' => $idreclamation]);
+
+        return $this->render('reclamation/addreclamation.html.twig', [
+            'controller_name' => 'ReponseController',
+            'reclamationf' => $reclamationlist,
+        ]);
+    }
+
     #[Route('/home', name: 'app_home')]
     public function index2(): Response
     {
         return $this->render('reclamations/home.html.twig', [
             'controller_name' => 'ReclamationController',
+            
         ]);
     }
 
     #[Route('/reclamation', name: 'app_reclamation')]
-    public function creecompte(EntityManagerInterface $em,Request $req)
+    public function creecompte(EntityManagerInterface $em,Request $req,ReclamationRepository $RR)
     {
        $reclamation = new Reclamation();
        $form=$this->createForm(AddEditReclamationType::class,$reclamation);
@@ -50,8 +71,14 @@ class ReclamationController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_reclamation_showf');
        }
-       return $this->render('reclamation/addreclamation.html.twig', ['formAdd'=>$form]);
-    }
+
+       $listreclamation = $RR->findAll();
+
+       return $this->render('reclamation/addreclamation.html.twig', [
+        'formAdd' => $form, // Assurez-vous que la variable $form est bien définie dans votre contrôleur
+        'reclamationf' => $listreclamation,
+    ]);
+        }
 
     #[Route('/reclamation/show', name: 'app_reclamation_show')]
     public function show(ReclamationRepository $RR): Response
@@ -66,7 +93,7 @@ class ReclamationController extends AbstractController
     }
 
     #[Route('/reclamation/showf', name: 'app_reclamation_showf')]
-    public function showf(ReclamationRepository $RR, Request $request): Response
+    public function showf(ReclamationRepository $RR,Request $request): Response
     {
         $tri = $request->query->get('tri');
         $reclamations = new Reclamation();
@@ -124,12 +151,21 @@ class ReclamationController extends AbstractController
         // Extract the search term from the query parameters
         $searchTerm = $request->query->get('q', '');
 
-        // Find offers filtered by titre
+        // Find reclamations filtered by objet
         $listreclamation = $rec->findByObjet($searchTerm);
-
-        // Render your template with the filtered offers
         return $this->render('reclamation/showreclamation.html.twig', [
             'reclamationsf' => $listreclamation,
         ]);
     }  
+    #[Route('/statistics', name: 'app_statistics')]
+    public function statistics(EntityManagerInterface $entityManager,  ReclamationRepository $rr): Response
+    {
+       
+        $reclamationCounts = $rr->getReclamationCountByFunction();
+
+        return $this->render('reclamation/index.html.twig', [
+            'reclamationCounts' => $reclamationCounts,
+        ]);
+    }
 }
+ 

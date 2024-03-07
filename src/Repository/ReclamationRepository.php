@@ -16,9 +16,21 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ReclamationRepository extends ServiceEntityRepository
 {
+
+  public function findReclamationsByEtat($etat)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.Etat = :etat')
+            ->setParameter('etat', $etat)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Reclamation::class);
+        parent::__construct($registry , Reclamation::class);
     }
     public function findByObjet(string $searchTerm): array
 {
@@ -31,6 +43,14 @@ class ReclamationRepository extends ServiceEntityRepository
 
     return $queryBuilder->getQuery()->getResult();
 }
+public function getReclamationCountByFunction()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.obj, COUNT(r) as count')
+            ->groupBy('r.obj')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Reclamation[] Returns an array of Reclamation objects

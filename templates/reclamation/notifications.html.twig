@@ -1,0 +1,24 @@
+
+
+
+
+
+
+
+{% block content %}
+
+<div class="modal-body">
+<div class="modal-body">
+    {% for reclamation in reclamationf %}
+        {% if reclamation.Etat == 1 %}
+            <p>L'Admin a répondu à l'objet de Reclamation {{ reclamation.obj }}</p>
+        {% endif %}
+    {% else %}
+        <p>Aucune réclamation trouvée.</p>
+    {% endfor %}
+</div>
+
+</div>
+
+</div>
+{% endblock %}

@@ -30,6 +30,9 @@ class Reponse
     #[ORM\ManyToOne(inversedBy: 'reponses')]
     private ?Reclamation $reponserelation = null;
 
+    #[ORM\Column()]
+    private ?int $rate = null;
+
    
 
     public function getId(): ?int
@@ -83,6 +86,18 @@ class Reponse
     public function setReponserelation(?Reclamation $reponserelation): static
     {
         $this->reponserelation = $reponserelation;
+
+        return $this;
+    }
+
+    public function getRate(): ?int
+    {
+        return $this->rate;
+    }
+
+    public function setRate(int $rate): static
+    {
+        $this->rate = $rate;
 
         return $this;
     }

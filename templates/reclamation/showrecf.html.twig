@@ -28,6 +28,10 @@
                                 <ul id="navigation">  
                                     <li><a href="{{ path('app_home') }}">Acceuil</a></li>
                                     <li><a href="shop.html">Magasin</a>
+
+
+
+                                    
                                         <ul class="submenu">
                                             <li><a href="shophomme.html">Homme</a></li>
                                             <li><a href="shopfemme.html">Femme</a></li>
@@ -49,6 +53,10 @@
                                     </li>
                                     <li><a href="contact.html">Nous Contacter</a></li>
                                 </ul>
+
+
+
+
                             </nav>
                         </div>
                         <!-- Header Right -->
@@ -61,6 +69,32 @@
                                 </li>
                                 <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                                <li>                                   <div class="notification-icon" data-toggle="modal" data-target="#notificationModal">
+        <span>🔔</span>
+    </div>
+    ...
+</div>
+
+<!-- Modal pour les notifications -->
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Le contenu (tableau des réclamations) sera chargé ici -->
+
+{% include 'reclamation/notifications.html.twig' %}
+
+
+
+    </div>
+    </div>
+  </div></li>
                             </ul>
                         </div>
                     </div>

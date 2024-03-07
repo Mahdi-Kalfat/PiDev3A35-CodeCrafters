@@ -150,17 +150,26 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
-            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Livreur Pour le Moment</b></p>
+            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Reponse Pour le Moment</b></p>
             {% endfor %}
+            
+        
+                    
           </div>
         </div>
         
         <!-- /.card-body -->
-        
         <!-- /.card-footer -->
       </div>
+      <div class="text-center">
+    {% for p in 1..totalpages %}
+        <a class="mx-2" href="{{ path('app_reponse_show', {'id': id, 'page': p}) }}">{{ p }}</a>
+    {% endfor %}
+</div>
+
       <!-- /.card -->
 
     </section>
@@ -168,7 +177,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
   <footer class="main-footer">
     <strong>Copyright &copy; 2023-2024 <a href="">Admin WeTek</a>.</strong> All rights reserved.
   </footer>
@@ -180,4 +188,5 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
 {% endblock %}

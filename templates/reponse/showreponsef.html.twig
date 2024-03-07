@@ -79,7 +79,7 @@
             <div class="container">
 
 
-                <div class="card card-solid ">
+                <div class="card card-solid">
     <p class="d-flex justify-content-center mt-2"><b>Details Reponse</b></p>
     <div class="card-body pb-0">
         <div class="row ">
@@ -89,6 +89,9 @@
                     <th>Nom</th>
                     <th>Email</th>
                     <th>Description</th>
+                    <th>évaluation</th>
+                    <th>Evaluée</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -97,6 +100,28 @@
                         <td>{{ reponse.getNom() }}</td>
                         <td>{{ reponse.getEmail() }}</td>
                         <td>{{ reponse.getDescription() }}</td>
+                        <td> 
+                        {% if reponse.getRate() == 0 %}
+                        <img src="{{ asset('img/0star.jpg') }}" width="100px" alt="">
+                        {% endif %}
+                        {% if reponse.getRate() == 1 %}
+                        <img src="{{ asset('img/1star.jpg') }}" width="100px" alt="">
+                        {% endif %}
+                        {% if reponse.getRate() == 2 %}
+                        <img src="{{ asset('img/2star.jpg') }}" width="100px" alt="">
+                        {% endif %}
+                        {% if reponse.getRate() == 3 %}
+                        <img src="{{ asset('img/3star.jpg') }}" width="100px" alt="">
+                        {% endif %}
+                        {% if reponse.getRate() == 4 %}
+                        <img src="{{ asset('img/4star.jpg') }}" width="100px" alt="">
+                        {% endif %}
+                        {% if reponse.getRate() == 5 %}
+                        <img src="{{ asset('img/5star.jpg') }}" width="100px" alt="">
+                        {% endif %}
+                        </td>
+                        
+                        <td><a class="genric-btn primary-border" href="{{ path('app_rating', {'id': reponse.id}) }}">Evaluée</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
