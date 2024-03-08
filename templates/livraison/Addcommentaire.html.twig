@@ -97,36 +97,16 @@
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-12">
-                        <h2 class="contact-title text-center">List Livraison</h2>
+                        <h2 class="contact-title text-center">Ajouter Votre Commentaire</h2>
                     </div>
                     <div class="card col-md-12">
-                        
-                                        <!-- Code Start Here -->
-                                                <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                    <th scope="col">Num Livraison</th>
-                                                    <th scope="col">Adresse</th>
-                                                    <th scope="col">Date Livraison</th>
-                                                    <th scope="col">Etat Livraison</th>
-                                                    <th scope="col"  style="text-align: center;">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                {% for Livraison in Livraisons %}
-                                                    <tr>
-                                                    <td>{{Livraison.numliv}}</td>
-                                                    <td>{{Livraison.zoneliv}}</td>
-                                                    <td>{{Livraison.dateliv|date('d/m/Y H:i')}}</td>
-                                                    <td>{{Livraison.etatliv}}</td>
-                                                    {% if Livraison.etatliv != 'Livrée'   %}<td class="d-flex justify-content-center"><a href="{{ path('app_livraison_suivi', {'id': Livraison.id }) }}" class="genric-btn danger-border radius small">Suivi Livraison</a></td>
-                                                    {% else %}<td class="d-flex justify-content-center"><a href="{{ path('app_livreur_commentaire', {'id': Livraison.id }) }}" class="genric-btn danger-border radius small" id="toggleFormButton">Ajouter un Commentaire</a></td>
-                                                    {% endif %}
-                                                    </tr>
-                                                {% endfor %}
-                                                </tbody>
-                                                </table>
-                                         <!-- Code End Here -->
+                         {{ form_start(formAdd,{'attr': {novalidate: 'novalidate'}} ) }}
+
+                           {{ form_widget(formAdd.commentaire, {'attr': {'placeholder': 'Votre Commentaire', 'class': 'form-control mt-4'}}) }}
+                           <div class="d-flex justify-content-end">
+                           {{ form_widget(formAdd.Envoyer, {'attr': {'class' : 'genric-btn danger circle mt-2 mb-3'} }) }}
+                           </div>
+                           {{ form_end(formAdd) }}
                         </div>
                     </div>
                 </div>

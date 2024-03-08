@@ -47,6 +47,15 @@ class Livraison
     #[ORM\ManyToMany(targetEntity: Commande::class, inversedBy: 'livraisons')]
     private Collection $idcommande;
 
+    #[ORM\Column()]
+    private ?float $lat = null;
+
+    #[ORM\Column()]
+    private ?float $lon = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $commentaire = null;
+
     public function __construct()
     {
         $this->idcommande = new ArrayCollection();
@@ -140,6 +149,42 @@ class Livraison
     public function removeIdcommande(commande $idcommande): static
     {
         $this->idcommande->removeElement($idcommande);
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): static
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLon(): ?float
+    {
+        return $this->lon;
+    }
+
+    public function setLon(float $lon): static
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+
+    public function getCommentaire(): ?string
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(string $commentaire): static
+    {
+        $this->commentaire = $commentaire;
 
         return $this;
     }

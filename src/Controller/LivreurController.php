@@ -8,11 +8,13 @@ use App\Form\SendMailType;
 use App\Repository\LivreurRepository;
 use App\Services\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -43,7 +45,7 @@ class LivreurController extends AbstractController
         if ($imageFile) {
             $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
             $imageFile->move(
-                'C:\Users\raoud\Desktop\crud-livraison\projet_wetek1A\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
+                'C:\Users\raoud\Desktop\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
                 $newFileName
             );
         }
@@ -67,7 +69,7 @@ class LivreurController extends AbstractController
        /* if ($imageFile) {*/
             $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
             $imageFile->move(
-                'C:\Users\raoud\Desktop\crud-livraison\projet_wetek1A\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
+                'C:\Users\raoud\Desktop\projet_wetek1A\public\imglivreur', // Répertoire de stockage des images
                 $newFileName 
             );
        // }*/
@@ -140,29 +142,40 @@ class LivreurController extends AbstractController
         $Livreurs = $livreurRepository->findBy(['idlivreur' => $id]);
         foreach ($Livreurs as $livreur) {
             $emails = $livreur->getEmail();
-        }
+            $nom = $livreur->getNom();
+            $prenom =  $livreur->getPrenom();
+            $idlivreur =  $livreur->getIdlivreur();
+        }     
         $form=$this->createForm(SendMailType::class);
         $form->handleRequest($req);
 
         if ($form->isSubmitted())
         {
-        $data = $form->getData();
-        $fromValue = $data['from'];
-        $toValue = $data['to'];
-        $subjectValue = $data['subject'];
-        $mailValue = $data['mail'];
-
-            $email = (new Email())
-            ->from($fromValue)
-            ->to($toValue)
-            ->subject($subjectValue)
-            ->text($mailValue);
-
+            $data = $form->getData();
+            $fromValue = $data['from'];
+            $toValue = $data['to'];
+            $subjectValue = $data['subject'];
+            $mailValue = $data['mail'];
+            
+            // Render the Twig template
+            $emailBody = $this->renderView('email_template.html.twig', [
+                'subject' => $subjectValue,
+                'nom' =>$nom . ' ' . $prenom,  // Replace with the actual recipient name
+                'message' => $mailValue,
+                'entreprise' => 'Your Company',  // Replace with your company name
+            ]);
+        
+            $email = (new TemplatedEmail())
+                ->from(new Address($fromValue))
+                ->to(new Address($toValue))
+                ->subject($subjectValue)
+                ->html($emailBody);
+        
             $mailer->send($email);
-        return $this->redirectToRoute('app_livreur');
+        
+            return $this->redirectToRoute('app_livreur');
         }
 
         return $this->render('livreur/sendmail.html.twig', ['form'=>$form,'email' => $emails,]);
     }
-    
 }

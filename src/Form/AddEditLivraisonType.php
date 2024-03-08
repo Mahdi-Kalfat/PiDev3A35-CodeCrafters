@@ -8,6 +8,7 @@ use App\Entity\Livreur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -22,7 +23,7 @@ class AddEditLivraisonType extends AbstractType
         $builder
             ->add('numliv',TextType::class,['empty_data'=>''])
             ->add('zoneliv',TextType::class,['empty_data'=>''])
-            ->add('dateliv', DateType::class, [
+            ->add('dateliv', DateTimeType::class, [
                 'widget' => 'single_text',
                 'empty_data' => null,
                 'attr' => [

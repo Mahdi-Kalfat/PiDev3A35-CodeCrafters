@@ -187,8 +187,11 @@
                             <a href="{{path('app_livreur_send_mail',{'id': livreur.idlivreur })}}" class="btn btn-sm bg-teal mr-2">
                                 <i class="fas fa-comments"></i> Envoyer Mail
                             </a>
-                            <a href="#" class="btn btn-sm btn-primary">
-                                <i class="fas fa-file"></i> Historique Livraison
+                            <a href="{{ path('app_livraison_livreur', {'id': livreur.id }) }}" class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-file"></i> List Livraison
+                            </a>
+                            <a href="{{ path('app_livraison_historique', {'id': livreur.id }) }}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-file"></i> Historique livraison
                             </a>
                         </div>
                     </div>
@@ -243,7 +246,7 @@
                         <a href="{{ path('app_livreur_unban', {'id': nonlivreur.id }) }}" class="btn btn-sm bg-teal mr-2">
                                 <i class="fas fa-minus"></i> Annuler le ban
                             </a>
-                            <a href="#" class="btn btn-sm btn-primary">
+                            <a href="{{ path('app_livraison_historique', {'id': nonlivreur.id }) }}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-file"></i> Historique Livraison
                             </a>
                         </div>

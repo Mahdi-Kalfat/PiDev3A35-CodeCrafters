@@ -45,4 +45,18 @@ class LivraisonRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function findByzoneOrnumliv(string $searchTerm): array
+{
+    $queryBuilder = $this->createQueryBuilder('o');
+
+    if (!empty($searchTerm)) {
+        $queryBuilder->andWhere('o.zoneliv LIKE :searchTerm')
+            ->orWhere('o.numliv LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%');
+    }
+
+    return $queryBuilder->getQuery()->getResult();
+}
+
 }
