@@ -1,0 +1,93 @@
+{% extends 'baseback.html.twig' %}
+
+{% block body %}
+           {% include 'sidebar.twig' %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Gestion Livraison</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add Livraison</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card card-primary">
+              <div class="card-body p-0">
+                
+                  <div class="card-header">
+                    <h4 class="card-title">Liste Livraisons pour le livreur {{nom}}</h4>
+                  </div>
+                  <div class="card-body">
+                   
+                    <table class="table">
+                    {% if livraisonLivreur %}
+                      <thead>
+                        <tr>
+                          <th scope="col">Num Livraison</th>
+                          <th scope="col">Zone Livraison</th>
+                          <th scope="col">Date Livraison</th>
+                          <th scope="col">Id Livreur</th>
+                          <th scope="col">Etat Livraison</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for livraisonLivreur in livraisonLivreur %}
+                        <tr>
+                          <td>{{livraisonLivreur.numliv}}</td>
+                          <td>{{livraisonLivreur.zoneliv}}</td>
+                          <td>{{livraisonLivreur.dateliv|date('d/m/Y H:i')}}</td>
+                          <td>{{livraisonLivreur.idlivreur}}</td>
+                          <td>{{livraisonLivreur.etatliv}}</td>
+                          <td><a href="{{ path('app_livraison_livree2', {'id': livraisonLivreur.id }) }}" class="btn btn-success mr-1">Livrée</a><a href="{{ path('app_livraison_livreur_map', {'id': idl }) }}" class="btn btn-primary">Direction</a></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Livraison Pour le moment</b></p>
+                    {% endif %}
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+      </div>
+    </section>
+  
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{% endblock %}
+
+				

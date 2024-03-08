@@ -1,0 +1,256 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'navbar.twig' %}
+      
+      <!--================Blog Area =================-->
+      <section class="blog_area single-post-area section-padding">
+          <form id="searchForm" class="mb-3 text-center">
+              <div class="input-group input-group-sm">
+                  <input type="text" id="searchInput" class="form-control rounded-pill" placeholder="Recherche par titre..." aria-label="Recherche">
+              </div>
+          </form>
+
+
+          <form action="{{ path('app_offre_filtre') }}" method="get" class="mb-3 text-center">
+    <div class="input-group input-group-sm">
+        <!-- Filter by Pourcentage -->
+        <select name="poucentage" class="form-control rounded-pill">
+            <option value="">Filtrer par pourcentage...</option>
+            <option value="10">10%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+            <option value="50">50%</option>
+            <option value="60">60%</option>
+            <option value="70">70%</option>
+            <option value="80">80%</option>
+            <!-- Add more options as needed -->
+        </select>
+        <!-- Filter by Start Date -->
+        <input type="date" name="dated" class="form-control rounded-pill" placeholder="Date de début" aria-label="Date de début">
+        <!-- Filter by End Date -->
+        <input type="date" name="datef" class="form-control rounded-pill" placeholder="Date de fin" aria-label="Date de fin">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary rounded-pill" type="submit">
+                Filtrer <!-- You can customize the button text as needed -->
+            </button>
+        </div>
+    </div>
+</form>
+
+
+       <div class="container">
+   
+      <div class="row" id="offers-container" >
+          {% include 'offre/_offresCards.html.twig' %}
+          <div class="col-12">
+              <div id="calendar"></div> <!-- Calendar element -->
+          </div>
+</div>
+
+</div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+                  </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--================ Blog Area end =================-->
+   </main>
+   <footer>
+      <!-- Footer Start-->
+      <div class="footer-area footer-padding">
+          <div class="container">
+              <div class="row d-flex justify-content-between">
+                  <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                      <div class="single-footer-caption mb-50">
+                          <div class="single-footer-caption mb-30">
+                              <!-- logo -->
+                              <div class="footer-logo">
+                                  <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                              </div>
+                              <div class="footer-tittle">
+                                  <div class="footer-pera">
+                                      <p>Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</p>
+                              </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                      <div class="single-footer-caption mb-50">
+                          <div class="footer-tittle">
+                              <h4>Quick Links</h4>
+                              <ul>
+                                  <li><a href="#">About</a></li>
+                                  <li><a href="#"> Offers & Discounts</a></li>
+                                  <li><a href="#"> Get Coupon</a></li>
+                                  <li><a href="#">  Contact Us</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                      <div class="single-footer-caption mb-50">
+                          <div class="footer-tittle">
+                              <h4>New Products</h4>
+                              <ul>
+                                  <li><a href="#">Woman Cloth</a></li>
+                                  <li><a href="#">Fashion Accessories</a></li>
+                                  <li><a href="#"> Man Accessories</a></li>
+                                  <li><a href="#"> Rubber made Toys</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                      <div class="single-footer-caption mb-50">
+                          <div class="footer-tittle">
+                              <h4>Support</h4>
+                              <ul>
+                                  <li><a href="#">Frequently Asked Questions</a></li>
+                                  <li><a href="#">Terms & Conditions</a></li>
+                                  <li><a href="#">Privacy Policy</a></li>
+                                  <li><a href="#">Report a Payment Issue</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Footer bottom -->
+              <div class="row align-items-center">
+                  <div class="col-xl-7 col-lg-8 col-md-7">
+                      <div class="footer-copy-right">
+                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made </i> by <a href="" target="_blank">CodeCrafters</a></p>         
+                      </div>
+                  </div>
+                  <div class="col-xl-5 col-lg-4 col-md-5">
+                      <div class="footer-copy-right f-right">
+                          <!-- social -->
+                          <div class="footer-social">
+                              <a href="#"><i class="fab fa-twitter"></i></a>
+                              <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                              <a href="#"><i class="fab fa-behance"></i></a>
+                              <a href="#"><i class="fas fa-globe"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Footer End-->
+   </footer>
+   <!--? Search model Begin -->
+   <div class="search-model-box">
+         <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form">
+               <input type="text" id="search-input" placeholder="Searching key.....">
+            </form>
+         </div>
+   </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                editable: false, // Set to false as you may not want users to edit events
+                events: [
+                    // Loop through each offer and add it to the calendar
+                    {% for offre in offres %}
+                    {
+                        title: '{{ offre.titre }}',
+                        start: '{{ offre.dated|date("Y-m-d") }}',
+                        end: '{{ offre.datef|date("Y-m-d") }}',
+                        extendedProps: {
+                            description: '{{ offre.description }}'
+                        }
+                    },
+                    {% endfor %}
+                ],
+                eventClick: function(info) {
+                    // Optionally, you can show more details about the offer when an event is clicked
+                    alert('Event: ' + info.event.title + '\nDescription: ' + info.event.extendedProps.description);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('searchInput');
+
+            searchInput.addEventListener('keyup', function(event) {
+                var searchTerm = this.value;
+
+                fetch('{{ path('app_offre_recherche2') }}?q=' + searchTerm, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                    .then(response => response.text()) // Expect HTML
+                    .then(html => {
+                        var offersContainer = document.getElementById('offers-container');
+                        offersContainer.innerHTML = html; // Update the offers container with the new HTML
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+
+
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.like-btn, .dislike-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var offreId = this.dataset.id;
+                var action = this.classList.contains('like-btn') ? 'like' : 'dislike';
+                handleVote(offreId, action, this);
+            });
+        });
+
+        function handleVote(offreId, action, button) {
+            fetch('/offre/' + offreId + '/' + action, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: offreId })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        var countSpan = button.querySelector('.count');
+                        if (!countSpan) {
+                            countSpan = document.createElement('span');
+                            countSpan.className = 'count';
+                            button.appendChild(countSpan);
+                        }
+                        countSpan.textContent = action === 'like' ? data.likes : data.dislikes;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
+
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@latest/main.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@latest/main.min.css" rel="stylesheet">
+{% endblock %}

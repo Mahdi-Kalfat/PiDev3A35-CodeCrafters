@@ -1,0 +1,91 @@
+{% extends 'baseback.html.twig' %}
+
+{% block body %}
+  {% include 'sidebar.twig' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Reponse</h1>
+          </div>
+          <div class="col-sm-6">
+           
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="card-body">
+      <!-- Default box -->
+      <div class="card card-solid">
+        <p class="d-flex justify-content-center mt-2"><b>Ajouter Réponse</b></p>
+        <div class="card-body pb-0">
+            {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+            <div class="col-md-12 form-group p_star">
+              {{ form_widget(form.Nom, {'attr': {'placeholder': 'Votre Nom', 'class': 'form-control'}}) }}
+              {{ form_errors(form.Nom) }}
+            </div>
+            <div class="col-md-12 form-group p_star">
+              {{ form_widget(form.Email, {'attr': {'placeholder': 'Votre Email', 'class': 'form-control'}} ) }}
+              {{ form_errors(form.Email) }}
+            </div>
+            <div class="col-md-12 form-group p_star">
+              {{ form_widget(form.Description, {'attr': {'placeholder': 'Votre Description', 'class': 'form-control'}}) }}
+              {{ form_errors(form.Description) }}
+            </div>
+            {{ form_end(form) }}    
+        </div>
+        <!-- /.card-body -->
+
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </div>  
+    <!-- /.card-body -->
+
+    <!-- /.card-footer-->
+  </div>
+  <!-- /.card -->
+
+</section>
+
+    <!-- Main content -->
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2023-2024 <a href="">Admin WeTek</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

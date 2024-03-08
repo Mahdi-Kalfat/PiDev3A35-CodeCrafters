@@ -1,0 +1,11 @@
+controllers:
+    resource: ../src/Controller/
+    type: annotation
+
+votre_route_de_traitement_stripe:
+    path: '/traitement/stripe'
+    controller: 'App\Controller\StripeController::traitementStripe'
+
+app_commande_pdf:
+    path: '/commande/{id}/pdf'
+    controller: 'App\Controller\CommandeController::generatePdf'

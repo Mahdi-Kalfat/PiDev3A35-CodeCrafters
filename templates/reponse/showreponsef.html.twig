@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+     {% include 'navbar.twig' %}
+    <main>
+        <!-- ================ contact section start ================= -->
+        <section class="contact-section d-flex justify-content-center">
+            <div class="container">
+
+
+                <div class="card card-solid">
+    <p class="d-flex justify-content-center mt-2"><b>Details Reponse</b></p>
+    <div class="card-body pb-0">
+        <div class="row ">
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>évaluation</th>
+                    <th>Evaluée</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+           {% for reponse in reponses %}
+    <tr>
+        <td>{{ reponse.getNom() }}</td>
+        <td>{{ reponse.getEmail() }}</td>
+        <td>{{ reponse.getDescription() }}</td>
+        <td> 
+            {% if reponse.getRate() == 0 %}<img src="{{asset('img/0star.png')}}" style="width: 100px;">
+            {% elseif reponse.getRate() == 1 %}<img src="{{asset('img/1star.png')}}" style="width: 100px;">
+            {% elseif reponse.getRate() == 2 %}<img src="{{asset('img/2star.png')}}" style="width: 100px;">
+            {% elseif reponse.getRate() == 3 %}<img src="{{asset('img/3star.png')}}" style="width: 100px;">
+            {% elseif reponse.getRate() == 4 %}<img src="{{asset('img/4star.png')}}" style="width: 100px;">
+            {% elseif reponse.getRate() == 5 %}<img src="{{asset('img/5star.png')}}" style="width: 100px;">
+            {% endif %}
+        </td>
+        <td class="align-middle">
+            <a class="btn btn-warning rounded-pill" href="{{ path('app_rating', {'id': reponse.id}) }}" style="text-decoration: none; font-size: 16px; color: #fff; padding: 12px 24px;">
+                Évaluée
+            </a>
+        </td>
+    </tr>
+{% endfor %}
+
+
+            </tbody>
+        </table>
+          </div>
+        </div>
+        
+        <!-- /.card-body -->
+        
+        <!-- /.card-footer -->
+      </div>
+
+
+
+
+               
+            </div>
+        </section>
+        <!-- ================ contact section end ================= -->
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="{{ asset('/img/logo/logo2_footer.png') }}" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Quick Links</h4>
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#"> Offers & Discounts</a></li>
+                                    <li><a href="#"> Get Coupon</a></li>
+                                    <li><a href="#">  Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>New Products</h4>
+                                <ul>
+                                    <li><a href="#">Woman Cloth</a></li>
+                                    <li><a href="#">Fashion Accessories</a></li>
+                                    <li><a href="#"> Man Accessories</a></li>
+                                    <li><a href="#"> Rubber made Toys</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Support</h4>
+                                <ul>
+                                    <li><a href="#">Frequently Asked Questions</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Report a Payment Issue</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer bottom -->
+                <div class="row align-items-center">
+                    <div class="col-xl-7 col-lg-8 col-md-7">
+                        <div class="footer-copy-right">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made </i> by <a href="" target="_blank">CodeCrafters</a></p>                  
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5">
+                        <div class="footer-copy-right f-right">
+                            <!-- social -->
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!--? Search model Begin -->
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Searching key.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+{% endblock %}

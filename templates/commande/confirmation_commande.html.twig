@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Insérez ici le contenu de votre vue pour la confirmation de commande -->
+    <!-- Incluez également le formulaire de paiement Stripe -->
+
+    <!-- Formulaire de paiement Stripe -->
+    <div class="section-top-border">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8 col-md-8">
+                <h3 class="mt-30 mb-30 text-center">Paiement</h3>
+               <!-- > <form action="{{ path('votre_route_de_traitement_stripe') }}" method="post" id="payment-form">
+                    <div class="form-row">
+                            <label for="card-element">
+                                Carte de crédit ou de débit
+                            </label>
+                            <div id="card-element">
+                               
+                            </div>
+                            
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                   
+                    <button id="submit-button" class="btn btn-primary">Payer //{prixTotalPanier {}} DT</button>
+                </form> -->
+                <form action="" method="POST">
+                    <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_51OpfUGDCxyxLdTEx8rvGvuSEDP05VTMnHqHRcMF90HBvlp7wDfFoVPNpUTdkt8Fc38Jk7t7faOC7eOdMFpDgAFOi00dgiRStca"
+                        data-amount="999"
+                        data-name="Wetek"
+                        data-description="Widget"
+                        data-image="/img/documentation/checkout/marketplace.png"
+                        data-locale="auto">
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Fin du formulaire de paiement Stripe -->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Configuration de Stripe
+        var stripe = Stripe('pk_test_51OpfUGDCxyxLdTEx8rvGvuSEDP05VTMnHqHRcMF90HBvlp7wDfFoVPNpUTdkt8Fc38Jk7t7faOC7eOdMFpDgAFOi00dgiRStca');
+        var elements = stripe.elements();
+
+        // Style du champ de carte
+        var style = {
+            base: {
+                color: '#32325d',
+                fontFamily: 'Arial, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            }
+        };
+
+        // Création de l'élément de carte Stripe
+        var card = elements.create('card', { style: style });
+        card.mount('#card-element');
+
+        // Gestion des erreurs de validation
+        card.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Soumission du formulaire
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    // Afficher les erreurs de Stripe dans le formulaire
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Ajouter le token de carte au formulaire
+                    var tokenInput = document.createElement('input');
+                    tokenInput.setAttribute('type', 'hidden');
+                    tokenInput.setAttribute('name', 'stripeToken');
+                    tokenInput.setAttribute('value', result.token.id);
+                    form.appendChild(tokenInput);
+
+                    // Soumettre le formulaire
+                    form.submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}

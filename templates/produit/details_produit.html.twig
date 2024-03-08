@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% include 'navbar.twig' %}
+    
+     <main>
+        <!-- Latest Products Start -->
+        <section class="popular-items">
+            <div class="container">
+                <div class="row product-btn justify-content-between mb-30">
+                    <div class="properties__button">
+                        <!--End Nav Button  -->
+                    </div>
+                    <!-- Grid and List view -->
+                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2>Détails du Produit</h2>
+                <hr>
+                <div class="card">
+                    <div class="card-body"> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">{{ produit.nom }}</h5>
+                                <p class="card-text"><strong>Description:</strong> {{ produit.description }}</p>
+                                <p class="card-text"><strong>Marque:</strong> {{ produit.marque }}</p>
+                                <p class="card-text"><strong>État:</strong> {{ produit.etat }}</p>
+                                <p class="card-text"><strong>Type:</strong> {{ produit.type }}</p>
+                                <p class="card-text"><strong>Taille:</strong> {{ produit.taille }}</p>
+                                <p class="card-text"><strong>Prix:</strong> {{ produit.prix }} DT</p>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                {% if produit.image %}
+                                    <img src="{{ asset('imgproduit/' ~ produit.image) }}" alt="Image du produit" class="img-fluid mb-3">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                     <a href="{{ path('app_produit') }}" class="btn btn-sm btn-primary">Retour vers les produits</a>
+                </div>
+            </div>
+        </div>
+    </div>
+     {% include 'footer.twig' %}
+{% endblock %}

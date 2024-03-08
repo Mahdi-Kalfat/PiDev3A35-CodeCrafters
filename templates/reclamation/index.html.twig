@@ -1,0 +1,108 @@
+{% extends 'baseback.html.twig' %}
+
+  {% block body %}
+
+            <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+			<link rel="manifest" href="site.webmanifest">
+			<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
+			<!-- CSS here -->
+			<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/slicknav.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/fontawesome-all.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/select.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	
+	<div class="ml-5">
+		<div class="col-lg-5" style ="margin-right: 100px;">
+    <div class="card h-100 mt-3"> <!-- Added 'text-center' class here -->
+        <canvas id="ReclamationsChart" width="500" height="500" class="mb-5 mt-5 ml-5 mr-5 mx-auto"></canvas> <!-- Added 'mx-auto' class here -->
+    </div>
+	</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('ReclamationsChart').getContext('2d');
+        var reclamationCounts = {{ reclamationCounts|json_encode|raw }};
+        
+        var labels = [];
+        var data = [];
+        var backgroundColors = []; // Define an array to hold custom background colors
+        
+        // Define custom background colors for each function
+        var customColors = [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+			'rgba(251, 99, 64, 0.5)',
+            'rgba(94, 114, 228, 0.5)',
+
+            // Add more colors as needed
+        ];
+        
+        reclamationCounts.forEach(function(item, index) {
+            labels.push(item.obj); // Use EmpFunction attribute
+            data.push(item.count);
+            backgroundColors.push(customColors[index % customColors.length]); // Ensure colors are cycled
+        });
+
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre de réclamation par objet:',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderColor: backgroundColors.map(color => color.replace('0.5', '1')), // Increase opacity for borders
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+					</div>
+				</div>
+				<!-- Jquery, Popper, Bootstrap -->
+				<script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
+				<script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
+				<script src="{{ asset('js/popper.min.js') }}"></script>
+				<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+				<!-- Jquery Mobile Menu -->
+				<script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+				<!-- Jquery Slick , Owl-Carousel Plugins -->
+				<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+				<script src="{{ asset('js/slick.min.js') }}"></script>
+				<!-- One Page, Animated-HeadLin -->
+				<script src="{{ asset('js/wow.min.js') }}"></script>
+				<script src="{{ asset('js/animated.headline.js') }}"></script>
+				<script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+				<!-- Scrollup, nice-select, sticky -->
+				<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+				<script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+				<script src="{{ asset('js/jquery.sticky.js') }}"></script>
+				<!-- contact js -->
+				<script src="{{ asset('js/contact.js') }}"></script>
+				<script src="{{ asset('js/jquery.form.js') }}"></script>
+				<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+				<script src="{{ asset('js/mail-script.js') }}"></script>
+				<script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+				<!-- Jquery Plugins, main Jquery -->
+				<script src="{{ asset('js/plugins.js') }}"></script>
+				<script src="{{ asset('js/main.js') }}"></script>
+			{% endblock %}     

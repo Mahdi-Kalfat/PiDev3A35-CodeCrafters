@@ -1,0 +1,212 @@
+{% extends 'baseback.html.twig' %}
+
+{% block body %}
+<div class="wrapper">
+
+      {% include 'sidebar.twig' %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Gestion Livraison</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add Livraison</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+      <form action="{{ path('app_livraison_recherche') }}" method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="p" class="form-control" placeholder="Recherche ici ..." aria-label="Recherche" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
+        </div>
+    </div>
+</form>
+        <div class="row">
+          <div class="col-md-3">
+              {{ form_start(formAddliv,{'attr': {novalidate: 'novalidate'}} ) }}
+            <div class="sticky-top mb-3">
+              <!-- /.card -->
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">Ajout Livraison</h3>
+                </div>
+                <div class="card-body">
+                  <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                    
+                  </div>
+                 
+                  <!-- /btn-group -->
+                  <div class="form-group">
+                  <label for="">Numero Livraison</label>
+                    {{ form_widget(formAddliv.numliv, {'attr': {'placeholder': 'Votre numero de livraison', 'class': 'form-control'}}) }}
+                    {{form_errors(formAddliv.numliv)}}
+                  </div>
+                 <div class="form-group ml-3">
+                 <label for="">Contenu Livraison</label>
+                    {{ form_widget(formAddliv.idcommande, { 'attr': {} }) }}
+                    {{form_errors(formAddliv.idcommande)}}
+                  </div>
+                  <div class="form-group">
+                  <label for="">Zone Livraison</label>
+                    {{ form_widget(formAddliv.zoneliv, {'attr': {'placeholder': 'zoneliv', 'class': 'form-control mt-2' }}) }}
+                    {{form_errors(formAddliv.zoneliv)}}
+                  </div>
+                  <div class="form-group mt-2">
+                  <label for="">Date Livrasion</label>
+                    {{ form_widget(formAddliv.dateliv, {'attr': {'placeholder': 'dateliv', 'class': 'form-control'}}) }}
+                    {{form_errors(formAddliv.dateliv)}}
+                  </div>
+                  <div class="form-group">
+                  <label for="">ID Livreur</label>
+                     {{ form_widget(formAddliv.idlivreur, {'attr': {'placeholder': 'idlivreur', 'class': 'form-control mt-2'}}) }}    
+                  </div>
+                  <div class="form-group">
+                   {{ form_widget(formAddliv.etatliv, {'attr': {'placeholder': 'etatliv', 'class': 'form-control mt-2'} }) }}
+                  </div>
+                  <div class="input-group">
+                   {{ form_widget(formAddliv.submit, {'attr': {'type':'button', 'class' : 'btn btn-primary mt-2','id': 'add-new-event'} }) }}
+                  </div>
+                  <div class ="mt-2">
+                   {% for flashType, flashMessages in app.flashes %}
+                                        {% for flashMessage in flashMessages %}
+                                            <div class="alert alert-danger alert-dismissible fade show col-md-12" role="alert">
+                                                <strong class="d-flex justify-content-center">{{ flashMessage }}</strong>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                  <!-- /input-group -->
+                  </div>
+                </div>
+                {{ form_end(formAddliv) }}
+              </div>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card card-primary">
+              <div class="card-body p-0">
+                
+                  <div class="card-header">
+                    <h4 class="card-title">Liste Livraisons</h4>
+                  </div>
+                  <div class="card-body">
+                   
+                    <table class="table">
+                    {% if livraisons %}
+                      <thead>
+                        <tr>
+                          <th scope="col">Num Livraison</th>
+                          <th scope="col">Contenu Livraison</th>
+                          <th scope="col">Zone Livraison</th>
+                          <th scope="col">Date Livraison</th>
+                          <th scope="col">Id Livreur</th>
+                          <th scope="col">Etat Livraison</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for livraison in livraisons %}
+                        <tr>
+                          <td>{{livraison.numliv}}</td>
+                          <td>{% for commande in livraison.idcommande %}
+                                  {{ commande.idcommande }}
+                              {% endfor %}</td>
+                          <td>{{livraison.zoneliv}}</td>
+                          <td>{{livraison.dateliv|date('d/m/Y H:i')}}</td>
+                          <td>{{livraison.idlivreur}}</td>
+                          <td>{{livraison.etatliv}}</td>
+                          <td><a href="{{ path('app_livraison_edit', {'id': livraison.id }) }}" class="btn btn-info mr-1">Edit</a><a href="{{ path('app_livraison_livre', {'id': livraison.id }) }}" class="btn btn-success">Livrée</a></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Livraison Pour le moment</b></p>
+                    {% endif %}
+                    
+                    <hr>
+                    <h6> List Livraison effectuée </h6>
+                    <br>
+                    {% if Livres %}
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Num Livraison</th>
+                          <th scope="col">Contenu Livraison</th>
+                          <th scope="col">Zone Livraison</th>
+                          <th scope="col">Date Livraison</th>
+                          <th scope="col">Id Livreur</th>
+                          <th scope="col">Commantaire du client</th>
+                          <th scope="col">Etat Livraison</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for liv in Livres %}
+                        <tr>
+                        
+                          <td>{{liv.numliv}}</td>
+                          <td>{% for commande in liv.idcommande %}
+                                  {{ commande.idcommande }}
+                              {% endfor %}
+                          </td>
+                          <td>{{liv.zoneliv}}</td>
+                          <td>{{liv.dateliv|date('d/m/Y')}}</td>
+                          <td>{{liv.idlivreur}}</td>
+                          <td>
+                          {% if liv.commentaire is empty %}
+                          <p style="color:red">Le client n'a pas mis de commentaire</p>
+                          {% else %}{{liv.commentaire}}
+                          {% endif %}
+                          </td>
+                          <td style="color : green;"><b>{{liv.etatliv}}</b></td>
+                         
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Livraison Effectuée</b></p>
+                    {% endif %}   
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+      </div>
+    </section>
+  
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{% endblock %}
+
+				

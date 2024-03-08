@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facture de commande</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .invoice-header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #f00;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="invoice-header">
+            <h1>- WeTek -</h1>
+            <h1>Facture de commande</h1>
+            <p class="center">Date : {{ dateCourante|date('d/m/Y') }}   {{ heureActuelle|date('H:i:s') }}</p>           
+        </div>
+        <p class="center"><strong>Numéro de commande :</strong> {{ commande.id }}</p>
+    
+        <table>
+            <tr>
+                <th>Adresse de livraison</th>
+                <td>{{ commande.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Produits commandés</th>
+                <td>
+                    <ul>
+                        {% for produit in commande.produits %}
+                            <li>{{ produit.nom }} : {{ produit.prix }} DT</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Méthode de paiement</th>
+                <td>Carte bancaire</td>
+            </tr>
+            <tr>
+                <th>Total à payer</th>
+                <td><span class="total">{{ commande.prixTotal }} DT</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="container center">
+        <p>Merci pour votre achat !</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends 'baseback.html.twig' %}
+
+{% block body %}
+  {% include 'sidebar.twig' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+           
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+<!-- Main content -->
+    <section class="content">
+
+<!-- Default box -->
+<div class="card card-solid">
+    <p class="d-flex justify-content-center mt-2"><b>List des Reponses</b></p>
+    <div class="card-body pb-0">
+        <div class="row">
+             {% for reponse in reponses %}
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-muted border-bottom-0">
+                        Reponse
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2 class="lead"><b></b></h2>
+                                <p class="text-muted text-sm"><b>Nom: </b>{{ reponse.getNom() }}</p>
+                                <p class="text-muted text-sm"><b>Email:</b> {{ reponse.getEmail() }}</p>
+                                <p class="text-muted text-sm"><b>Description: </b>{{ reponse.getDescription() }}</p>
+                                <a class="btn btn-info mb-2 mr-2" href="{{ path('app_reponse_edit', {'id': reponse.id}) }}"><span class="fas fa-edit"></span> Modifier</a>
+                                <a class="btn btn-danger mb-2 mr-2" href="{{ path('app_reponse_delete', {'id': reponse.id}) }}">
+                                <span class="fas fa-trash"></span> Supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Livreur Pour le Moment</b></p>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <!-- /.card-body -->
+        
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- Main content -->
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2023-2024 <a href="">Admin WeTek</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

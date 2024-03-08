@@ -1,0 +1,31 @@
+{% for offre in offres %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ asset('imgof/' ~ offre.image) }}" class="card-img-top img-fluid" style="width: 100%; height: 100%;">
+            <div class="card-body">
+                <h3 class="card-title text-center" style="font-size: 20px; font-weight: bold;">{{ offre.titre }}</h3>
+                <h6 class="card-subtitle mb-2 text-muted text-center" style="font-size: 16px;">{{ offre.type }}</h6>
+                <ul class="list-unstyled text-center" style="margin-bottom: 15px;">
+                    <li style="font-size: 18px;"><i class="fa fa-calendar"></i> <strong>Date de Début:</strong> <span class="badge badge-warning">{{ offre.dated|date('d M Y') }}</span></li>
+                    <li style="font-size: 18px;"><i class="fa fa-calendar"></i> <strong>Date de Fin:</strong> <span class="badge badge-warning">{{ offre.datef|date('d M Y') }}</span></li>
+
+                </ul>
+                <p class="card-text text-center" style="font-size: 16px; line-height: 1.6; color: #666;">{{ offre.description | raw }}</p>
+                {# Ensure that percentage values always have a "%" symbol #}
+                {% set formattedPourcentage = offre.Poucentage ~ "%" %}
+                <p class="card-text text-center" style="font-size: 20px; font-weight: bold; color: #ff5733;">{{ formattedPourcentage }}</p>
+                <a href="#" class="btn btn-primary d-block mx-auto" style="font-size: 16px;">Profiter de l'offre</a>
+            </div>
+            <div class="card-footer d-flex justify-content-around">
+                <button class="btn btn-outline-success btn-sm like-btn" data-id="{{ offre.id }}">
+                    <i class="fa fa-thumbs-up"></i>Like  <span class="count"> ({{ offre.likes }})</span>
+                </button>
+                <button class="btn btn-outline-danger btn-sm dislike-btn" data-id="{{ offre.id }}">
+                    <i class="fa fa-thumbs-down"></i>Dislike  <span class="count">({{ offre.dislikes }})</span>
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+{% endfor %}

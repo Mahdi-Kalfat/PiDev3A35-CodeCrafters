@@ -1,0 +1,172 @@
+{% extends 'baseback.html.twig' %}
+
+{% block body %}
+   {% include 'sidebar.twig' %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h4>Liste des livreurs</h4>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">List livreur</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    <form action="{{ path('app_livreur_recherche') }}" method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Recherche ici ..." aria-label="Recherche" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
+        </div>
+    </div>
+</form>
+
+<!-- Default box -->
+<div class="card card-solid">
+    <p class="d-flex justify-content-center mt-2"><b>Livreur Active</b></p>
+    <div class="card-body pb-0">
+        <div class="row">
+            {% for livreur in livreurs %}
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-muted border-bottom-0">
+                        Livreur
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2 class="lead"><b>{{ livreur.idlivreur }}</b></h2>
+                                <p class="text-muted text-sm"><b>Nom&Prenom: {{ livreur.nom }} {{ livreur.prenom }}</b></p>
+                                <p class="text-muted text-sm"><b>Disponibilité: {{ livreur.disponibilite }}</b></p>
+                                <p class="text-muted text-sm"><b>Vehicule: {{ livreur.vehicule }}</b></p>
+                                <p class="text-muted text-sm"><b>Zone: {{ livreur.zonelivraison }}</b></p>
+                                <p class="text-muted text-sm"><b>Numero Tel: (+216) {{ livreur.numtel }}</b></p>
+                            </div>
+                            <div class="col-4 text-center">
+                                {% if livreur.image %}
+                                    <img src="{{ asset('imglivreur/' ~ livreur.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 200px; height: 120px;">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between ">
+                            <a href="{{ path('app_livreur_form_edit', {'id': livreur.id }) }}" class="btn btn-sm btn-info mr-2">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="{{ path('app_livreur_ban', {'id': livreur.id }) }}" class="btn btn-sm btn-danger mr-2">
+                                <i class="fas fa-minus"></i> Bannir
+                            </a>
+                            <a href="{{path('app_livreur_send_mail',{'id': livreur.idlivreur })}}" class="btn btn-sm bg-teal mr-2">
+                                <i class="fas fa-comments"></i> Envoyer Mail
+                            </a>
+                            <a href="{{ path('app_livraison_livreur', {'id': livreur.id }) }}" class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-file"></i> List Livraison
+                            </a>
+                            <a href="{{ path('app_livraison_historique', {'id': livreur.id }) }}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-file"></i> Historique livraison
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Livreur Pour le Moment</b></p>
+            {% endfor %}
+            
+          </div>
+        </div>
+        
+        <!-- /.card-body -->
+        
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+     <!-- Main content -->
+     <section class="content">
+
+      <!-- Default box -->
+      <div class="card card-solid">
+        <p class="d-flex justify-content-center mt-2"><b>Livreur Bani</b></p>
+        <div class="card-body pb-0">
+          <div class="row">
+            {% for nonlivreur in nonlivreurs %}
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-muted border-bottom-0">
+                        Livreur
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2 class="lead"><b>{{ nonlivreur.idlivreur }}</b></h2>
+                                <p class="text-muted text-sm"><b>Nom&Prenom: {{ nonlivreur.nom }} {{ nonlivreur.prenom }}</b></p>
+                                <p class="text-muted text-sm"><b>Disponibilité: {{ nonlivreur.disponibilite }}</b></p>
+                                <p class="text-muted text-sm"><b>Vehicule: {{ nonlivreur.vehicule }}</b></p>
+                                <p class="text-muted text-sm"><b>Zone: {{ nonlivreur.zonelivraison }}</b></p>
+                                <p class="text-muted text-sm"><b>Numero Tel: (+216) {{ nonlivreur.numtel }}</b></p>
+                            </div>
+                            <div class="col-4 text-center">
+                                {% if nonlivreur.image %}
+                                    <img src="{{ asset('imglivreur/' ~ nonlivreur.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 200px; height: 120px;">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-end">
+                        <a href="{{ path('app_livreur_unban', {'id': nonlivreur.id }) }}" class="btn btn-sm bg-teal mr-2">
+                                <i class="fas fa-minus"></i> Annuler le ban
+                            </a>
+                            <a href="{{ path('app_livraison_historique', {'id': nonlivreur.id }) }}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-file"></i> Historique Livraison
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %} <p class="col-12 text-center mb-5" style="color:red;"><b>Pas De Livreur Bani Pour le Moment</b></p>
+            {% endfor %}
+            <!-- ADD NEW ONE HERE-->
+          </div>
+        </div>
+        <!-- /.card-body -->
+        
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.1.0
+    </div>
+    <strong>Copyright &copy; 2023-2024 <a href="">Admin WeTek</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{% endblock %}
+
+

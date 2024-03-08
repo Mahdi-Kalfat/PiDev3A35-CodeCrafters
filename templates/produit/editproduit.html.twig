@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+	{% block body %}
+        {% include 'navbar.twig' %}
+    <main>
+        <!--================login_part Area =================-->
+        <div class="section-top-border">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8 col-md-8">
+                    <h3 class="mt-30 mb-30 text-center">Modifier les détails du produit a vendre</h3>
+                            {{ form_start(formAdd, {attr: {novalidate: 'novalidate'}}) }}
+                                    <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.nom, {'attr': {'placeholder': 'Votre Nom', 'class': 'form-control'}}) }}
+                                    {{ form_errors(formAdd.nom) }}
+                                   </div>
+                                    <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.description, {'attr': {'placeholder': 'Votre Description', 'class': 'form-control'}} ) }}
+                                    {{ form_errors(formAdd.description) }}
+                                   </div>
+                                   <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.marque, {'attr': {'placeholder': 'Marque', 'class': 'form-control'}}) }}
+                                    {{ form_errors(formAdd.marque) }}
+                                   </div>
+                                    <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.prix, {'attr': {'placeholder': 'Votre Prix', 'class': 'form-control'}}) }}
+                                    {{ form_errors(formAdd.prix) }}
+                                   </div>
+                                    <div class="dropdown">
+                                   <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.etat, {'attr': {'placeholder': 'Etat', 'class': 'form-control'}}) }}
+                                    {{ form_errors(formAdd.etat) }}
+                                    </div>
+                                    </div>
+                                    <div class="dropdown">
+                                   <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.type, {'attr': {'placeholder': 'Type', 'class': 'form-control'} }) }}
+                                    {{ form_errors(formAdd.type) }}
+                                   </div>
+                                   </div>
+                                   <div class="dropdown">
+                                        <div class="col-md-12 form-group p_star">
+                                            {{ form_widget(formAdd.taille, {'attr': {'placeholder': 'Taille', 'class': 'form-control'} }) }}
+                                            {{ form_errors(formAdd.taille) }}
+                                        </div>
+                                    </div>
+                                   <div class="form-group">
+                                    <label for="">Image</label>
+                                    {{ form_widget(formAdd.image, {'attr': {'placeholder': 'Votre Image', 'class': 'form-control'} }) }}
+                                    {{ form_errors(formAdd.image) }}
+                                   </div>
+                                    <style>
+                                    .button-container > *:first-child {
+                                     margin-right: 10px;
+                                    }
+                                    </style>
+                                    <div class="col-md-12 form-group p_star d-flex justify-content-center">
+                                    <div class="button-container">
+                                    {{ form_widget(formAdd.ajouter, {'label': 'Modifier','attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }} 
+                                    
+                                    </div>
+                                    </div>
+                            {{ form_end(formAdd) }}
+                </div>
+            </div>
+        </div>
+        <!--================login_part end =================-->
+    </main>
+    {% endblock %}

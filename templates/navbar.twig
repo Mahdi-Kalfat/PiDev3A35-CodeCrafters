@@ -1,0 +1,68 @@
+<!--? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ asset('img/logo/logo.png') }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="{{ path('app_user_home') }}"><img src="{{ asset('img/logo/logo.png') }}" alt=""></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>                                                
+                                <ul id="navigation">  
+                                    <li><a href="{{ path('app_user_home') }}">Acceuil</a></li>
+                                    <li><a href="{{path('app_produit')}}">Magasin</a>
+                                        <ul class="submenu">
+                                            <li><a href="{{path('favoris')}}">List de Favoris</a></li>
+                                            <li><a href="{{path('app_show_commande')}}">List de Commande</a></li>
+                                            <li><a href="{{path('app_livraison_suivif')}}">Suivre Livraison</a></li>
+                                        </ul> 
+                                    </li>
+                                    <li><a href="">A propos</a></li>
+                                    <li class="hot"><a href="{{path('app_offre_show')}}">Offre</a>
+                                    </li>
+                                    <li><a href="#">Reclamation</a>
+                                        <ul class="submenu">
+                                            <li><a href="{{path('app_reclamation')}}">Ajouter Reclamation</a></li>
+                                            <li><a href="{{path('app_reclamation_showf')}}">List Reclamation</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Nous Contacter</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header Right -->
+                        <div class="header-right">
+                        <nav>
+                            <ul>                          
+                            <li><a href="{{path('app_user_profil')}}"><span class="flaticon-user"></span></a></li>  
+                               <li><a href="{{path('app_panier')}}"><span class="flaticon-shopping-cart">
+                                    {% if app.session.get('cart') %}
+                                    {{ app.session.get('cartData').data.quantityCart }}
+                                    {% else %}
+                                        0   
+                                    {%endif %}
+                                </span></a> </li>
+                            </ul>
+                        </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>

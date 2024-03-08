@@ -1,0 +1,97 @@
+{% extends 'baseback.html.twig' %}
+
+{% block body %}
+{% include 'sidebar.twig' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Gestion Livraison</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Livraison</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content ">
+      <div class="container-fluid " >
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-5">
+              {{ form_start(formAddliv,{'attr': {novalidate: 'novalidate'}} ) }}
+            <div class="sticky-top mb-3">
+              <!-- /.card -->
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">Editer Livraison</h3>
+                </div>
+                <div class="card-body">
+                
+                 
+                  <!-- /btn-group -->
+                  <div class="form-group">
+                  <label for="">Numero Livraison</label>
+                    {{ form_widget(formAddliv.numliv, {'attr': {'placeholder': 'Votre numero de livraison', 'class': 'form-control'}}) }}
+                    {{form_errors(formAddliv.numliv)}}
+                  </div>
+                   <div class="form-group ml-3 mt-3">
+                   <label for="">Contenu Livraison</label>
+                    {{ form_widget(formAddliv.idcommande, { 'attr': {} }) }}
+                    {{form_errors(formAddliv.idcommande)}}
+                  </div>
+                  <div class="form-group">
+                  <label for="">Zone Livraison</label>
+                    {{ form_widget(formAddliv.zoneliv, {'attr': {'placeholder': 'zoneliv', 'class': 'form-control mt-2' }}) }}
+                    {{form_errors(formAddliv.zoneliv)}}
+                  </div>
+                  <div class="form-group">
+                  <label for="">Date Livrasion</label>
+                    {{ form_widget(formAddliv.dateliv, {'attr': {'placeholder': 'dateliv', 'class': 'form-control mt-2'}}) }}   
+                    {{form_errors(formAddliv.dateliv)}}
+                  </div>
+                  <div class="form-group">
+                  <label for="">ID Livreur</label>
+                     {{ form_widget(formAddliv.idlivreur, {'attr': {'placeholder': 'idlivreur', 'class': 'form-control mt-2'}}) }}    
+                  </div>
+                  <div class="form-group">
+                   {{ form_widget(formAddliv.etatliv, {'attr': {'placeholder': 'etatliv', 'class': 'form-control mt-2'} }) }}
+                  </div>
+                  
+                   {{ form_widget(formAddliv.submit, {'attr': {'class' : 'btn btn-primary mt-2'} }) }}
+                  
+                  <!-- /input-group -->
+                </div>
+                {{ form_end(formAddliv) }}
+              </div>
+            </div>
+          </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+      </div>
+    </section>
+  
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{% endblock %}
+
+				

@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+	{% block body %}
+         {% include 'navbar.twig' %}
+    <main>
+        <!--================login_part Area =================-->
+        <div class="section-top-border">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8 col-md-8">
+                    <h3 class="mt-30 mb-30 text-center">Entrez les détails nécessaire pour finaliser votre achat !</h3>
+                    
+                  <form action="" method="POST">
+<div class="col-md-12 form-group p_star d-flex justify-content-center">
+    <label for="stripePayment" class="border rounded p-2 text-center">
+            Vous pouvez effectuer le paiement directement via la carte bancaire :
+            <!-- Bouton Pay With Card -->
+            <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
+                data-key="pk_test_51OpfUGDCxyxLdTEx8rvGvuSEDP05VTMnHqHRcMF90HBvlp7wDfFoVPNpUTdkt8Fc38Jk7t7faOC7eOdMFpDgAFOi00dgiRStca"
+                data-amount="{{ prixTotalPanier * 100 }}" 
+                data-name="Wetek"
+                data-description="Entrez les détails de votre carte !"
+                data-image="{{ asset('/img/logo/logo.png') }}"
+                data-locale="auto">
+            </script>
+            <!-- Texte approprié -->
+            
+        </label>
+    </div>
+</form>
+                            {{ form_start(formAdd, {attr: {novalidate: 'novalidate'}}) }}
+                                    <div class="col-md-12 form-group p_star">
+                                        {{ form_widget(formAdd.adresse, {'attr': {'placeholder': 'Address ', 'class': 'form-control'}}) }}
+                                        {{ form_errors(formAdd.adresse) }}
+                                   </div>
+                                    <div class="dropdown">
+                                   <div class="col-md-12 form-group p_star">
+                                        {{ form_widget(formAdd.paiement, {'attr': {'placeholder': 'Methode de paiement'} }) }}
+                                        {{ form_errors(formAdd.paiement) }}
+                                   </div>
+                                    </div>
+                                   <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control'}} ) }}
+                                    {{ form_errors(formAdd.codepostal) }}
+                                   </div>
+                                   <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.nom_entreprise, {'attr': {'placeholder': 'Nom de votre entreprise (si vous avez)', 'class': 'form-control'}} ) }}
+                                    {{ form_errors(formAdd.nom_entreprise) }}
+                                   </div>
+                                   <div class="col-md-12 form-group p_star">
+                                    {{ form_widget(formAdd.numero, {'attr': {'placeholder': 'Votre numero', 'class': 'form-control'}} ) }}
+                                    {{ form_errors(formAdd.numero) }}
+                                   </div>
+                                    <style>
+                                    .button-container > *:first-child {
+                                     margin-right: 10px;
+                                    }
+                                    </style>
+                                    <div class="col-md-12 form-group p_star border rounded text-center">
+                                        <label for="produits" class="font-weight-bold">Produits associés à votre commande :</label>
+                                        <div class="products-list "> 
+                                            <ul class="list-unstyled ">
+                                                {% for nomProduit in nomsProduits %}
+                                                    <li><i class="fas fa-check-circle text-success mr-2"></i>{{ nomProduit }}</li> <!-- icone check-->
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <p class="mt-3">
+                                            <label for="produits" class="font-weight-bold">Montant total de votre commande :</label>
+                                            <span style="background-color: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px;">{{ prixTotalPanier }} DT</span> 
+                                        </p>
+                                    </div>                    
+                                    <div class="col-md-12 form-group p_star d-flex justify-content-center">
+                                    <div class="button-container">
+                                    {{ form_widget(formAdd.Valider, {'attr': {'class': 'btn btn-sm btn-primary genric-btn danger circle arrow' } }) }}
+                                    <a href="{{path('app_panier')}}" class="genric-btn danger circle arrow">Retour ver le panier </a>                                   
+                                    </div>
+                                    </div>
+                            {{ form_end(formAdd) }}
+
+                </div>
+            </div>
+        </div>
+        <!--================login_part end =================-->
+        </main>
+        {% include 'footer.twig' %}  
+
+    {% endblock %}

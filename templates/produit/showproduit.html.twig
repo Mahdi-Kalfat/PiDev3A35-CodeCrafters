@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+            {% include 'navbar.twig' %}
+    <main>
+        <!-- Latest Products Start -->
+        <section class="popular-items">
+            <div class="container">
+
+                <h6>Acceuil > Magasin > All</h6>
+                    
+                <div class="d-flex justify-content-end" style="padding-bottom: 20px;">
+                    <a href="{{ path('app_addproduit') }}" class="genric-btn circle mr-2" style="background-color: red; color: white;">Vendre un produit</a>
+                    <a href="{{ path('app_afficherproduit') }}" class="genric-btn circle" style="background-color: red; color: white;">Liste de mes produits</a>
+                </div>
+        <div class="row mb-4">
+        <div class="col-md-6">
+                <form action="{{ path('app_produit') }}" method="GET" style="margin-bottom: 20px;">
+                <input type="text" name="marque" placeholder="Rechercher par marque..." style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; width: 200px; font-size: 13px;">
+                <button type="submit" style="padding: 10px 20px; background-color: f2f2f2; color: black; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;">Rechercher</button>
+            </form>
+            </div>
+            <div class="col-md-6">
+                         <form action="{{ path('app_produit') }}" method="GET" class="text-right" >
+                <div class="form-group d-inline-block">
+                    <select class="form-control mb-20" id="tri" name="tri" >
+                        <option value="">Trier par ordre :</option>
+                        <option value="asc" {% if app.request.query.get('tri') == 'asc' %}selected{% endif %}>Croissant</option>
+                        <option value="desc" {% if app.request.query.get('tri') == 'desc' %}selected{% endif %}>Décroissant</option>
+                    </select>
+                    <button type="submit" style="padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 13px;">Trier</button>
+                </div>
+            </form>
+    </div>
+    </div>
+            <form action="{{ path('app_produit') }}" method="GET">
+        <div class="row ">
+            <div class="col-md-12">
+        <h3 class="mb-10">Filtrer Par :</h3>
+        <div class="d-flex">
+            <div class="single-element-widget mt-10" style="margin-left: 20px;">
+            
+                <select name="type">
+                    <option value="">Types</option>
+                    <option value="pull">Pull</option>
+                    <option value="veste">Veste</option>
+                    <option value="pantalon">Pantalon</option>
+                    <option value="chaussure">Chaussure</option>
+                </select>
+            </div>
+            <div class="single-element-widget mt-10" style="margin-left: 20px;">
+                <select name="taille">
+                    <option value="">Tailles</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+            <div class="single-element-widget mt-10" style="margin-left: 20px;">
+                <select name="etat" >
+                    <option value="">Etats</option>
+                    <option value="Neuf">Neuf</option>
+                    <option value="Comme Neuf">Comme Neuf</option>
+                    <option value="Utilisé">Utilisé</option>
+                </select>
+            </div>
+            <div class="single-element-widget mt-10" style="margin-left: 20px;">
+                <button type="submit"  style="padding: 8px 30px; background-color: #f2f2f2; color: black; border: none; border-radius: 20px; cursor: pointer; font-size: 12px;">Filtrer</button>
+            </div>
+        </div>
+    </div>
+</form>
+                <!-- Nav Card -->
+                <div class="tab-content mt-30" id="nav-tabContent">
+                    <!-- card one -->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row">
+                        {% for produit in produits %}
+                            <div class="col-md-4">
+                                <div class="single-popular-items mb-50 text-center">
+                                    <div class="popular-img">
+                                        <div class="favorit-items">
+                                            <a href="{{ path('add_to_favorites', {'id': produit.id}) }}">
+                                                <span class="flaticon-heart" style="{% if produit.id in favoris %}color: red;{% endif %}"></span>
+                                            </a>
+                                        </div> <!-- 362*373 -->
+                                {% if produit.image %}
+                                    <img src="{{ asset('imgproduit/' ~ produit.image) }}" alt="user-avatar" class="img-circle img-fluid mx-auto" style="width: 215px; height: 250px;">
+                                {% endif %}
+                                        <div class="img-cap">
+                                            <span><a href="{{ path('cartAdd', {'id':produit.id})}}">Ajouter au panier</a> | <a href="{{ path('app_details_produit', {'id': produit.id}) }}">Détails</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="popular-caption">
+                                        <h3><a href="product_details.html">{{produit.nom}}</a></h3>
+                                        <span>{{produit.prix}} DT</span>                           
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!-- End Nav Card -->
+            </div>
+        </section>
+        <!-- Latest Products End -->
+  <!--? Shop Method Start-->
+  <div class="shop-method-area">
+    <div class="container">
+        <div class="method-wrapper">
+            <div class="row d-flex justify-content-between">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-method mb-40">
+                        <i class="ti-package"></i>
+                        <h6>Livraison gratuite</h6>
+                        <p>La livraison est offerte à partir de 200 DT d'achat.</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-method mb-40">
+                        <i class="ti-unlock"></i>
+                        <h6>Sécurité de paiement</h6>
+                        <p>Vos paiements sont protégés grâce à des systèmes de paiement universels.</p>
+                    </div>
+                </div> 
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-method mb-40">
+                        <i class="ti-reload"></i>
+                        <h6>Echange</h6>
+                        <p>Vous avez la possibilité de modifier vos achats dans un délai de 30 jours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </main>
+    {% include 'footer.twig' %}
+{% endblock %}
