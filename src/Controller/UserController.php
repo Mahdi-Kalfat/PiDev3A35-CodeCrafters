@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Controller;
+
+use App\Form\AuthType;
 use App\Form\EditProfilImgType;
 use App\Form\EditProfilType;
+use App\Form\VerifType;
 use App\Repository\UserRepository;
+use App\Service\AuthenticatorService;
 use Doctrine\ORM\EntityManagerInterface;
+use OTPHP\TOTP;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,6 +50,7 @@ public function profile(SessionInterface $session, UserRepository $userRepositor
     $adress = $user->getAdresse();
     $id = $user->getId();
     $image = $user->getImage();
+    $is_2f = $user->getIs2f();
 
     $user = $userRepository->find($id);
 
@@ -59,7 +65,7 @@ public function profile(SessionInterface $session, UserRepository $userRepositor
                 $newFileName 
             );
        // }*/
-            $user->setImage($newFileName);
+        $user->setImage($newFileName);
         $em->persist($user);
         $em->flush();
         return $this->redirectToRoute('app_user_profil');
@@ -75,7 +81,8 @@ public function profile(SessionInterface $session, UserRepository $userRepositor
         'mdp' => $pass,
         'adresse' => $adress,
         'id' => $id,
-        'img' => $image
+        'img' => $image,
+        'is_2f' => $is_2f,
     ]);
 }
 
@@ -129,4 +136,69 @@ public function profileedit($id,EntityManagerInterface $em,SessionInterface $ses
         
         return $this->redirectToRoute('app_user_login');
     }
+
+    #[Route('/user/auth/pair/{id}', name: 'app_user_auth_pair')]
+    public function authpair($id,AuthenticatorService $authenticatorService,UserRepository $ur, Request $request,EntityManagerInterface $em): Response
+    {
+        $user = $ur->findOneBy(["id" => $id]);
+        [$qrCodeUri ,$secret]=$authenticatorService->getQrCodeUri($user);
+        $form = $this->createForm(AuthType::class);
+        $form->setData(['secret' => $secret]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $secret = $form->get('secret')->getData();
+            $user->setSecret($secret);
+            $user->setIs2f(true);
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('app_user_profil');
+        }
+        return $this->render('auth/pair.html.twig', [
+            'qrCodeUri' => $qrCodeUri,
+            'secret' => $secret,
+            'form' =>$form,
+        ]);
+    }
+    #[Route('/user/auth/unpair/{id}', name: 'app_user_auth_unpair')]
+    public function authunpair($id,UserRepository $ur,EntityManagerInterface $em): Response
+    {
+        $user = $ur->findOneBy(["id" => $id]);
+        
+            $user->setSecret('');
+            $user->setIs2f(false);
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('app_user_profil');
+    }
+
+    #[Route('/user/auth/verif/{id}', name: 'app_user_auth_verif')]
+    public function authverif($id, Request $request, UserRepository $ur,SessionInterface $session): Response
+    {
+        $user = $ur->findOneBy(["id" => $id]);
+        $form = $this->createForm(VerifType::class);
+        $result = null; // Initialize $result here
+    
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted()) {
+            $totp = TOTP::createFromSecret($user->getSecret());
+            $result = $totp->verify($form->get('otp')->getData());
+            if($result === true){
+                $user = $ur->findOneBy(['id' => $id]);
+                $mail = $user->getMail();
+                $session->set('user_email', $mail);
+                return $this->redirectToRoute('app_user_home');
+            }else{
+                $this->addFlash('error', 'le code n\'est pas valide');
+            }
+        }
+        return $this->render('auth/verif.html.twig', [
+            'result' => $result,
+            'form' => $form->createView(),
+        ]);       
+    }
+    
 }

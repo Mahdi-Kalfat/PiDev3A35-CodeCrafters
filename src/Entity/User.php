@@ -85,6 +85,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $resetToken = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $secret = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private $is_2f = false;
+
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -236,6 +245,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setResetToken(?string $resetToken): static
     {
         $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    public function getSecret(): ?string
+    {
+        return $this->secret;
+    }
+
+    public function setSecret(string $secret): static
+    {
+        $this->secret = $secret;
+
+        return $this;
+    }
+    public function getIs2f(): ?bool
+    {
+        return $this->is_2f;
+    }
+
+    public function setIs2f(bool $is_2f)
+    {
+        $this->is_2f = $is_2f;
 
         return $this;
     }

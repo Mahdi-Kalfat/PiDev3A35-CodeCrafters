@@ -64,7 +64,6 @@ class AuthController extends AbstractController
     public function login(UserRepository $userRepository, Request $request, SessionInterface $session,UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(ConnectionType::class);
-    
         $form->handleRequest($request);
     
         if ($form->isSubmitted()) {
@@ -72,16 +71,22 @@ class AuthController extends AbstractController
             // Access individual form fields
             $mail = $formData->getMail();
             $password =$form->get('mdp')->getData();
-    
+
             // Find user by email and password
             $user = $userRepository->findOneBy(['mail' => $mail]);
     
             if ($user && $passwordHasher->isPasswordValid($user, $password)) {
                 $stat = $user->getStat();
                 $enabled = $user->getIsEnabled();
+                $is_2f = $user->getIs2f();
                 if ($enabled == true && $stat == "user" || $stat == "Admin") {
+                    if(!$is_2f){ 
                     $session->set('user_email', $mail);
                     return $this->redirectToRoute('app_user_home');
+                    }else{
+                        $id = $user->getId();
+                        return $this->redirectToRoute('app_user_auth_verif', ['id' => $id]);
+                    }
                 } else if ($stat == "bani"){
                     $this->addFlash('error', 'Désolée votre compte est banni !');
                 }
@@ -92,10 +97,10 @@ class AuthController extends AbstractController
                 {
                     $this->addFlash('error', 'Ce compte n\'est pas activée');
                 }
-            } else {
+                } else {
                 $this->addFlash('error', 'Email or password is incorrect.');
             }
-        }
+          }
         return $this->render('user/connect.html.twig', [
             'form' => $form->createView(),
         ]);
