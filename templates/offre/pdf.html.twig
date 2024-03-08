@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Liste des Offres</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Liste des offres</h1>
+<table>
+    <thead>
+        <tr>
+        <th>image</th>
+            <th>titre</th>
+            <th>Date de de debut</th>
+            <th>Date de fin</th>
+            <th>pourcentage</th>
+            <th>description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for offre in offres %}
+        <tr>
+    <td>
+        <!-- Insert the image using the provided syntax -->
+        <img src="{{ asset('imgof/' ~ offre.image) }}" >
+    </td>
+    <td>{{ offre.titre }}</td>
+    <td>{{ offre.dated ? offre.dated|date('Y-m-d') : '' }}</td>
+    <td>{{ offre.datef ? offre.datef|date('Y-m-d') : '' }}</td>
+    <td>{{ offre.poucentage }}</td>
+    <td>{{ offre.description }}</td>
+    <td>
+        <!-- Add any additional columns or actions here -->
+    </td>
+</tr>
+
+                <!-- Add any additional columns or actions here -->
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+	
+</body>
+</html>
